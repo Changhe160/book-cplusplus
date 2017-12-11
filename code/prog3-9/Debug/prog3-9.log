@@ -1,0 +1,4 @@
+﻿  prog3_9.cpp
+d:\work\teaching\cplusplus\mybook\code\prog3-9\prog3_9.cpp(14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  prog3-9.vcxproj -> D:\work\Teaching\Cplusplus\Mybook\code\Debug\prog3-9.exe
+  prog3-9.vcxproj -> D:\work\Teaching\Cplusplus\Mybook\code\Debug\prog3-9.pdb (Full PDB)
