@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D16222EA-6FF2-4F82-9F05-69FEA91A1AC1}</ProjectGuid>
+    <ProjectGuid>{6ED51879-874B-41EB-8082-6E38606FFFF3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>prog55</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -146,10 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="myHeader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="add.cpp" />
     <ClCompile Include="prog5_5.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

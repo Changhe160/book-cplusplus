@@ -34,4 +34,7 @@
 *.tlog
 *.idb
 *.pdb
+*.ilk
+Resease/
+Debug/
 
