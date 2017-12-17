@@ -15,24 +15,15 @@ int main() {
 			computer = rand() % 3;
 			cout << "请出手：";
 			cin >> you;
-			switch (computer){
+			switch (you - computer) {
 			case 0:
-				if (you == 1) 
-					cout << "你输了!" << endl;
-				else if (you==2) 
-					cout << "你赢了!" << endl;
+				cout << "平手!" << endl;
 				break;
-			case 1:
-				if (you == 2) 
-					cout << "你输了!" << endl;
-				else if (you == 0)
-					cout << "你赢了!" << endl;
+			case 1: case -2:
+				cout << "你输了!" << endl;				
 				break;
-			case 2:
-				if (you == 0) 
-					cout << "你输了!" << endl;
-				else if (you == 1) 
-					cout << "你赢了!" << endl;
+			case -1: case 2:
+				cout << "你赢了!" << endl;
 				break;
 			}
 		} while (computer==you);

@@ -12,6 +12,7 @@ int main() {
 	ofstream out("sinx.txt");
 	while (x < 6.28) {//画一个周期的曲线
 		int val = 60*(sin(x)+1)/2;
+		cout << "  ";
 		for (int i = 0; i < val; ++i) {
 			cout << " ";
 			out << "~";

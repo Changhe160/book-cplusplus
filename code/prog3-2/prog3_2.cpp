@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-	int score;
+	unsigned score;
 	cout << "请输入一个分数:";
 	cin >> score;
 
