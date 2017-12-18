@@ -25,6 +25,8 @@ int main() {
 			case -1: case 2:
 				cout << "你赢了!" << endl;
 				break;
+			default:
+				cout << "出错了！" << endl;
 			}
 		} while (computer==you);
 		cout << "还要玩吗？Y/N:";
