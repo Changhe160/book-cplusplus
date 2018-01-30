@@ -27,15 +27,15 @@ union ID {
 int main() {
 	{
 		ID li;
-	if (sizeof(li) == sizeof(long long)) {
-		cout << "ok" << endl;
-	}
-	ID wang = { 'a' }; // 构造了一个ID类对象，为其第一个成员赋值
-	cout << wang.char_type << endl; //输出a
-	wang.int_type = 1001; // 激活使用第二个成员
-	cout << wang.int_type << endl; //输出1001
-	wang.llong_type = 20171001001; // 激活使用第三个成员
-	cout << wang.llong_type << endl; //输出20171001001
+		if (sizeof(li) == sizeof(long long)) {
+			cout << "ok" << endl;
+		}
+		ID wang = { 'a' }; // 构造了一个ID类对象，为其第一个成员赋值
+		cout << wang.char_type << endl; //输出a
+		wang.int_type = 1001; // 激活使用第二个成员
+		cout << wang.int_type << endl; //输出1001
+		wang.llong_type = 20171001001; // 激活使用第三个成员
+		cout << wang.llong_type << endl; //输出20171001001
 	}
 	{
 		tuple<string, double, int, list<string>> book("title", 58.99, 2017, { "Mandy","Lisha","Rosieta" });
