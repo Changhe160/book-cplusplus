@@ -12,7 +12,7 @@ int main() {
 	int score[sz];
 	int mean = 0;
 	for (auto &i:score) {
-		i = 50+rand() % 50;
+		i = 50+rand() % 51;
 		mean += i;
 	}
 	mean /= sz;

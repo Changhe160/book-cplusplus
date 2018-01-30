@@ -30,7 +30,7 @@ void queen(int i, vector<int> &que, int&cnt) {
 	}
 }
 int main() {
-	int sz = 8;
+	constexpr int sz = 8;
 	vector<int> que(sz);
 	int cnt = 0;
 	queen(0, que, cnt);

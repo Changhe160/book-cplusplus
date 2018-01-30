@@ -18,7 +18,7 @@
     <ClCompile Include="add.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog5_5.cpp">
+    <ClCompile Include="multi_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

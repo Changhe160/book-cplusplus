@@ -38,11 +38,7 @@ Fraction& Fraction::operator*=(const Fraction&rhs){
 Fraction Fraction::reverse()const{
 	return Fraction(m_denominator,m_numerator); 
 }
-bool Fraction::operator<(const Fraction&rhs)const{
-	if(m_numerator*rhs.m_denominator<m_denominator*rhs.m_numerator) 
-		return true; 
-	return false;
-}
+
 bool Fraction::operator<(double real)const {
 	if(m_numerator*1./m_denominator<real) return true;	
 	return false;
@@ -52,19 +48,15 @@ bool Fraction::operator<(double real)const {
 	return out;
 }
  void makeCommon(Fraction &a, Fraction &b) {
-	 int den = a.m_denominator;
 	 a.m_numerator *= b.m_denominator;
+	 b.m_numerator *= a.m_denominator;
 	 b.m_denominator = a.m_denominator *= b.m_denominator;
-	 b.m_numerator *= den;
  }
- ostream &print(ostream & out, const Fraction& a) {
+ ostream &print(ostream & out, const Fraction &a) {
 	 out << a.numerator() << "/" << a.denominator();
 	 return out;
  }
 
- bool operator==(const Fraction& left, const Fraction& right) {
-	 Fraction a(left/right);
-	 if (a.numerator() == a.denominator()) 
-		 return true;
-	 return false;
+ bool operator==(const Fraction &left, const Fraction &right) {	
+	 return left.numerator()*right.denominator() == left.denominator()*right.numerator();
 }

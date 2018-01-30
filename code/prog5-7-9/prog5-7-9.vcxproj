@@ -149,7 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="add.cpp" />
-    <ClCompile Include="prog5_5.cpp" />
+    <ClCompile Include="multi_file.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myHeader.h" />

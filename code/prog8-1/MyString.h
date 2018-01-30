@@ -5,13 +5,13 @@ using namespace std;
 
 class MyStr {
 	int m_length;               // length of the string
-	char * m_buff;              // pointer to strorage
+	char *m_buff;              // pointer to strorage
 public:
 	MyStr(const char* init_val=nullptr);
 	MyStr(const MyStr &rhs);
 	MyStr(MyStr &&rhs);
 
-	~MyStr() { delete[] m_buff; }
+	~MyStr() { delete[] m_buff; cout << "destructor" << endl; }
 	int size() { return m_length; };
 	MyStr& operator= (const MyStr &rhs);
 	MyStr& operator= (MyStr &&rhs);
@@ -20,9 +20,13 @@ public:
 	friend ostream& operator<< (ostream&, const MyStr&);
 	friend MyStr operator+(const MyStr& s1, const MyStr& s2);
 private:
-	int strlen(const char * ptr);
-	void strncpy(char *dest, const char * src, int n);
+	static int strlen(const char * ptr);
+	static void strncpy(char *dest, const char * src, int n);
 };
+
+ostream& operator<< (ostream&, const MyStr&);
+MyStr operator+(const MyStr& s1, const MyStr& s2);
+
 #endif
 
 

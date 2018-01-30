@@ -21,7 +21,7 @@ public:
 	Fraction& operator=(const Fraction&);//重载=运算符
 	Fraction operator*(const Fraction&rhs)const;	// 两分数相乘, 注意返回值类型为引用	
 	Fraction &operator*=(const Fraction&);	// 两分相乘
-	bool operator<(const Fraction&)const;	// 两分数小于比较
+	//bool operator<(const Fraction&)const;	// 两分数小于比较
 	bool operator<(double)const;
 	Fraction reverse()const;			// 求倒数
 	void reduce();				//约分
@@ -51,14 +51,24 @@ public:
 
 	friend void makeCommon(Fraction &a, Fraction &b);
 	friend ostream &operator<<(ostream & out, const Fraction& f);
-	
+	friend Fraction operator/(int left, const Fraction& right);
+	friend bool operator>(const Fraction&lhs, const Fraction&rhs);
 	/*Fraction(Fraction&& rhs) {
 		cout << "move" << endl;
 	}*/
 
+	operator double() const {
+		return 1.*m_numerator / m_denominator;
+	}
 };
-bool operator==(const Fraction& left, const Fraction& right);
-Fraction operator/(const Fraction& left, const Fraction& right);
-ostream &print(ostream & out, const Fraction& f);
+
+void makeCommon(Fraction &a, Fraction &b);
+ostream &operator<<(ostream &out, const Fraction &f);
+
+bool operator==(const Fraction &left, const Fraction &right);
+Fraction operator/(const Fraction &left, const Fraction &right);
+Fraction operator/(int left, const Fraction &right);
+
+ostream &print(ostream &out, const Fraction &f);
 
 #endif

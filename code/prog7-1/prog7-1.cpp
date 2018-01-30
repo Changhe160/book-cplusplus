@@ -82,7 +82,27 @@ void Swap(int &a, int &b) {
 	a ^= b;
 }
 
+
+class X {
+	void *m_p = nullptr;
+public:
+	template<typename T>
+	void reset(T *t) {
+		m_p = t;
+	}
+};
+
+void member_template() {
+	int i(0);
+	double d(0);
+	X x;
+	x.reset(&i);
+	x.reset(&d);
+	x.reset<double>(&d);
+}
 int main() { 
+
+	member_template();
 	forwardValue(42);
 
 	fun("abc", 42);

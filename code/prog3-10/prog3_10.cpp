@@ -8,8 +8,8 @@ using namespace std;
 
 int main() {
 	srand(time(0));
-	int computer,you;
 	while (1) {
+		int computer(0), you(0);
 		do {
 			cout << "你好！ 石头=0, 剪刀=1, 布=2";
 			computer = rand() % 3;

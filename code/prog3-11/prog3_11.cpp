@@ -5,9 +5,7 @@
 using namespace std;
 
 int main() {
-	int max_rst=10, max_hen;
-	max_rst = 100 / 5;
-	max_hen = 100 / 3;
+	int max_rst = 100 / 5, max_hen = 100 / 3;
 	for (int i = 0; i < max_rst; ++i) {
 		for (int j = 0; j < max_hen; ++j) {
 			int k = 100 - i - j;

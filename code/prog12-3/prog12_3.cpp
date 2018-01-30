@@ -48,20 +48,20 @@ public:
 
 class Bat : public Mammal, public WingedAnimal {
 public:
-	Bat() :Mammal(), WingedAnimal(){}
+	Bat() :Animal(1),Mammal(), WingedAnimal(){}
 };
 
-class BBat:public Bat {
+/*class BBat:public Bat {
 public:
 	BBat():Animal(1) {}
-};
+};*/
 
 int main() {
-	/*Bat b;
+	Bat b;
 	b.feedMilk();
 	b.flap();
 
 	b.eat();
-	Animal a = b;*/
-	BBat bb;
+	Animal a = b;
+	//BBat bb;
 }

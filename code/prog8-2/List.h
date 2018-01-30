@@ -53,7 +53,7 @@ void SList<T>::push_back(const T &val) {
 	}
 	else {
 		m_tail->m_next = node;
-		m_tail = m_tail->m_next;
+		m_tail = node;
 	}	
 }
 
