@@ -1,21 +1,19 @@
+// myHeader.h
 #ifndef MYHEADER_H
 #define MYHEADER_H
-const double pi = 3.1415926;			//`{\color{green}const¶ÔÏó}`
-int add(int, int);	 //`{\color{green}º¯ÊýÉùÃ÷}`
-extern int g_sum;   //`{\color{green}È«¾Ö¶ÔÏóÉùÃ÷}`
-
-inline bool isNumber(char ch) {     //`{\color{green} ÄÚÁªº¯Êý}`
+const double pi = 3.1415926; //constå¯¹è±¡
+int add(int, int); //å‡½æ•°å£°æ˜Ž
+extern int g_sum; //å…¨å±€å¯¹è±¡å£°æ˜Ž
+inline bool isNumber(char ch) { //å†…è”å‡½æ•°
 	return ch >= '0'&&ch <= '9' ? 1 : 0;
 }
-constexpr int scale() {				//`{\color{green} constexpr º¯Êý}`
+constexpr int scale() { //constexpr å‡½æ•°
 	return 10;
 }
-
-class myClass {  };					// `{\color{green}Àà¶¨Òå}`
-
-template<typename T>				// `{\color{green}º¯ÊýÄ£°å}`
+class myClass { }; // ç±»å®šä¹‰
+template<typename T> // å‡½æ•°æ¨¡æ¿
 const T& getMax(const T &a, const T &b) {
 	return a > b ? a : b;
 }
-#endif // !MYHEADER_H
+ #endif
 
