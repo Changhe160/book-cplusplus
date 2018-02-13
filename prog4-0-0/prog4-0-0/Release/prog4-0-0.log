@@ -1,0 +1,20 @@
+﻿  prog4_0_0.cpp
+prog4_0_0.cpp(35): warning C4244: “初始化”: 从“double”转换到“const int”，可能丢失数据
+prog4_0_0.cpp(324): warning C4838: 从“int”转换到“char”需要收缩转换
+prog4_0_0.cpp(324): warning C4305: “初始化”: 从“int”到“char”截断
+prog4_0_0.cpp(324): warning C4309: “初始化”: 截断常量值
+prog4_0_0.cpp(89): warning C4101: “ptr1”: 未引用的局部变量
+prog4_0_0.cpp(89): warning C4101: “i”: 未引用的局部变量
+prog4_0_0.cpp(89): warning C4101: “ptr2”: 未引用的局部变量
+prog4_0_0.cpp(93): warning C4101: “ptr2”: 未引用的局部变量
+prog4_0_0.cpp(135): warning C4101: “j”: 未引用的局部变量
+prog4_0_0.cpp(133): warning C4101: “ptr2”: 未引用的局部变量
+prog4_0_0.cpp(171): warning C4101: “arr”: 未引用的局部变量
+prog4_0_0.cpp(175): warning C4101: “arri”: 未引用的局部变量
+prog4_0_0.cpp(228): warning C4101: “ar2”: 未引用的局部变量
+prog4_0_0.cpp(235): warning C4101: “p2d”: 未引用的局部变量
+  正在生成代码
+  All 403 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  prog4-0-0.vcxproj -> F:\物流\Problem\李老师的书\code\prog4-0-0\Release\prog4-0-0.exe
+  prog4-0-0.vcxproj -> F:\物流\Problem\李老师的书\code\prog4-0-0\Release\prog4-0-0.pdb (Full PDB)
