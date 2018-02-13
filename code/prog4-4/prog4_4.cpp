@@ -1,46 +1,47 @@
 /*
-*²Â×ÖÃÕÓÎÏ·
+*çŒœå­—è°œæ¸¸æˆ
 */
-#include <iostream>  
-#include <string>  
+#include <iostream>
+#include <string>
 using namespace std;
-
 int main() {
 	string target;
-	cout << "Çë¸ø³öÒ»¸öµ¥´Ê£º";
+	cout << "è¯·ç»™å‡ºä¸€ä¸ªå•è¯ï¼š";
 	cin >> target;
-	cout << string(100, '\n'); //Í¨¹ı100¸ö»»ĞĞ£¬Òş²ØÊäÈëµÄµ¥´Ê
+	cout << string(100, '\n'); //è¾“å‡º100ä¸ªæ¢è¡Œï¼Œç”¨æ¥éšè—è¾“å…¥çš„å•è¯
 	int length = target.length();
-	string attempt(length, '*'), badchars; //·Ö±ğ¼ÇÂ¼µ±Ç°ÕıÈ·µÄ²Â²âºÍ´íÎóµÄ²Â²â 	 
-	int guesses = 6; //×î´ó³¢ÊÔ´ÎÊı
-	cout << "µ¥´ÊÒÑ×¼±¸ºÃ£¬ËüÓĞ" << length << "¸ö×ÖÄ¸:" << attempt << endl;
-	do{
+	string attempt(length, '*'), badchars; //åˆ†åˆ«è®°å½•å½“å‰æ­£ç¡®å’Œé”™è¯¯çš„çŒœæµ‹
+	int guesses = 5; //æœ€å¤§å°è¯•æ¬¡æ•°
+	cout << "å•è¯å·²å‡†å¤‡å¥½ï¼Œå®ƒæœ‰" << length << "ä¸ªå­—æ¯:" << attempt << endl;
+	do {
 		char letter;
-		cout << "Guess a letter: ";
-		cin >> letter;		 
-		if (badchars.find(letter) != string::npos || //badchars»òattemptÖĞÒÑÓĞletters  
-			attempt.find(letter) != string::npos) { //string::nposÊÇÒ»¸ö±êÖ¾Î» 
-			cout << "ÒÑ¾­²Â¹ı¸Ã×ÖÄ¸£¬ÇëÖØ²Â" << endl;
-			continue;
+		cout << "è¯·çŒœæµ‹ä¸€ä¸ªå­—æ¯: ";
+		cin >> letter; //badcharsæˆ–attemptä¸­å·²æœ‰letters
+		if (badchars.find(letter) != string::npos ||
+			attempt.find(letter) != string::npos) {
+			cout << "å·²ç»çŒœè¿‡è¯¥å­—æ¯ï¼Œè¯·é‡çŒœ" << endl;
+			continue; //string::nposåŒ¹é…å¤±è´¥æ ‡å¿—ä½
 		}
-		auto loc = target.find(letter);
+		auto loc = target.find(letter); //ä½¿ç”¨autoè‡ªåŠ¨æ¨å¯¼locç±»å‹
 		if (loc == string::npos) {
-			cout << "Ã»ÓĞ´Ë×ÖÄ¸!" << endl;
-			--guesses;
-			badchars += letter;
-		}else {
-			cout << "ÓĞÕâ¸ö×ÖÄ¸£¬¼ÌĞø¼ÓÓÍ!" << endl;
-			do {
-				attempt[loc] = letter;
-				loc = target.find(letter, loc + 1); //Èç¹ûÕÒµ½ÁË£¬ÔòÏÂÒ»´ÎËÑË÷Î»ÖÃ´Óloc+1¿ªÊ¼ 	
+			cout << "æ²¡æœ‰æ­¤å­—æ¯!" << endl;
+			--guesses; //å…è®¸é”™è¯¯æ¬¡æ•°-1
+			badchars += letter; //çŒœé”™çš„å­—æ¯æ”¾åˆ°badcharsé‡Œ
+		}
+		else {
+			cout << "æœ‰è¿™ä¸ªå­—æ¯ï¼Œç»§ç»­åŠ æ²¹!" << endl;
+			do {//æŠŠattempté‡Œé¢ç›¸åº”çš„*ç”¨çŒœå¯¹çš„å­—æ¯æ›¿æ¢
+				attempt[loc] = letter;//å¦‚æœæ‰¾åˆ°äº†ï¼Œåˆ™ä¸‹ä¸€æ¬¡æœç´¢ä»loc+1å¼€å§‹
+				loc = target.find(letter, loc + 1);
 			} while (loc != string::npos);
 		}
-		cout << "Äã²Â²âµÄµ¥´Ê:" << attempt << endl;
+		cout << "ä½ çŒœæµ‹çš„å•è¯:" << attempt << endl;
 		if (attempt != target)
-			cout << "Ê£Óà" << guesses << " ´Î²Â´í»ú»á" << endl;
+			cout << "å‰©ä½™" << guesses << " æ¬¡çŒœé”™æœºä¼š" << endl;
 	} while (guesses > 0 && attempt != target);
 	if (guesses > 0)
-		cout << " ³É¹¦ÁË£¬¹§Ï²Äã£¡" << endl;
+		cout << " æˆåŠŸäº†ï¼Œæ­å–œä½ ï¼" << endl;
 	else
-		cout << "¶Ô²»Æğ£¬Ê§°ÜÁË£¬ÏÂ´ÎÔÙÍæ°É£¬µ¥´ÊÊÇ" << target << endl;
+		cout << "å¯¹ä¸èµ·ï¼Œå¤±è´¥äº†ï¼Œä¸‹æ¬¡å†æŒ‘æˆ˜å§ï¼Œå•è¯æ˜¯" << target << endl;
+	return 0;
 }
