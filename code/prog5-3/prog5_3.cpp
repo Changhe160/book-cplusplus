@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>  // Ê¹ÓÃsinº¯Êý
+#include <cmath>  // ä½¿ç”¨sinå‡½æ•°
 using namespace std;
 
 using pFun = double(*)(double);
@@ -13,16 +13,16 @@ double f_default(double x) {
 
 double integrate(double l, double u, pFun pf = f_default, int n = 1000) {
 	double sum = 0.0;
-	double gap = (u - l) / n;  //Ã¿¸ö¼ä¸ôµÄ³¤¶È
-	for (int i = 0; i < n; i++)
+	double gap = (u - l) / n;  //æ¯ä¸ªé—´éš”çš„é•¿åº¦
+	for (int i = 0; i < n; i++)//ç´¯åŠ æ¯ä¸ªæ¢¯å½¢çš„é¢ç§¯
 		sum += (gap / 2.0) * (pf(l + i*gap) + pf(l + (i + 1)*gap));
-	
+
 	return sum;
 }
 
 int main() {
-	cout<<"Ä¬ÈÏº¯ÊýÔÚÇø¼ä[0:1]ÉÏµÄ»ý·ÖÎª£º"<<integrate(0, 1) << endl;
-	cout<<"Sphereº¯ÊýÔÚÇø¼ä[0:1]ÉÏµÄ»ý·ÖÎª£º"<<integrate(0, 1, f_sphere)<<endl;
-	cout<<"sinº¯ÊýÔÚÇø¼ä[0:1]ÉÏµÄ»ý·ÖÎª£º"<<integrate(0, 1, sin)<<endl;
+	cout << "é»˜è®¤å‡½æ•°åœ¨åŒºé—´[0:1]ä¸Šçš„ç§¯åˆ†ä¸ºï¼š" << integrate(0, 1) << endl;
+	cout << "Sphereå‡½æ•°åœ¨åŒºé—´[0:1]ä¸Šçš„ç§¯åˆ†ä¸ºï¼š" << integrate(0, 1, f_sphere) << endl;
+	cout << "sinå‡½æ•°åœ¨åŒºé—´[0:1]ä¸Šçš„ç§¯åˆ†ä¸ºï¼š" << integrate(0, 1, sin) << endl;
 	return 0;
 }
