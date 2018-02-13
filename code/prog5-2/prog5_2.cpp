@@ -1,25 +1,29 @@
 /*
-*Ã°ÅİÅÅĞò·¨
+*å†’æ³¡æ’åºæ³•
 */
 
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 using namespace std;
-
+inline void Swap(int & x, int &y) {
+	int z(x);
+	x = y;
+	y = z;
+}
 int main() {
 	srand(0);
 	vector<int> score(10);
-	for (auto &i : score)
+	for (auto &i : score)//éšæœºç”Ÿæˆå­¦ç”Ÿæˆç»©
 		i = rand() % 100;
-	for (int i = 0; i < score.size() - 1; ++i) {
-		for (int j = score.size()-1; j >i; --j) {//Ã¿Ò»ÂÖÃ°Åİ¹ı³Ì½«×îĞ¡µÄÊı¸¡³öÀ´
-			if (score[j] < score[j-1])//ÏàÁÚµÄÁ½¸öÊı±È½Ï£¬´ÓÏÂÏòÉÏÃ°Åİ
-				swap(score[j], score[j-1]);
+	for (int i = 0; i < score.size() - 1; ++i) {//è¿›è¡Œscore.size()-1è½®æ“ä½œ
+		for (int j = score.size() - 1; j >i; --j) {//æ¯ä¸€è½®å°†æœ€å°çš„æ•°æµ®å‡ºæ¥
+			if (score[j] < score[j - 1])//ç›¸é‚»çš„ä¸¤ä¸ªæ•°æ¯”è¾ƒï¼Œä»ä¸‹å‘ä¸Šå†’æ³¡
+				swap(score[j], score[j - 1]);//ç›¸é‚»çš„ä¸¤ä¸ªæ•°æ¯”è¾ƒï¼Œå°çš„æ•°å‘ä¸Šæµ®
 		}
 	}
 	for (auto &i : score)
 		cout << i << endl;
-		
+
 	return 0;
 }
