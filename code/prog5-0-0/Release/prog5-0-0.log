@@ -1,0 +1,13 @@
+﻿  fun.cpp
+  prog5_0_0.cpp
+prog5_0_0.cpp(163): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+prog5_0_0.cpp(251): warning C4101: “stu1”: 未引用的局部变量
+prog5_0_0.cpp(268): warning C4101: “a”: 未引用的局部变量
+prog5_0_0.cpp(269): warning C4101: “b”: 未引用的局部变量
+prog5_0_0.cpp(270): warning C4101: “c”: 未引用的局部变量
+prog5_0_0.cpp(257): warning C4101: “pf”: 未引用的局部变量
+  正在生成代码
+  All 168 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  prog5-0-0.vcxproj -> F:\物流\Problem\李老师的书\code\prog5-0-0\Release\prog5-0-0.exe
+  prog5-0-0.vcxproj -> F:\物流\Problem\李老师的书\code\prog5-0-0\Release\prog5-0-0.pdb (Full PDB)
