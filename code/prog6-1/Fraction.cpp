@@ -1,16 +1,16 @@
 #include "Fraction.h"
 
 void Fraction::reduce(){
-	int num= gcd(abs(m_numerator), abs(m_denominator));
+	int num= gcd(abs(m_numerator), abs(m_denominator));//获取分子分母的最大公约数；
 	m_denominator /= num;
 	m_numerator /= num;
 }
 int Fraction::gcd(int x, int y)//辗转相除法
 {
 	if (y != 0)
-		gcd(y, x%y); //recursive call by using arithmetic rules
-	else 
-		return x; //base case,return x when y equals 0
+		gcd(y, x%y); //递归调用
+	else //不能省略
+		return x; //y=0时，返回结果
 }
 Fraction::Fraction(int a,int b)
 	:m_numerator(a),m_denominator(b){ 

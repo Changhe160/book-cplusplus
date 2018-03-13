@@ -6,9 +6,9 @@ using namespace std;
 /*
 class PartTimeWorker{
 	
-	string m_name;
-	double m_hours;
-	static double ms_payRate;
+	string m_name;//员工姓名；
+	double m_hours;//工作小时数；
+	static double ms_payRate;//小时工资；
 	static const int ms_maxHourWeek = 20;
 public:
 	double salary();
@@ -17,9 +17,13 @@ public:
 	}
 	static void initRate(double rate);
 };
+//静态成员的初始化；
 double PartTimeWorker::ms_payRate = 7.53;
-
+//不带初始值的定义；
+//const int PartTimeWorker::ms_maxHourWeek;
 double PartTimeWorker::salary() {
+//类内使用静态成员；
+//也可以通过类对象访问；
 	return m_hours*ms_payRate;
 }
 

@@ -8,8 +8,8 @@
 using namespace std;
 
 class Fraction{
-	int m_numerator=0;				// 分子
-	int m_denominator=1;				//分母
+	int m_numerator=0;				// 分子默认为0；
+	int m_denominator=1;				//分母默认为1；
 	int gcd(int x, int y);  //最大公约数
 public:
 	Fraction(int a=0,int b=1);		//默认的构造函数
@@ -49,7 +49,8 @@ public:
 		return *this;
 	}
 
-	friend void makeCommon(Fraction &a, Fraction &b);
+	friend void makeCommon(Fraction &a, Fraction &b);//将分数a和b通分
+	//类的辅助函数声明为友元；
 	friend ostream &operator<<(ostream & out, const Fraction& f);
 	friend Fraction operator/(int left, const Fraction& right);
 	friend bool operator>(const Fraction&lhs, const Fraction&rhs);

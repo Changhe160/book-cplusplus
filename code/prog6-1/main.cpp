@@ -34,7 +34,7 @@ const T& getMax(const T &a, const T &b) {
 
 int main(){
 	//Fraction f1 = 5;
-	Fraction f1(4,8),f2(3,7);
+	Fraction f1(4,8),f2(3,7);//定义对象f1,f2;
 	//double x = 1.0 + f1;
 	//int i = f1;
 	makeCommon(f1, f2);
