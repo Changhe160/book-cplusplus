@@ -6,11 +6,11 @@ using namespace std;
 
 int main() {
 	int cnt = 0;
-	char x;
+	char digit;
 	do {
-		x = cin.get();
-		if (x >= '0'&&x <= '9') ++cnt;
-	} while (x != EOF);
+		digit = cin.get();
+		if (digit >= '0'&&digit <= '9') ++cnt;
+	} while (digit != EOF);
 
 	cout << "数字字符个数为： " << cnt << endl;
 	return 0;

@@ -1,10 +1,11 @@
 #include<iostream>
+using namespace std;
+int sum = 10;
+
 int main() {
-	int sum = 10;
-	{
-		int sum = 0;
-		std::cout << sum << std::endl;//访问第二个sum，输出0
-	}
-	std::cout << sum << std::endl;     // 访问第一个sum，输出10	
+	cout << sum;     // 访问全局对象sum，输出10
+	int sum = 0; 
+	cout << sum << endl;//访问局部对象sum，输出0
+	cout << ::sum;     // 访问全局对象sum，输出10
 	return 0;
 }

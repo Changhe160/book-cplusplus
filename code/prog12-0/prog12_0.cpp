@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<vector>
 #include<string>
 #include<iostream>
@@ -18,14 +19,15 @@
 #include <ctime> 
 using namespace std;
 
-union ID {
-	char char_type;
-	int int_type;
-	long long llong_type;
-};
+
 
 int main() {
 	{
+		union ID {
+			char char_type;
+			int int_type;
+			long long llong_type;
+		};
 		ID li;
 		if (sizeof(li) == sizeof(long long)) {
 			cout << "ok" << endl;

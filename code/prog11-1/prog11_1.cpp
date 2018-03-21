@@ -57,16 +57,6 @@ const T* End(const vector<T> &vec) {
 	return vec.size() > 0 ? &vec[vec.size()-1]+1 : nullptr;
 }
 
-template<typename T, size_t N>
-const T* Begin(const  T (&arr)[N]) {
-	return arr;
-}
-
-template<typename T, size_t N>
-const T* End(const T (&arr)[N]) {
-	return arr+N;
-}
-
 struct Foo{
 	Foo(const string &name, int id) :m_name(name), m_id(id) {}
 	string m_name;
@@ -123,16 +113,13 @@ int main() {
 		cout << *p << endl;	
 
 	Find(Begin(vi), End(vi), 4);
-	Find(Begin(arr), End(arr), 5);
-
+	
 	if (auto p = Find(&vi[0], &vi[vi.size() - 1]+1, 4)) 
 		cout << *p << endl;
 
 	if (auto p = Find(arr, arr + sizeof(arr) / sizeof(int), 5)) 
 		cout << *p << endl;
 	
-
-
 	auto it1 = vi.cbegin();
 
 	vector<Foo> vf;
@@ -246,7 +233,24 @@ int main() {
 			--entries;
 		}*/
 	}
+	{
+		tuple<string, double, int,list<string>> book( "title",58.99,2017,{"Mandy","Lisha","Rosieta"} );
+		auto book2 = make_tuple(string("title"), 58.99, 2017, list<string>{ "Mandy","Lisha","Rosieta" });
+		auto item1= get<0>(book);
+		get<1>(book) = 48.99;
+		for (auto &i : get<3>(book))
+			cout << i << " ";
 
+		string title;
+		double price;
+		int year;
+		list<string> author;
+		if(book<book2)
+		tie(title, price, year, author) = book;
+		auto book3 = tie(title, price, year, author);
+		cout << &get<1>(book3) << " " << &price << endl;
+		cout << title << " " << price <<" "<< year << endl;
+	}
 	{
 	/*	
 		struct LargeData {

@@ -10,7 +10,9 @@
 using namespace std;
 
 void fstream_() {
-	int max_rst = 100 / 5, max_hen = 100 / 3;
+	int max_rst = 10, max_hen;
+	max_rst = 100 / 5;
+	max_hen = 100 / 3;
 
 	ofstream out("result.txt");
 	if (out) {
@@ -63,7 +65,7 @@ void sstream_() {
 }
 
 int main() {
-	//sstream_();
+	sstream_();
 	//fstream_();
 	//double x;
 	//cin >> x;

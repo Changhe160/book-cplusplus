@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prog5-0.cpp">
+    <ClCompile Include="fun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prog5_0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

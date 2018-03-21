@@ -7,6 +7,11 @@
 #include <vector>
 using namespace std;
 
+inline void swap(int & x, int &y) {
+	int z(x);
+	x = y;
+	y = z;
+}
 int main() {
 	srand(0);
 	vector<int> score(10);

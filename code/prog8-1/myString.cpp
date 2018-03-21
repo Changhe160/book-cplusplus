@@ -75,8 +75,8 @@ MyStr operator+(const MyStr& s1, const MyStr& s2)
 	MyStr res;
 	res.m_length = s1.m_length + s2.m_length;
 	res.m_buff = new char[res.m_length];
-	MyStr::strncpy(res.m_buff, s1.m_buff, s1.m_length);
-	MyStr::strncpy(res.m_buff + s1.m_length, s2.m_buff, s2.m_length);
+	strncpy(res.m_buff, s1.m_buff, s1.m_length);
+	strncpy(res.m_buff + s1.m_length, s2.m_buff, s2.m_length);
 
 	return res;
 }
