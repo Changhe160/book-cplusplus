@@ -39,3 +39,5 @@ Resease/
 Debug/
 *.opendb
 
+*.db
+code/.vs/examples/v14/.suo
