@@ -20,8 +20,8 @@ public:
 	friend ostream& operator<< (ostream&, const MyStr&);
 	friend MyStr operator+(const MyStr& s1, const MyStr& s2);
 private:
-	int strlen(const char * ptr);
-	void strncpy(char *dest, const char * src, int n);
+	static int strlen(const char * ptr);
+	static void strncpy(char *dest, const char * src, int n);
 };
 #endif
 

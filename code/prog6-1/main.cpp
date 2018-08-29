@@ -23,6 +23,8 @@ int main(){
 	std::complex<double> c;
 	Fraction f1 = 5;
 	
+	f1*=4;
+
 	Fraction f2(2,3);
 	Fraction f3 = divide(f1, f2);
 	f1.reduce();
