@@ -41,3 +41,11 @@ Debug/
 
 *.db
 code/.vs/examples/v14/.suo
+*.aux
+*.aux
+*.log
+*.nav
+*.snm
+*.synctex
+*.toc
+*.vrb
