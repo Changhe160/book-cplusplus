@@ -32,8 +32,8 @@
 \definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
 \definecolor{babypink}{rgb}{0.96, 0.76, 0.76}
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
-\setbeamerfont{block title}{size=\small}
-\setbeamerfont{block body}{size=\footnotesize}
+\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{block body}{size=\small}
 \newenvironment<>{blueblock}[1]{%
   \setbeamercolor{block title}{fg=white,bg=hanblue}%
   \begin{block}#2{#1}}{\end{block}}
@@ -360,12 +360,14 @@ int i, *q = new int(2);
 q = &i;   // 错误：发生内存泄漏
 \end{lstlisting}\vspace{-2mm}
 \end{blueblock}
+\vspace{-1mm}
 \begin{blueblock}<3->{内存泄漏示例二}
 \vspace{-2.5mm}\begin{lstlisting}[moreemph={}]
 foo(614); //正确：无内存泄漏
 foo(105); //错误：发生内存泄漏
 \end{lstlisting}\vspace{-2.5mm}
 \end{blueblock}
+\vspace{-3mm}
 \begin{blueblock}<3->{\texttt{foo}函数定义}
 \vspace{-2.5mm}\begin{lstlisting}[moreemph={}]
 void foo(int i) {
@@ -383,9 +385,6 @@ void foo(int i) {
 \begin{yellowblock}<3->{说明}
 当调用\texttt{foo}函数的实参值小于\texttt{207}时，\texttt{foo}函数体中\texttt{p}所指向的动态内存无法释放。
 \end{yellowblock}
-\begin{redblock}<4->{注意}
-内存泄漏难捉摸、难检测，导致性能逐渐降低，耗尽内存，甚至使另一个程序运行失败
-\end{redblock}
 
 \end{columns}
 
@@ -969,7 +968,7 @@ class MyStr {
 \end{greenblock}
 \begin{yellowblock}<2->{说明}
 $\bullet$~对于指针成员\texttt{m\_buff}，将复制指针本身的值，而非指针所指向的对象的值\\
-$\bullet$~\texttt{s1}、\texttt{s2}和\texttt{s3}的\texttt{m\_buff}指向同一个内存地址，当它们消亡时，同一个动态内存将会被释放多次
+$\bullet$~\texttt{s1}、\texttt{s2}和\texttt{s3}的\texttt{m\_buff}指向同一个内存地址，析构时重复释放
 \end{yellowblock}
 
 \end{columns}
@@ -1019,8 +1018,7 @@ MyStr& MyStr::operator=(const MyStr &rhs){
 \end{greenblock}
 \vspace{-2mm}
 \begin{greenblock}<5->{答案}
-$\bullet$~若缺少判断，当被复制对象为自身时，\texttt{delete}语句会在复制数据之前将对象销毁，引发错误\\
-$\bullet$~此外也避免了对自己的复制
+避免对自己的复制，否则此情况下会对已被释放的动态内存进行复制，引发错误
 \end{greenblock}
 
 \end{columns}
@@ -1114,11 +1112,11 @@ MyStr::MyStr(const MyStr &rhs):m_length(rhs.m_length),
 \end{yellowblock}
 \vspace{-2mm}
 \begin{greenblock}<3->{问题}
-移动构造中若没有将临时对象\texttt{rhs}的指针成员置为空指针，会有什么后果？
+移动构造中若没有置空临时对象\texttt{rhs}的指针成员会怎样？
 \end{greenblock}
 \vspace{-2mm}
 \begin{greenblock}<4->{答案}
-\texttt{rhs}析构时会释放动态内存，导致新创建对象的\texttt{m\_buff}成为野指针
+新建对象的\texttt{m\_buff}成为野指针
 \end{greenblock}
 
 \end{columns}
@@ -1365,9 +1363,8 @@ Node<T>* SList<T>::insert(Node<T> *pos, const T &val) {
 
 \column{0.3\textwidth}
 \begin{yellowblock}<2->{说明}
-$\bullet$~使用形参的数据创建新结点\\
 $\bullet$~将新结点的指针域指向\texttt{pos}的后继，再将\texttt{pos}的后继修改为\texttt{node}\\
-$\bullet$~如果\texttt{pos}为尾结点，需要修改尾指针使其指向新结点
+$\bullet$~如果\texttt{pos}为尾结点，需要修改尾指针指向新结点
 \end{yellowblock}
 \vspace{-2mm}
 \begin{redblock}<3->{注意}
@@ -1934,7 +1931,7 @@ Stack<T>::~Stack() {
 \alert{表达式求值}是栈的重要应用之一\\
 ~\\
 假设有如下算术表达式：\\
-\begin{center}{\Large \texttt{\alert<3>{a} \alert<4>{-} \alert<5>{b} \alert<6>{/} \alert<7>{c} \alert<8-13>{+} \alert<14>{d} \alert<15>{*} \alert<16>{e}\alert<17->{=}}}\end{center}
+\begin{center}{\Large \texttt{\alert<3>{a} \alert<4>{-} \alert<5>{b} \alert<6>{/} \alert<7>{c} \alert<8-13>{+} \alert<14>{d} \alert<15>{*} \alert<16>{e} \alert<17->{=}}}\end{center}
 
 \only<2>{\includegraphics[width=\textwidth]{calculate_1}}
 \only<3>{\includegraphics[width=\textwidth]{calculate_2}}
@@ -2355,7 +2352,7 @@ BinaryTree<int> bstree;
 插入新结点成功则返回结点指针，然后打印数据
 \end{yellowblock}
 \begin{yellowblock}<2->{说明}
-从根结点开始，如果待插入结点的数据值小于根结点的数据值，则在其左子树上查找要插入的位置；否则在其右子树中查找
+从根结点开始，若待插入结点小于根结点，则在左子树上继续查找插入位置；否则在右子树中查找
 \end{yellowblock}
 \begin{greenblock}<12->{问题}
 如果改变插入顺序，如将\texttt{1}调到第一个插入，树的结构会有多大变化？
@@ -2396,11 +2393,11 @@ Node<T> * BinaryTree<T>::insert_(Node<T>* &p, const T &value){
 \end{yellowblock}
 \vspace{-2mm}
 \begin{greenblock}<2->{问题}
-第一个形参\alert{必须}为\texttt{Node}类型指针的\alert{引用}，而不是\texttt{Node}类型的指针。为什么？
+第一个形参\alert{必须}为\texttt{Node}类型的\alert{指针的引用}，而不是指针，为什么？
 \end{greenblock}
 \vspace{-2mm}
 \begin{greenblock}<3->{答案}
-如果不是引用，创建新结点时，新的动态内存虽然被分配了，但只有局部对象\texttt{p}被改指向这个新地址，真正的实参的值还是\texttt{nullptr}
+否则创建新结点时，只有局部对象\texttt{p}被改指向新的动态内存地址，真正的实参的值还是\texttt{nullptr}
 \end{greenblock}
 
 \end{columns}
@@ -2605,7 +2602,7 @@ $\bullet$~释放给定结点及其左右子树的内存\\
 $\bullet$~访问权限声明为私有，是析构函数的实现
 \end{yellowblock}
 \begin{redblock}<2->{注意}
-若有\alert{其他成员函数}里执行此函数，必须把给定结点的父结点（如果有的话）中对应的指针域\alert{置空}，否则其父结点相应的指针为空悬指针
+若在它处执行此函数后，必须把给定结点的父结点（如有）指向此结点的指针成员置空，否则成为\alert{空悬指针}
 \end{redblock}
 
 

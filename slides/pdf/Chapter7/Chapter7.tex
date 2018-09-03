@@ -32,8 +32,8 @@
 \definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
 \definecolor{babypink}{rgb}{0.96, 0.76, 0.76}
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
-\setbeamerfont{block title}{size=\small}
-\setbeamerfont{block body}{size=\footnotesize}
+\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{block body}{size=\small}
 \newenvironment<>{blueblock}[1]{%
   \setbeamercolor{block title}{fg=white,bg=hanblue}%
   \begin{block}#2{#1}}{\end{block}}
@@ -216,8 +216,8 @@ const T & getMax(const T &a, const T &b){
 \begin{yellowblock}<2->{说明}
 $\bullet$ 模板的定义以关键字~\alert{\texttt{template}}~开始\\
 $\bullet$ 模板参数列表放在一对\alert{尖括号}里面\\
-$\bullet$ 每一个参数前面用~\alert{\texttt{typename}}~（或~\alert{\texttt{class}}~）声明\\
-$\bullet$ 如果列表含有多个模板参数，则参数之间用\alert{逗号}分开
+$\bullet$ 每一个参数前面用\\\alert{\texttt{typename}}~或~\alert{\texttt{class}}~声明\\
+$\bullet$ 列表含有多个模板参数则参数之间用\alert{逗号}分开
 \end{yellowblock}
 \begin{redblock}<3->{注意}
 模板的声明和定义应放在同一个头文件里
@@ -382,7 +382,7 @@ const T& maxElem(T(&arr)[size]) {
 \begin{blueblock}{\texttt{maxElem}函数模板实例化}
 \begin{lstlisting}
 int arr[10] = {1,8,5,3};
-int x = maxElem(arr); 
+int x = maxElem(arr);
 // 或者显式调用 maxElem<int,10>(arr);
 \end{lstlisting}
 \end{blueblock}
@@ -560,7 +560,7 @@ const char* const & getMax(const char* const &a, const char* const &b){
 \end{yellowblock}
 \vspace{-2mm}
 \begin{yellowblock}{说明}
-模板实参\texttt{T}的类型为\texttt{const char*}，函数形参\texttt{a}和\texttt{b}分别为一个指向\texttt{const char}对象的\texttt{const}指针的引用，函数体里面的操作是两个字符串值的比较
+\texttt{T}被推断为\texttt{const char*}，\texttt{a}和\texttt{b}分别为一个指向\texttt{const char}对象的\texttt{const}指针的引用，函数是对两个字符串值的比较
 \end{yellowblock}
 \vspace{-2mm}
 \begin{redblock}<2->{注意}
@@ -670,8 +670,8 @@ x.reset(&d); // 或者x.reset<double>(&d);
 成员函数\texttt{reset}定义为一个函数模板，接受不同类型的指针实参
 \end{yellowblock}
 \begin{yellowblock}<2->{说明}
-$\bullet$ 第一条\texttt{reset}函数调用将模板成员函数的模板参数\texttt{T}与\texttt{int}类型绑定，\texttt{m\_p}存放整型对象\texttt{i}的地址\\
-$\bullet$ 第二条\texttt{reset}函数调用，编译器推断出模板成员函数的模板参数\texttt{T}为\texttt{double}类型，并重置\texttt{m\_p}的值为\texttt{double}类型对象\texttt{d}的地址
+$\bullet$ 第一条\texttt{reset}函数调用中\texttt{T}被推断为\texttt{int}类型，\texttt{m\_p}存放整型对象\texttt{i}的地址\\
+$\bullet$ 第二条\texttt{reset}函数调用中\texttt{T}被推断为\texttt{double}类型，\texttt{m\_p}存放\texttt{double}类对象\texttt{d}的地址
 \end{yellowblock}
 
 \end{columns}
@@ -848,9 +848,11 @@ forwardValue(a); // 正确
 \begin{yellowblock}<3->{说明}
 当传入\texttt{forwardValue}的实参为\texttt{42}是右值，\texttt{T}被推断为非引用类型，\texttt{forward<T>}将返回右值
 \end{yellowblock}
+\vspace{-2mm}
 \begin{yellowblock}<4->{说明}
 当传入\texttt{forwardValue}的实参为\texttt{a}是左值，\texttt{T}被推断为左值引用类型，此时\texttt{forward<T>}将返回左值
 \end{yellowblock}
+\vspace{-2mm}
 \begin{redblock}<5->{注意}
 在C++11新标准下，\\
 \texttt{\&\&\&} 折叠为 \texttt{\&}
@@ -1489,9 +1491,9 @@ int Array<T, N>::binarySearch(const T &value, int left, int right) {
         if (m_ele[middle] == value)
             return middle;
         else if (m_ele[middle] > value)
-            right = middle - 1;//修改right指针
+            right = middle - 1;//修改right
         else
-            left = middle + 1;//修改left指针
+            left = middle + 1;//修改left
     }
     return -1; //查找失败
 }
@@ -1501,8 +1503,8 @@ int Array<T, N>::binarySearch(const T &value, int left, int right) {
 
 \column{0.3\textwidth}
 \begin{yellowblock}{说明}
-$\bullet$ 如果\texttt{value}小于中点位置（\texttt{middle}）元素，则将\texttt{right}指针设置为\texttt{middle-1}；\\
-$\bullet$ 如果\texttt{value}大于中点位置元素，则将\texttt{left}指针设置为\texttt{middle+1}；\\
+$\bullet$ 如果\texttt{value}小于中点位置（\texttt{middle}）元素，则将\texttt{right}设为\texttt{middle-1}\\
+$\bullet$ 如果\texttt{value}大于中点位置元素，则将\texttt{left}设为\texttt{middle+1}\\
 $\bullet$ 如果查找失败则返回\texttt{-1}
 \end{yellowblock}
 \vspace{-2mm}
@@ -1511,7 +1513,7 @@ $\bullet$ 如果查找失败则返回\texttt{-1}
 \end{greenblock}
 \vspace{-2mm}
 \begin{greenblock}<3->{答案}
-查找失败，结束于元素\texttt{1}，\texttt{left}值为\texttt{2}，\texttt{right}值为\texttt{1}
+\texttt{left}为\texttt{2}，\texttt{right}为\texttt{1}
 \end{greenblock}
 
 \end{columns}
