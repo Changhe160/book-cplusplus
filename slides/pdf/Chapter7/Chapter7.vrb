@@ -1,0 +1,45 @@
+\frametitle{7.3.2~二分查找算法}
+
+二分查找算法的实现如下：
+
+\vspace{-4mm}
+
+\begin{columns}[t]
+
+\column{0.65\textwidth}
+\begin{blueblock}{\texttt{Array}成员函数\texttt{binarySearch}定义}
+\begin{lstlisting}[moreemph={Array,T,F}]
+template<typename T, size_t N>
+int Array<T, N>::binarySearch(const T &value, int left, int right) {
+    while (left <= right) {
+        int middle = (left + right) / 2;//计算中点位置
+        if (m_ele[middle] == value)
+            return middle;
+        else if (m_ele[middle] > value)
+            right = middle - 1;//修改right
+        else
+            left = middle + 1;//修改left
+    }
+    return -1; //查找失败
+}
+\end{lstlisting}
+\end{blueblock}
+
+
+\column{0.3\textwidth}
+\begin{yellowblock}{说明}
+$\bullet$ 如果\texttt{value}小于中点位置（\texttt{middle}）元素，则将\texttt{right}设为\texttt{middle-1}\\
+$\bullet$ 如果\texttt{value}大于中点位置元素，则将\texttt{left}设为\texttt{middle+1}\\
+$\bullet$ 如果查找失败则返回\texttt{-1}
+\end{yellowblock}
+\vspace{-2mm}
+\begin{greenblock}<2->{问题}
+查找\texttt{4}返回时，\texttt{left}和\texttt{right}的值是多少？
+\end{greenblock}
+\vspace{-2mm}
+\begin{greenblock}<3->{答案}
+\texttt{left}为\texttt{2}，\texttt{right}为\texttt{1}
+\end{greenblock}
+
+\end{columns}
+

@@ -1,0 +1,25 @@
+\frametitle{12.7~标准库特殊工具\small {——日期和时间}}
+\begin{columns}[T]
+        \column{0.65\textwidth}
+        \begin{blueblock}
+            {输出时间间隔}
+            \begin{lstlisting}[moreemph={T}]
+auto start = steady_clock::now();
+doSomething(); // 执行某种算法
+auto end = steady_clock::now();
+auto interval = duration_cast<milliseconds>(end - start);
+cout << interval.count() << endl;
+\end{lstlisting}
+        \end{blueblock}
+        \column{0.3\textwidth}
+        \begin{yellowblock}
+            {说明}
+            $\bullet$ 两个time\_point类型相减得到duration类型用于表示时间段\\
+            $\bullet$ 转换函数duration\_cast将时间段转换成特定的时间单位，如毫秒等\\
+            $\bullet$ 最后使用duration的成员函数count获取最终结果\\
+        \end{yellowblock}
+    \end{columns}
+    \begin{redblock}
+        {注意}
+        考虑到测量时间间隔需要稳定不变的时钟，代码中使用的时钟是steady\_clock
+    \end{redblock}
