@@ -69,15 +69,14 @@
         % [第4章~复合类型、\texttt{string}和\texttt{vector}\hspace{2em}]
         {第4章~复合类型、\texttt{string}和\texttt{vector}}
 
-    % \author
-    %     [李长河]
-    %     {李长河}
-
-    \date {}
-
-
-    % \institute
-    %     {中国地质大学（武汉）}
+%\author[李长河]{李长河} % Your name
+%\institute[CUG] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+%{
+%中国地质大学（武汉）\\ % Your institution for the title page
+%\medskip
+%\textit{lichanghe@cug.edu.cn} % Your email address
+%}
+\date{} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -990,7 +989,7 @@ int main() {
 			\begin{column}{0.94\textwidth}
 				\begin{lstlisting}[numbers=left,numberstyle=\small,firstnumber=14,basicstyle=\small\ttfamily]
     double dev = 0;
-    for (int i = 0; i < sz; ++i) 
+    for (int i = 0; i < sz; ++i)
         dev += pow(score[i]- mean,2);//函数pow(x,a)计算x^a
     }
     dev = sqrt(dev / sz);
@@ -1031,7 +1030,7 @@ int main() {
     constexpr int sz = 8;
     int que[sz] = { 0 };//每一行皇后都从第0列开始摆放
     int i = 0;//从第0行开始摆放
-    while (i >= 0) 
+    while (i >= 0)
         int k = 0;
         while (k<i) //检查前面所有皇后是否和第i行皇后冲突
             if(que[k]!=que[i]&&(abs(que[i]-que[k])!=abs(i-k)))
@@ -1039,7 +1038,7 @@ int main() {
             else
                 break;//第k行和第i行皇后产生冲突，退出，转到第15行
         }
-            
+
         \end{lstlisting}\ttfamily
 	\end{exampleblock}
 \end{frame}
@@ -1050,7 +1049,7 @@ int main() {
 	\begin{exampleblock}{代码清单4.2，例4.2：}
 		% \begin{minipage}[t]{0.4\linewidth}
 		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,firstnumber=15,basicstyle=\small\ttfamily]
-if (k < i) {//检测到冲突 
+if (k < i) {//检测到冲突
     ++que[i];//处理冲突：移动第i行皇后到当前位置的下一列
     while (que[i] == sz) //当前行所有尝试都失败，需要回溯
         que[i] = 0; //重置当前行皇后位置
@@ -1059,7 +1058,7 @@ if (k < i) {//检测到冲突
             break; //如果回溯到第0行之前，结束运行，转到第24行
         ++que[i];//前一行皇后后移一列
     }
-    continue; //重新检测是否与前面已安排皇后冲突，转到第7行 
+    continue; //重新检测是否与前面已安排皇后冲突，转到第7行
 }
         \end{lstlisting}\ttfamily
 	\end{exampleblock}
@@ -1680,7 +1679,7 @@ do{
     cout << "请猜测一个字母: ";
     cin >> letter; //badchars或attempt中已有letters
     if (badchars.find(letter) != string::npos ||
-        attempt.find(letter) != string::npos) 
+        attempt.find(letter) != string::npos)
         cout << "已经猜过该字母，请重猜" << endl;
         continue; //string::npos匹配失败标志位
     }
@@ -1704,7 +1703,7 @@ do{
                 cout << "有这个字母，继续加油!" << endl;
                 do {//把attempt里面相应的*用猜对的字母替换
                     attempt[loc]=letter;//如果找到了，则下一次搜索从loc+1开始
-                    loc = target.find(letter, loc + 1);  
+                    loc = target.find(letter, loc + 1);
                 } while (loc != string::npos);
         }
         cout << "你猜测的单词:" << attempt << endl;

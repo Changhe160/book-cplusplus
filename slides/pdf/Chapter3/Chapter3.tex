@@ -66,15 +66,14 @@
         [第3章~语句控制结构\hspace{2em}]
         {第3章~语句控制结构}
 
-    % \author
-    %     []
-    %     {}
-
-    \date {}
-
-
-    % \institute
-    %     {}
+%\author[李长河]{李长河} % Your name
+%\institute[CUG] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+%{
+%中国地质大学（武汉）\\ % Your institution for the title page
+%\medskip
+%\textit{lichanghe@cug.edu.cn} % Your email address
+%}
+\date{} % Date, can be changed to a custom date
 
 
 \begin{document}
@@ -260,7 +259,7 @@ else {
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
     1. if (val1 != val2)
            val1 = val2
-       else 
+       else
            val1 = val2 = 0;
         \end{lstlisting}
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
@@ -274,7 +273,7 @@ else {
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
     2. if (val1 = 10)
         //如果val等于10
-            value = 1; 
+            value = 1;
             \end{lstlisting}
 				~\\
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
@@ -618,12 +617,12 @@ int main() {
     cout << "请输入一个分数:";
     cin >> score;
     //整型值表达式
-    switch (score/10){   
+    switch (score/10){
     case 9:case 10:
         cout << "A" << endl;
         break;
     //常量标签值后面紧跟冒号
-    case 8:  
+    case 8:
         cout << "B" << endl;
         break;
         \end{lstlisting}\ttfamily
@@ -978,14 +977,14 @@ for (int i = 1, j = 100; i < j; ++i, --j) {
 		\begin{columns}
 			\begin{column}[t]{0.4\linewidth}
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
-A. i=100;                                
-    while(1)                               
-        { i=i%100; i++;          
-          if (i > 100) break;                 
+A. i=100;
+    while(1)
+        { i=i%100; i++;
+          if (i > 100) break;
         }
     \end{lstlisting}
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
-C. short k=32765;                 
+C. short k=32765;
     do {
         k++; k++;
     }while(k>0);
@@ -1001,7 +1000,7 @@ B. for(; ;)
 				~\\~\\~\\
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
 D. short S=32765;
-    while((S++%2)||(S%2))                                    
+    while((S++%2)||(S%2))
     S++;
     \end{lstlisting}
 			\end{column}
@@ -1217,12 +1216,12 @@ int main(){
         int x(0);
         for(int i=0; i<2; i++){
             x++;
-            for(int j=0; j<=3; j++){    
-            if(j%2) continue; 
+            for(int j=0; j<=3; j++){
+            if(j%2) continue;
                 x++;
             }
             x++;
-        }        
+        }
         cout<<x<<endl;
         return 0;
     }
@@ -1237,20 +1236,20 @@ int main(){
 	% \framesubtitle{——\texttt{continue}语句}
 	\begin{exampleblock}{练习：}
 		\ttfamily 2.下面程序段的输出结果是什么？
-		\begin{lstlisting}[basicstyle=\small\ttfamily] 
+		\begin{lstlisting}[basicstyle=\small\ttfamily]
     int k=0; char c='A';
-        do{ 
+        do{
             switch(c++){
-                case 'A':k++; break; 
+                case 'A':k++; break;
                 case 'B':k--;
-                case 'C':k+=2; break; 
-                case 'D':k=k%2; continue; 
-                case 'E':k=k*10; break; 
+                case 'C':k+=2; break;
+                case 'D':k=k%2; continue;
+                case 'E':k=k*10; break;
                 default :k=k/3;
             }
             k++;
-    } while(c<'G');       
-    cout<<k<<endl; 
+    } while(c<'G');
+    cout<<k<<endl;
         \end{lstlisting}\ttfamily
 		A.k = 3~~B.k = 4~~C.k = 2~~D.k = 0\\
 		\onslide<2->{答案：B}
@@ -1262,13 +1261,13 @@ int main(){
 	% \framesubtitle{——\texttt{continue}语句}
 	\begin{exampleblock}{练习：}
 		\ttfamily 3.下面程序段的输出结果是什么？
-		\begin{lstlisting}[basicstyle=\small\ttfamily] 
-        int main(){ 
-            for(int i=1; i<5; i++){ 
+		\begin{lstlisting}[basicstyle=\small\ttfamily]
+        int main(){
+            for(int i=1; i<5; i++){
                 if(i%2) cout<<"*";
-                else  continue; 
+                else  continue;
                     cout<<"#";
-                } 
+                }
             cout<<"$"<<endl;
             return 0;
     }
@@ -1340,7 +1339,7 @@ int main() {
         x += step;          //处理下一个x
     }
     return 0;
-}      
+}
     \end{lstlisting}\ttfamily
 			\end{column}
 		\end{columns}
@@ -1468,12 +1467,12 @@ int main() {
 using namespace std;
 int main() {
     //公鸡、母鸡最大数目
-    int max_rst = 100 / 5, max_hen = 100 / 3;  
+    int max_rst = 100 / 5, max_hen = 100 / 3;
     for (int i = 0; i < max_rst; ++i) {
         for (int j = 0; j < max_hen; ++j) {
             int k = 100 - i - j;    //小鸡数目
             //跳过不能被3整除的数，执行流程跳转到++j
-            if (k % 3) continue;   
+            if (k % 3) continue;
             if (5 * i + 3 * j + k / 3 == 100) {
             cout<<"公鸡："<<i<<" 母鸡："<<j<<" 小鸡："<<k<<endl;
             }
