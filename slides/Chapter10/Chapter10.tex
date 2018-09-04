@@ -33,8 +33,8 @@
 \definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
 \definecolor{babypink}{rgb}{0.96, 0.76, 0.76}
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
-\setbeamerfont{block title}{size=\small}
-\setbeamerfont{block body}{size=\footnotesize}
+%\setbeamerfont{block title}{size=\small}
+%\setbeamerfont{block body}{size=\footnotesize}
 \newenvironment<>{blueblock}[1]{%
 	\setbeamercolor{block title}{fg=white,bg=hanblue}%
 	\begin{block}#2{#1}}{\end{block}}
@@ -123,23 +123,23 @@
 		\end{block}
 		
 		% ------功能模块说明，请注释掉------- 
-		\begin{columns}[t]
-			\column{0.15\textwidth}
-			\begin{block}{概念}
-			\end{block}
-			\column{0.15\textwidth}
-			\begin{blueblock}{代码}
-			\end{blueblock}
-			\column{0.15\textwidth}
-			\begin{yellowblock}{说明}
-			\end{yellowblock}
-			\column{0.15\textwidth}
-			\begin{greenblock}{问题/答案}
-			\end{greenblock}
-			\column{0.15\textwidth}
-			\begin{redblock}{注意}
-			\end{redblock}
-		\end{columns}
+%		\begin{columns}[t]
+%			\column{0.15\textwidth}
+%			\begin{block}{概念}
+%			\end{block}
+%			\column{0.15\textwidth}
+%			\begin{blueblock}{代码}
+%			\end{blueblock}
+%			\column{0.15\textwidth}
+%			\begin{yellowblock}{说明}
+%			\end{yellowblock}
+%			\column{0.15\textwidth}
+%			\begin{greenblock}{问题/答案}
+%			\end{greenblock}
+%			\column{0.15\textwidth}
+%			\begin{redblock}{注意}
+%			\end{redblock}
+%		\end{columns}
 		% ------功能模块说明，请注释掉------- 
 		
 	\end{frame}
@@ -153,9 +153,14 @@
 	\begin{frame}[fragile]{10.1~基本知识}
 		
 		\begin{block}{C++的IO操作}
-			C++~语言不能直接处理~IO~操作，依靠不同的~IO~类来实现从设备中读取数据和向设备写入数据。\\
-			\vspace{4ex}
-			例如之前用到的：~cin、~cout、~\verb;>>;~。
+			\vspace{2ex}
+			\begin{itemize}
+				\item C++~语言不能直接处理~IO~操作，依靠不同的~IO~类来实现从设备中读取数据和向设备写入数据。\\
+				\vspace{4ex}
+				\item 
+				例如之前用到的：~cin、~cout、~\verb;>>;~。
+			\end{itemize}
+			
 		\end{block}
 
 		
@@ -173,13 +178,14 @@
 		\end{block}
 		\vspace{4ex}
 		\begin{block}{常用的~IO~类}
-		常用的~IO~类有~itream~和~ostream~，同时包括文件流类型和~string~流类型。\\
-		\vspace{2ex}
-		ios~是抽象基类，由它派生出~istream~类和~ostream~类，两个类名中第1个字母~i~和~o~分别代表输入（input）和输出（output）。ifstream~和~ofstream~类用于文件输入输出，类名中第2个字母~f~代表文件（file）。\\
-		\vspace{2ex}
-		类型~ifstream~和~istringstream~继承自~istream，类型~ofstream~和~ostringstream~继承自~ostream。
+			\begin{itemize}
+				\item 		常用的~IO~类有~itream~和~ostream~，包括文件流类型和~string~流类型。\\\vspace{2ex}
+				\item  
+				ios~是抽象基类，由它派生出~istream~类和~ostream~类。\\\vspace{2ex}
+				\item 
+				ifstream~和~istringstream~继承~istream；~ofstream~和~ostringstream~继承~ostream。
+			\end{itemize}
 		\end{block}
-	
 
 	\end{frame}
 
@@ -208,66 +214,67 @@
 	
 	\begin{frame}[fragile]{10.1.1~IO~类对象}
 		\begin{block}{常用对象~cin~，~cout~：}
-		cin~是~istream~类的对象，它从标准输入设备(键盘)获取数据，通过输入运算符~\verb;>>;~从流中提取数据，提取的时候会根据对象的类型从输入流中提取相应长度的字节，cin\verb;>>;~从流中提取数据时通常跳过输入流中的空格、制表符、换行符等空白字符。\\
-		\vspace{2ex}
-		cout~是~ostream~类对象，它向控制台窗口输出数据。
+			\begin{itemize}
+				\item cin~是~istream~类的对象，它从标准输入设备(键盘)获取数据，通过输入运算符~\verb;>>; 。
+				
+				\item cin\verb;>>;~从流中提取数据时通常跳过输入流中的\alert{空格、制表符、换行符等空白字符}。
+				\item cout~是~ostream~类对象，它向控制台窗口输出数据。
+			\end{itemize}
 		\end{block}
-		\vspace{4ex}
-		\begin{redblock}{和普通对象的区别：}
-		和普通对象不同，IO~对象不支持赋值操作。
-		\end{redblock}
+	\begin{center}
+		\includegraphics[width=1.0\textwidth]{fig1}
+	\end{center}
+
 	
-		\begin{blueblock}<2->{示例：}
+	\end{frame}
+	
+	\begin{frame}[fragile]{10.1.1~IO~类对象}
+		\begin{redblock}{和普通对象的区别：}
+			和普通对象不同，IO~对象不支持赋值操作。
+		\end{redblock}
+		\begin{blueblock}{示例：}<2->
 			\begin{lstlisting}[moreemph={Array}]
-            ifstream in1, in2;//定义两个文件输入流对象
-            in1 = in2; //错误：不能对流对象赋值
-            //同样，IO对象也不支持复制操作：
-            ostream print(ostream);//错误：不能按值方式返回或传递ostream对象
-        \end{lstlisting}
+ifstream in1, in2;//定义两个文件输入流对象
+in1 = in2; //错误：不能对流对象赋值
+//同样，IO对象也不支持复制操作：
+ostream print(ostream);//错误：不能按值方式返回或传递ostream对象
+            \end{lstlisting}
 		\end{blueblock}
 	\end{frame}
 	%-------------------------------------
 	\subsection{条件状态}
-	\begin{frame}[fragile]{10.1.2状态条件}
+	\begin{frame}[fragile]{10.1.2条件状态}
 		\begin{blueblock}{请看如下情况：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            double x;
-            cin>>x;
+double x;
+cin>>x;
             \end{lstlisting}
 		\end{blueblock}
-		
 		\begin{greenblock}<2->{}
-			当输入为char类型的字符，会怎么样呢？
+		cin~会进入错误状态，它就变成无效的，无法再执行后续的输入。因此，在使用~cin~时，要确保它的状态是有效的。
 		\end{greenblock}
-		\begin{greenblock}<3->{}
-			代码中的~cin\verb;>>;~期待读取一个~double，但却提供了字符数据，cin~会进入错误状态。一旦~cin~进入到错误状态，它就变成无效的，无法再执行后续的输入。因此，在使用~cin~时，要确保它的状态是有效的。
-		\end{greenblock}
+		\begin{blueblock}{有效性判断：}<3->
+		\begin{lstlisting}[moreemph={Array,T,Less,F}]
+while(cin>>x)//遇到错误状态循环将退出；
+
+if(!cin)cin.clear();//clear()函数执行后，cin变为有效状态；
+        \end{lstlisting}
+		
+	\end{blueblock}
 
 	\end{frame}
-	\begin{frame}[fragile]{10.1.2状态条件}
-		
-		\begin{greenblock}<1->{}
-			那么又该如何来判断状态的有效性呢？
-		\end{greenblock}
-		\begin{blueblock}{}<2->
-			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            while(cin>>x)//遇到错误状态循环将退出；
-            if(!cin)cin.clear();//clear()函数执行后，cin变为有效状态；
-            \end{lstlisting}
 
-		\end{blueblock}
-		
-	\end{frame}
 	\subsection{刷新缓冲区}
 	\begin{frame}[fragile]{10.1.3刷新缓冲区}
 		\begin{blueblock}{缓冲区刷新的原因：}
-		导致缓冲区刷新有很多原因，比如缓冲区满、程序正常结束、遇到~endl~等。缓冲区刷新完成后，原来的数据被清空。
+		导致缓冲区刷新有很多原因，比如\alert{缓冲区满、程序正常结束、遇到~endl~等}。缓冲区刷新完成后，原来的数据被清空。
 		\end{blueblock}
+	\vspace{4ex}
 		\begin{blueblock}{示例：}
 		\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            cout<<"endl"<<endl;//输出endl和一个换行，然后刷新缓冲区
-            cout<<"flush"<<flush;//输出flush（无额外字符），然后刷新缓冲区
-            cout<<"ends"<<ends;//输出ends和一个空字符，然后刷新缓冲区
+cout<<"endl"<<endl;//输出endl和一个换行，然后刷新缓冲区
+cout<<"flush"<<flush;//输出flush（无额外字符），然后刷新缓冲区
+cout<<"ends"<<ends;//输出ends和一个空字符，然后刷新缓冲区
         \end{lstlisting}
 		\end{blueblock}
 	\end{frame}
@@ -279,19 +286,19 @@
 	\end{frame}
 	\subsection{字符数据的输入}
 	\begin{frame}[fragile]{10.2.1~字符数据的输入}
-		\begin{blueblock}{使用>>运算符：}
-			数据的输入一般以空白字符结束（包括空格符、制表符和回车符等），而这些空白字符会被系统过滤掉。
+		\begin{blueblock}{使用cin~>>~操作：}
+			数据的输入一般以空白字符结束（\alert{包括空格符、制表符和回车符}等），而这些空白字符会被系统过滤掉。
 		\end{blueblock}
 		\vspace{4ex}
 		\begin{blueblock}{使用cin.get()函数：}
-			cin.get()~函数可以获取空白字符。其功能是从输入流中获取一个字符，并将其返回。
+			cin.get()~函数从输入流中获取一个字符，并将其返回。
 		\end{blueblock}
 	
 		\begin{blueblock}{示例：}
             \begin{lstlisting}[moreemph={Array,T,Less,F}]
-            for(char c;(c=cin.get())!='\n';)
-               cout<<c;
-            cout<<endl;            
+for(char c;(c=cin.get())!='\n';)
+    cout<<c;
+cout<<endl;            
             \end{lstlisting}
 		\end{blueblock}
 
@@ -303,8 +310,8 @@
 		\end{blueblock}
 		\begin{blueblock}{示例：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            string s;
-            getline(cin,s);          
+string s;
+getline(cin,s);          
             \end{lstlisting}
 		\end{blueblock}
 
@@ -316,50 +323,61 @@
 		\end{blueblock}
 		\begin{blueblock}{示例：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            cout<<showbase<<uppercase;//显示进制信息，十六进制数以大写形式输出
-            cout<<"default:"<<26<<endl;
-            cout<<"octal:"<<oct<<26<<endl;
-            cout<<"decimal:"<<dec<<26<<endl;
-            cout<<"hex:"<<hex<<26<<endl;
-            cout<<noshowbase<<nouppercase<<dec;
-            int i,j;
-            cin>>oct>>i;//输入格式为八进制；
-            cin>>hex>>j;//输入格式为十六进制；       
+cout<<showbase<<uppercase;//显示进制信息，十六进制数以大写形式输出
+cout<<"default:"<<26<<endl;
+cout<<"octal:"<<oct<<26<<endl;
+cout<<"decimal:"<<dec<<26<<endl;
+cout<<"hex:"<<hex<<26<<endl;
+cout<<noshowbase<<nouppercase<<dec;
+int i,j;
+cin>>oct>>i;//输入格式为八进制；
+cin>>hex>>j;//输入格式为十六进制；     
+
+输出结果：
+default:26
+octal:032
+decial:26
+hex:0X1A
             \end{lstlisting}
 		\end{blueblock}
-	\begin{redblock}{注意：}<2->
-		上面最后一条语句执行完之后，后续输入的数据为十六进制，用户可以利用~dec~将进制形式恢复为默认的十进制。
-	\end{redblock}
+
 	\end{frame}
 	\begin{frame}[fragile]{10.2.2~格式化控制}
 		\begin{blueblock}{控制打印精度：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            double x=1.2152;
-            cout.precision(3);//使用precision成员函数指定打印精度；
-            cout<<"precision:"<<cout.precision()<<",x="<<x<<endl;
-            cout<<setprecision(4);//使用setprecision函数指定打印精度；
-            cout<<"precision:"<<cout.precision()<<",x="<<x<<endl;
-            cout<<"scientific:"<<scientific<<10*exp(1.0)<<endl;//用科学计数法控制输出格式；
-            cout<<"fixed decimal:"<<fixed<<10*exp(1.0)<<endl;//定点十进制默认格式；
-            cout<<"default float:"<<defaultfloat<<10*exp(1.0)<<endl;
-            
+double x=1.2152;
+cout.precision(3);//使用precision成员函数指定打印精度；
+cout<<"precision:"<<cout.precision()<<",x="<<x<<endl;
+cout<<setprecision(4);//使用setprecision函数指定打印精度；
+cout<<"precision:"<<cout.precision()<<",x="<<x<<endl;
+cout<<"scientific:"<<scientific<<10*exp(1.0)<<endl;//用科学计数法控制输出格式；
+cout<<"fixed decimal:"<<fixed<<10*exp(1.0)<<endl;//定点十进制默认格式；
+cout<<"default float:"<<defaultfloat<<10*exp(1.0)<<endl;
+输出结果：
+precision:3,x=1.22
+precision:4,x=1.215
+scientific:scientific: 2.718282e+01
+fixed decimal: 27.182818
+default float: 27.1828
             \end{lstlisting}
 		\end{blueblock}
-	\vspace{4ex}
+
 	\begin{redblock}{注意：}<2->
-		在执行~scientific~或者~fixed~操纵符后，精度控制的是小数点后面的数值位数，而不是默认的数值总位数。defaultfloat~为~C++11~新特性，它将流恢复到默认状态。
+		在执行~scientific~或~fixed~操纵符后，精度控制的是小数点后面的数值位数，而不是默认的数值总位数。defaultfloat~为~C++11~新特性，它将流恢复默认。
 	\end{redblock}
 	\end{frame}
 	\begin{frame}[fragile]{10.2.2~格式化控制}
 		\begin{blueblock}{利用~setw~指定占用宽度}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            int i=-10;
-            double x=1.2152;
-            cout<<"i:"<setw(10)<<i<<endl;
-            cout<<"x:"<<setw(10)<<x<<endl;
-            输出结果：
-            i:          -10
-            x:       1.2152
+int i=-10;
+double x=1.2152;
+cout<<"i:"<setw(10)<<i<<endl;
+cout<<"x:"<<setw(10)<<x<<endl;
+
+
+输出结果：(其中*表示一个空格，并非实际输出)
+i:*******-10
+x:****1.2152
             \end{lstlisting}
 		\end{blueblock}
 	\end{frame}
@@ -374,15 +392,15 @@
 	\begin{frame}[fragile]{10.3.1~使用文件流对象}
 		\begin{block}{文件流对象的创建和关联：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-            ifstream in(ifname);//创建输入文件流对象，提供文件名；
-            ofstream out;//创建输出文件流对象，没有提供文件名；
+ifstream in(ifname);//创建输入文件流对象，提供文件名；
+ofstream out;//创建输出文件流对象，没有提供文件名；
             \end{lstlisting}
 		\end{block}
 		\begin{block}<2->{文件流的打开与关闭：}
 			\begin{lstlisting}[moreemph={Array,T,Less,F}]
-                out.open(name);//调用open 函数，使之与一个文件关联;
-                if(out);//用于检测open操作是否成功；
-                out.close();//调用close函数关闭文件；
+out.open(name);//调用open 函数，使之与一个文件关联;
+if(out);//用于检测open操作是否成功；
+out.close();//调用close函数关闭文件；
             \end{lstlisting}
 		\end{block}
 	\end{frame}
@@ -408,19 +426,19 @@
 		\begin{blueblock}
 
 		\begin{lstlisting}[moreemph={Array,T,Less,F}]
-        #include<iostream>
-        #include<string>
-        #include<iomanip>//使用setw函数
-        #include<fstream>//文件输入输出
-        using namespace std;
-        int main() {
-        int max_rst = 100 / 5, max_hen = 100 / 3;
-        ofstream out("result.txt");//在当前目录创建文件；
-        if (out) { //判断文件是否成功打开；
-                 out <<setw(10)<<"公鸡"<<setw(10)<<"母鸡"<<setw(10)<< "小鸡";
-                 for (int i = 0; i < max_rst; ++i) {
-                      for (int j = 0; j < max_hen; ++j) {
-                           int k = 100 - i - j;
+#include<iostream>
+#include<string>
+#include<iomanip>//使用setw函数
+#include<fstream>//文件输入输出
+using namespace std;
+int main() {
+      int max_rst = 100 / 5, max_hen = 100 / 3;
+      ofstream out("result.txt");//在当前目录创建文件；
+      if (out) { //判断文件是否成功打开；
+            out <<setw(10)<<"公鸡"<<setw(10)<<"母鸡"<<setw(10)<< "小鸡";
+            for (int i = 0; i < max_rst; ++i) {
+                  for (int j = 0; j < max_hen; ++j) {
+                     int k = 100 - i - j;
                            if (k % 3) continue;
                            if (5 * i + 3 * j + k / 3 == 100)//向文件写入数据；
                                out<<'\n'<<setw(10)<<i<<setw(10)<<j<<setw(10)<<k;
@@ -433,11 +451,8 @@
 		\end{blueblock}
 	\end{frame}
 	\begin{frame}[fragile]{10.3.2~文件模式}
-	文件读取示例：将百鸡问题中结果保存，然后读出计算结果并且打印输出。（\alert{续}）
-	\begin{blueblock}
-
+	\begin{blueblock}{百鸡问题代码\alert{续}：}
 	\begin{lstlisting}[moreemph={Array,T,Less,F}]
-
         ifstream in("result.txt");//打开当前目录下的文件；
         if (in) {//判断文件是否成功打开；
             string head;
@@ -451,8 +466,7 @@
            in.close();//关闭文件；
         }
         return 0;
-        }
-     \end{lstlisting}
+}\end{lstlisting}
 	\end{blueblock}
 	\begin{yellowblock}{说明：}<2->
 		在打开文件时，可以指定文件的具体路径，例如~“d:/result.txt”；如缺省路径，则默认为当前目录下的文件
@@ -460,7 +474,7 @@
 \end{frame}
 \subsection{~string~流}
 	\begin{frame}[fragile]{~string~流}
-		string~流可以向~string~类对象写入数据，也可以从~string~类对象读取数据。string~流定义在~sstream~头文件中，它包含三个类型：istringstream、~ostringstream~和~stringstream。
+		string~流可以向~string~类对象读写数据。string~流定义在~sstream~头文件中，它包含三个类型：istringstream、~ostringstream~和~stringstream。
 		\vspace{4ex}
 		\begin{blueblock}{string~流}
 			\begin{itemize}
@@ -478,32 +492,31 @@
 		\vspace{4ex}
 		\begin{blueblock}{使用示例：}<2->
 				\begin{lstlisting}[moreemph={Array,T,Less,F}]
-                vector<string>wds;//保存读取的单词；
-                string line,word;
-                while(getlien(cin,line)){
-                    istringstream iss(line);//创建输入的string流对象，保存line的副本；
-                    while(iss>>word)
-                         wds.push_back(word);//将读取到的单词尾插；
-                }
+vector<string>wds;//保存读取的单词；
+string line,word;
+while(getlien(cin,line)){
+     istringstream iss(line);//创建输入的string流对象，保存line的副本；
+     while(iss>>word)
+     wds.push_back(word);//将读取到的单词尾插；
+}
                 \end{lstlisting}
 		\end{blueblock}
 	\end{frame}
 \begin{frame}[fragile]{~ostringstream~流}
 	当需要一次打印不同数据类型的数据时，使用~ostringstream~流可以很容易实现。比如，在上一节的例子中，在获取所有单词之后，一次性输出每个单词和他们的长度。
-	\vspace{4ex}
 	\begin{blueblock}{使用示例：}<2->
 		\begin{lstlisting}[moreemph={Array,T,Less,F}]
-        ostringstream out;//创建流对象；
-        for(auto &i;wds)
-           out<<i<<":"<<i.lengthe()<<'\n';//处理单词；
-        cout<<out.str();
+ostringstream out;//创建流对象；
+for(auto &i:wds)
+   out<<i<<":"<<i.lengthe()<<'\n';//处理单词；
+cout<<out.str();
         \end{lstlisting}
 	\end{blueblock}
 	\begin{redblock}{注意：}<3->
 		注意，ostringstream~的另外一个版本的成员函数~str~接受一个~string~类型的参数，用来覆盖原有的数据，例如：\\
 		\begin{blueblock}{如下所示：}
 			\begin{lstlisting}
-                out.str("");//清空原有数据,调用此函数时，out~里面的数据将被清空。
+out.str("");//清空原有数据,调用此函数时，out~里面的数据将被清空。
             \end{lstlisting}
 		\end{blueblock}
 	\end{redblock}
