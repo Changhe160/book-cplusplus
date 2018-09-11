@@ -493,6 +493,19 @@ Base b(d);                           //错误：PriDerv不能转换为Base
 \end{frame}
 
 \begin{frame}[fragile]
+    {9.2 构造、拷贝控制与继承}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Fig/Constr-Destr.png}
+\end{figure}
+
+构造顺序：\uncover<2->{B} \uncover<3->{D1} \uncover<4->{D2} \uncover<5->{D3}\uncover<6->{(c1} \uncover<7->{c2} \uncover<8->{c3)}
+
+析构顺序：\uncover<9->{D3}\uncover<10->{(c3} \uncover<11->{c2} \uncover<12->{c1)} \uncover<13->{D2} \uncover<14->{D1} \uncover<15->{B}
+
+\end{frame}
+
+\begin{frame}[fragile]
     {9.2 构造、拷贝控制与继承\small{—派生类对象的构造}}
     \begin{block}{派生类Student对象的构造}
         以上述Student类为例：
@@ -815,23 +828,97 @@ public:
     ~~~~~~Destr of Shape\\\vspace{0.5em}
     ~~~~~~如果基类析构函数为非虚函数，则delete一个指向派生类对象的基类指针将产生\alert{未定义的行为}。
     \end{block}
-    \begin{yellowblock}{提示：虚析构函数将阻止移动运算的合成}
-    ~~~~~~基类中的虚析构函数将阻止编译器合成移动操作，通过\texttt{=}default形式使用合成的析构函数也会产生同样的影响。
-    \end{yellowblock}
 \end{frame}
 
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—动态绑定}}
-    \begin{block}{虚函数的使用说明}
-    ~~~在使用虚函数时，需要注意以下几点：
-    \begin{itemize}
+    \begin{yellowblock}{提示：虚析构函数将阻止移动运算的合成}
+    ~~~~~~基类中的虚析构函数将阻止编译器合成移动操作，通过\texttt{=}default形式使用合成的析构函数也会产生同样的影响。
+    \end{yellowblock}
+    \begin{block}<2->{注意}
+    ~~~在使用虚函数时：
+    \begin{itemize}[<+(2)->]
     \item 动态绑定必须通过基类\alert{指针}或\alert{引用}绑定到派生类对象才能触发。
     \item 若基类的某个函数被声明为虚函数，则派生类中对应的重写版本\alert{自动}为虚函数，可不必进行virtual声明。
-    \item 派生类版本的声明必须与基类版本的声明完全一致，包括函数名、形参列表和返回值类型。如果参数具有默认值，则各个版本中对应形参的默认值也必须相同。但有一个例外，基类版本返回基类指针或引用，派生类版本可以返回派生类指针或引用。
     \item 内联成员、静态成员和模板成员均不能声明为虚函数，因为这些成员的行为必须在编译时确定，不能实现动态绑定。
     \item 动态绑定的实现是有\alert{代价}的。每个派生类需要额外的空间保存虚函数的入口地址，函数的调用机制也是间接实现的，动态绑定的实现是以时间和空间为代价的，因此大量的虚函数会导致程序性能的下降。
+    \item 派生类版本的声明必须与基类版本的声明完全一致，包括函数名、形参列表和返回值类型。
     \end{itemize}
     \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    {9.3 虚函数与多态性\small{—动态绑定}}
+
+\begin{columns}[t]
+\column{0.65\textwidth}
+    \begin{block}{}
+    \vspace{-3mm}\begin{lstlisting}[moreemph={Base,Derived}]
+class Base {
+public:
+    virtual Base* foo() { cout << "Base" << endl; return this; }
+};
+class Derived : public Base {
+public:
+    Derived* foo() { cout << "Derived" << endl; return this; }
+};
+void test() {
+    Derived d;
+    Base *p = &d;
+    p->foo();
+    d.foo();
+}
+    \end{lstlisting}\vspace{-3mm}
+    \end{block}
+\column{0.3\textwidth}
+    \begin{block}{例外}
+    基类版本返回基类指针或引用，派生类版本可以返回派生类指针或引用
+    \end{block}
+    \end{columns}
+
+\vspace{2mm}
+
+调用\texttt{test()}函数输出:\\
+\texttt{Derived}\\\texttt{Derived}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    {9.3 虚函数与多态性\small{—动态绑定}}
+
+\begin{columns}[t]
+\column{0.65\textwidth}
+    \begin{block}{}
+    \vspace{-3mm}\begin{lstlisting}[moreemph={Base,Derived}]
+class Base{
+public:
+    virtual void fun(int i=0) {
+        cout << "Base:" << i << endl; }
+};
+class Derived : public Base{
+public:
+    void fun(int i=1) {
+        cout << "Derived:" << i << endl; }
+};
+void test(){
+    Derived d;
+    Base *p = &d;
+    p->fun();
+    d.fun();
+}
+    \end{lstlisting}\vspace{-3mm}
+    \end{block}
+    \column{0.3\textwidth}
+    \begin{block}{注意}
+    如果参数具有默认值，则各个版本中对应形参的\alert{默认值必须相同}\\
+    \end{block}
+
+    \end{columns}
+
+    \vspace{2mm}
+
+调用\texttt{test()}函数输出:\\
+\texttt{Derived:0}\\\texttt{Derived:1}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -905,7 +992,7 @@ struct D2 : public D1 {
     \end{column}
     \begin{column}{0.94\linewidth}
     \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
-    class Cat { 
+    class Cat {
     protected:
         string m_name;
     public:
@@ -940,7 +1027,7 @@ struct D2 : public D1 {
     public:
         void bark();
     };
-    Dog dog;          //创建一个Dog类对象 
+    Dog dog;          //创建一个Dog类对象
     dog.bark();       //调用bark函数
     \end{lstlisting}\ttfamily
     \end{column}
@@ -1132,15 +1219,17 @@ public:
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—再探计算器}}
     \begin{block}{定义计算器类}
-    ~~~~~~由于unique\_ptr不支持复制操作，因此向前面章节定义的Node模板和Stack模板分别添加支持移动语义的构造函数和push函数：\\\vspace{0.5em}
-~~~~~~template<typename T> ~~~~// 含右值形参的移动构造函数\\
-~~~~~~Node<T>::Node(T \&\&val) :m\_value(std::move(val)) \{ \}\\
-~~~~~~template<typename T>\\
-~~~~~~void Stack<T>::push(T \&\&val) \{ ~~~~//含右值形参的push函数\\
-~~~~~~ ~~~~~~ 	Node<T> *node = new Node<T>(std::move(val)); \\
-~~~~~~ ~~~~~~ 	node->m\_next = m\_top;\\
-~~~~~~ ~~~~~~ 	m\_top = node;\\
-~~~~~~ \}
+    ~~~~~~由于unique\_ptr不支持复制操作，因此向前面章节定义的Node模板和Stack模板分别添加支持移动语义的构造函数和push函数：
+        \begin{lstlisting}[basicstyle=\normalsize\ttfamily]
+        template<typename T>    // 含右值形参的移动构造函数
+        Node<T>::Node(T &&val) :m_value(std::move(val)) { }
+        template<typename T>
+        void Stack<T>::push(T &&val) {  //含右值形参的push函数
+            Node<T> *node = new Node<T>(std::move(val));
+            node->m_next = m_top;
+            m_top = node;
+        }
+\end{lstlisting}
     \end{block}
 \end{frame}
 
@@ -1237,7 +1326,7 @@ double Calculator::doIt(const string & exp){
                 calculate(); //根据栈顶运算符，执行相应计算
             }
             if( oo->symbol() != '=')//除=以外，其它运算符入栈
-                m_opr.push(std::move(oo));//将oo转换为右值，调用移动push函数 
+                m_opr.push(std::move(oo));//将oo转换为右值，调用移动push函数
         }
     }
     double result = m_num.top();
@@ -1257,4 +1346,4 @@ double Calculator::doIt(const string & exp){
 \end{center}
 \end{frame}
 
-\end{document}
+\end{document} 
