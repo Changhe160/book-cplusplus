@@ -39,3 +39,5 @@ Resease/
 Debug/
 *.opendb
 
+/.vs/book-cplusplus/v15
+/.vs
