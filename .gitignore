@@ -49,3 +49,5 @@ code/.vs/examples/v14/.suo
 *.synctex
 *.toc
 *.vrb
+/.vs/book-cplusplus/v15
+/.vs
