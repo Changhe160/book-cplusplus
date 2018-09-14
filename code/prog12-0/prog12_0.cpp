@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<vector>
 #include<string>
 #include<iostream>
@@ -18,14 +19,15 @@
 #include <ctime> 
 using namespace std;
 
-union ID {
-	char char_type;
-	int int_type;
-	long long llong_type;
-};
+
 
 int main() {
 	{
+		union ID {
+			char char_type;
+			int int_type;
+			long long llong_type;
+		};
 		ID li;
 		if (sizeof(li) == sizeof(long long)) {
 			cout << "ok" << endl;
@@ -56,11 +58,12 @@ int main() {
 		cout << title << " " << price << " " << year << endl;
 	}
 	{
-		bitset<12> b(1001);
+		bitset<12> b(1002);
 		cout << b << endl;
-		bitset<8> b1(1001);
+		bitset<8> b1(1002);
 		cout << b1 << endl;
 		bitset<12> b2("110010");
+		cout << b.to_ullong() << endl;
 	}
 	{
 		using namespace chrono;

@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Calculator.cpp">
+    <ClCompile Include="..\prog12-5\prog12_5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog12_5.cpp">
+    <ClCompile Include="..\prog12-5\Calculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calculator.h">
+    <ClInclude Include="..\prog12-5\Calculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Operator.h">
+    <ClInclude Include="..\prog12-5\Operator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OperatorFactory.h">
+    <ClInclude Include="..\prog12-5\OperatorFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
+    <ClInclude Include="..\prog12-5\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

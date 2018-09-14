@@ -4,14 +4,12 @@ Base class of Operator & a series of Operators
 
 #ifndef OPERATOR_H
 #define OPERATOR_H
-#include<string>
-using namespace std;
 class Operator{
 public:
 	Operator(char c, int numOprd, int pre) :m_symbol(c), m_numOprand(numOprd), m_precedence(pre){ }
 	char symbol() const {	return m_symbol;	}
 	int numOprand() const {	 return m_numOprand;	}
-	int precedence() const { return m_precedence;	};
+	int precedence() const { return m_precedence;	}
 	virtual double get(double a, double b) const = 0;
 	virtual ~Operator() {}
 protected:

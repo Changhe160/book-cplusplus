@@ -1,4 +1,6 @@
 ﻿#include "Calculator.h"
+#include<string>
+using namespace std;
 
 // 读取操作数
 double Calculator::readNum(string::const_iterator &it){

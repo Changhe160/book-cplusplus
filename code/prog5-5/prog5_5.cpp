@@ -1,18 +1,28 @@
-#include<iostream>
-using namespace std;
+#include "myHeader.h"
+#include <iostream>
 
-void hanoi(int n, char src, char mid, char tar) {
-	if (n == 1)
-		cout << src << "-->" << tar << '\t';
-	else {
-		hanoi(n - 1, src, tar, mid); 
-		cout << src << "-->" << tar << '\t';
-		hanoi(n - 1, mid, src, tar);
-	}
-}
+using namespace std;
 int main() {
-	int n;
-	cin >> n;
-	hanoi(n, 'A', 'B', 'C');
-	return 0;
+	g_sum = add(4, 5);
+	cout << g_sum << endl;
+	enum class stoplight
+	{red, green,yellow
+
+	};
+
+	stoplight l = stoplight::red;
+	switch (l){
+	case stoplight::red:
+		cout << "stop!" << endl;
+		break;
+	case stoplight::green:
+		cout << "pass carefully" << endl;
+		break;
+	case stoplight::yellow:
+		cout << "slow down" << endl;
+		break;
+	default:
+		cout << "light broken, call 110" << endl;
+		break;
+	}
 }

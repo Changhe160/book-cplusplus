@@ -39,5 +39,13 @@ Resease/
 Debug/
 *.opendb
 
-/.vs/book-cplusplus/v15
-/.vs
+*.db
+code/.vs/examples/v14/.suo
+*.aux
+*.aux
+*.log
+*.nav
+*.snm
+*.synctex
+*.toc
+*.vrb

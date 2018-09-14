@@ -65,6 +65,7 @@ struct D2 :public D1
 };
 */
 
+
 int main() {
 	Shape *p;
 	//cout << p->area() << endl;

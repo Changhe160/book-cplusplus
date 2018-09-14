@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>  // 使用sin函数
 using namespace std;
 
 using pFun = double(*)(double);
@@ -9,6 +8,9 @@ double f_sphere(double x) {
 }
 double f_default(double x) {
 	return 0;
+}
+double f_sin(double x) {
+	return sin(x);
 }
 
 double integrate(double l, double u, pFun pf = f_default, int n = 1000) {
@@ -23,6 +25,6 @@ double integrate(double l, double u, pFun pf = f_default, int n = 1000) {
 int main() {
 	cout<<"默认函数在区间[0:1]上的积分为："<<integrate(0, 1) << endl;
 	cout<<"Sphere函数在区间[0:1]上的积分为："<<integrate(0, 1, f_sphere)<<endl;
-	cout<<"sin函数在区间[0:1]上的积分为："<<integrate(0, 1, sin)<<endl;
+	cout<<"sin函数在区间[0:1]上的积分为："<<integrate(0, 1, f_sin)<<endl;
 	return 0;
 }

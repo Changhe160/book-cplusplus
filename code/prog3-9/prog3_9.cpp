@@ -1,5 +1,5 @@
-/*
-*»­³ösin(x)ÔÚ[0:2pi]ÄÚµÄÇúÏß
+ï»¿/*
+*ç”»å‡ºsin(x)åœ¨[0:2pi]å†…çš„æ›²çº¿
 */
 #include<iostream>
 #include<cmath>
@@ -7,20 +7,15 @@
 using namespace std;
 
 int main() {
-	double step = 0.2;//xÔö¼ÓµÄ²½³¤
-	double x = 0;
-	ofstream out("sinx.txt");
-	while (x < 6.28) {//»­Ò»¸öÖÜÆÚµÄÇúÏß
-		int val = 30*(sin(x)+1);
-		cout << "  ";
-		for (int i = 0; i < val; ++i) {
+	double step = 0.2;//xå¢åŠ çš„æ­¥é•¿
+	double x = 0;//xä»0å¼€å§‹
+	while (x < 6.28) {//ç”»ä¸€ä¸ªå‘¨æœŸçš„æ›²çº¿
+		int val = 30 * (sin(x) + 1);//è®¡ç®—sin(x)å·¦ä¾§çš„ç©ºæ ¼æ•°
+		for (int i = 0; i < val; ++i) {//ç”»å‡ºæ‰€æœ‰ç©ºæ ¼
 			cout << " ";
-			out << "~";
 		}
-		cout << "*" << endl;
-		out << "*\\\\" << endl;
-		x += step;
+		cout << "*" << endl;//åœ¨ç›¸åº”çš„ä½ç½®æ‰“å°*
+		x += step;//å¤„ç†ä¸‹ä¸€ä¸ªx
 	}
-	out.close();
 	return 0;
 }

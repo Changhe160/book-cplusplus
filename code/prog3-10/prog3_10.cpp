@@ -8,25 +8,32 @@ using namespace std;
 
 int main() {
 	srand(time(0));
+	int computer,you;
 	while (1) {
-		int computer(0), you(0);
 		do {
 			cout << "你好！ 石头=0, 剪刀=1, 布=2";
 			computer = rand() % 3;
 			cout << "请出手：";
 			cin >> you;
-			switch (you - computer) {
+			switch (computer){
 			case 0:
-				cout << "平手!" << endl;
+				if (you == 1) 
+					cout << "你输了!" << endl;
+				else if (you==2) 
+					cout << "你赢了!" << endl;
 				break;
-			case 1: case -2:
-				cout << "你输了!" << endl;				
+			case 1:
+				if (you == 2) 
+					cout << "你输了!" << endl;
+				else if (you == 0)
+					cout << "你赢了!" << endl;
 				break;
-			case -1: case 2:
-				cout << "你赢了!" << endl;
+			case 2:
+				if (you == 0) 
+					cout << "你输了!" << endl;
+				else if (you == 1) 
+					cout << "你赢了!" << endl;
 				break;
-			default:
-				cout << "出错了！" << endl;
 			}
 		} while (computer==you);
 		cout << "还要玩吗？Y/N:";
