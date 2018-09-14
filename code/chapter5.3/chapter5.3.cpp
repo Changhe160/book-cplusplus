@@ -23,8 +23,8 @@ void f_ref(int &i);//引用形参
 
 //5.3.4 数组形参 
 void fun(int *p) {}
-//void fun(int p[]);//数组的方式
-//void fun(int p[5]); //“指明”数组的长度
+//void fun(int p[]);	//数组的方式
+//void fun(int p[5]);	//“指明”数组的长度
 void print(char *str, unsigned size) {
 	for (unsigned i = 0; i < size; ++i)
 		cout << str[i];
@@ -43,7 +43,7 @@ void print(const char *str, unsigned size);
 void print(const char *beg, const char * end);
 void fun(int(*a2d)[5]) {}		//a2d指向一个含有5个元素的一维实参数组
 
-//例5.1 子函数
+//例5.1 回文函数
 bool is_palindrome(int x) {
 	vector<int> digit;
 	while (x != 0) {
@@ -62,28 +62,28 @@ int main() {
 	//5.3 参数传递
 	{
 		int i(4), j(5);
-		Swap(i, j);//调用Swap函数，实参i和j分别初始化Swap函数的形参x和y
+		Swap(i, j);		//调用Swap函数，实参i和j分别初始化Swap函数的形参x和y
 		cout << "i=" << i << ",j=" << j << endl;//输出i=4,j=5
 	}
 	//5.3.1 值传递
 	{
 		int i(4), j(5);
-		Swap(&i, &j);//将实参i和j的地址传递给Swap函数
+		Swap(&i, &j);	//将实参i和j的地址传递给Swap函数
 		cout << "i=" << i << ",j=" << j << endl;//输出i=5,j=4
 	}
 	//5.3.3 const形参
 	{
 		const int cx = 1;
 		int x = 1;
-		//f_ref(41);//错误：左值引用不能绑定字面值常量
-		//f_ref(cx);//错误：左值引用不能绑定常量
-		//f_ref(x + 1);//错误：左值引用不能绑定右值表达式
+		//f_ref(41);	//错误：左值引用不能绑定字面值常量
+		//f_ref(cx);	//错误：左值引用不能绑定常量
+		//f_ref(x + 1);	//错误：左值引用不能绑定右值表达式
 	}
 	//5.3.4 数组形参
 	{
 		int arr[5] = { 1, 2 };
-		fun(arr); //正确：数组名转化为首元素的地址
-		fun(&arr[0]); //正确：显式传递首元素的地址
+		fun(arr);		//正确：数组名转化为首元素的地址
+		fun(&arr[0]);	//正确：显式传递首元素的地址
 		{
 			char arr[] = "Hello C++";
 			print(arr);

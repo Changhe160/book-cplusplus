@@ -34,9 +34,9 @@ int main() {
 	{
 		bool(*pf)(int, int);
 		//bool* pf(int, int);
-		ppFun pf1 = compareInt; //隐式初始化，pf1指向compareInt函数
-		ppFun pf2 = &compareInt; //显式初始化，pf2指向compareInt函数
-		ppFun pf3 = nullptr; //pf3不指向任何函数
+		ppFun pf1 = compareInt;		//隐式初始化，pf1指向compareInt函数
+		ppFun pf2 = &compareInt;	//显式初始化，pf2指向compareInt函数
+		ppFun pf3 = nullptr;		//pf3不指向任何函数
 		bool b1 = pf1(1, 2);
 		bool b2 = (*pf2)(1, 2);
 		//void(*a[5])(int);
@@ -58,13 +58,13 @@ int main() {
 			int divisor = 5;
 			vector<int> numbers{ 1, 2, 3, 4, 5, 10, 15, 20, 25, 35, 45, 50 };
 			for_each(numbers.begin(), numbers.end(), [divisor](int y) {
-				if (y % divisor == 0) //divisor为外围divisor的拷贝
-					cout << y << endl; //输出被divisor整除的元素
+				if (y % divisor == 0)	//divisor为外围divisor的拷贝
+					cout << y << endl;	//输出被divisor整除的元素
 			});
 			int sum = 0;
 			for_each(numbers.begin(), numbers.end(), [divisor, &sum](int y) {
-				if (y % divisor == 0) //sum为外围sum 的引用
-					sum += y; //累加被divisor整除的元素，结果存放到外围对象sum中
+				if (y % divisor == 0)	//sum为外围sum 的引用
+					sum += y;			//累加被divisor整除的元素，结果存放到外围对象sum中
 			});
 		}
 	}

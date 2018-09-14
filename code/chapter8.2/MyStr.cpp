@@ -23,11 +23,11 @@ m_buff(m_length>0 ? new char[m_length] : nullptr) {
 }
 //8.2.2节
 MyStr& MyStr::operator=(const MyStr &rhs) {
-	if (this != &rhs) { // 避免自身赋值
-		delete[] m_buff; // 释放原来的内存
+	if (this != &rhs) {		//避免自身赋值
+		delete[] m_buff;	//释放原来的内存
 		m_length = rhs.m_length;
-		m_buff = new char[m_length]; // 从新分配内存
-		strncpy(m_buff, rhs.m_buff, m_length);//复制数据
+		m_buff = new char[m_length];			//从新分配内存
+		strncpy(m_buff, rhs.m_buff, m_length);	//复制数据
 	}
 	return *this;
 }

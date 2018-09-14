@@ -10,7 +10,7 @@ using namespace std;
 class Fraction {
 	int m_numerator = 0;				// 分子默认为0；
 	int m_denominator = 1;				//分母默认为1；
-	int gcd(int x, int y);  //最大公约数
+	int gcd(int x, int y);				//最大公约数
 public:
 	Fraction(int a = 0, int b = 1);		//默认的构造函数
 	Fraction(const Fraction& rhs);		//拷贝构造函数
@@ -18,13 +18,13 @@ public:
 
 
 
-	Fraction& operator=(const Fraction&);//重载=运算符
-	Fraction operator*(const Fraction&rhs)const;	// 两分数相乘, 注意返回值类型为引用	
-	Fraction &operator*=(const Fraction&);	// 两分相乘
-											//bool operator<(const Fraction&)const;	// 两分数小于比较
+	Fraction& operator=(const Fraction&);			//重载=运算符
+	Fraction operator*(const Fraction&rhs)const;	//两分数相乘, 注意返回值类型为引用	
+	Fraction &operator*=(const Fraction&);			//两分相乘
+	//bool operator<(const Fraction&)const;			//两分数小于比较
 	bool operator<(double)const;
-	Fraction reverse()const;			// 求倒数
-	void reduce();				//约分
+	Fraction reverse()const;			//求倒数
+	void reduce();						//约分
 	Fraction& operator++() {
 		++m_numerator;
 		return *this;

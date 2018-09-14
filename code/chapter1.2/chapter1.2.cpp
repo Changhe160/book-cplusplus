@@ -1,4 +1,4 @@
-//例1.3
+//例1.3 圆柱体类
 
 #include<iostream>
 using namespace std;		//使用标准命名空间

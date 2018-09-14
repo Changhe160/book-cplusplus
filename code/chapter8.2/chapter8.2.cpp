@@ -10,7 +10,7 @@ int main() {
 		{
 			MyStr s("dynamic memory"); //执行构造函数
 			cout << s << endl; //打印输出dynamic memory
-		} //对象s析构
+		} 
 	}
 
 	{//8.2.2

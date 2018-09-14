@@ -1,17 +1,17 @@
 #include <iostream>
 using namespace std;
 
-//5.1.1 定义函数
+//5.1.1 求最大值函数
 int maximum(int a, int b) { //a和b为两个int 类型形参
-	int c; //用来保存结果
+	int c;					//用来保存结果
 	c = a > b ? a : b;
 	return c;
 }
 
-//5.1.1 定义函数
+//5.1.1 函数
 int fun() {
-	int a = 0; //a为局部自动对象
-	static int b = 0; //b为局部静态对象
+	int a = 0;				//a为局部自动对象
+	static int b = 0;		//b为局部静态对象
 	return ++b + ++a;
 }
 

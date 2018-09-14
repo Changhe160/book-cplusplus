@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 int main() {
 
 	//例3.7 画出sin(x)在[0:2pi]内的曲线
