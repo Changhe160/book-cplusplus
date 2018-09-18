@@ -5,7 +5,7 @@
 
 讲义：在slides目录下提供了pdf格式讲义及Latex源码。 Latex编译软件：[miktex][miktex_]或者[texlive][texlive_]
 
-实验指导书：在practice目录下面给出了每一章上机的实验指导
+实验指导书：在practice目录下面给出了每一章上机的实验指导和练习题目
 
 教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]、[亚马逊][amazon]，或者联系戴晨辰编辑 dcc@phei.com.cn
 
