@@ -16,4 +16,4 @@
 [tianmao]: https://detail.tmall.com/item.htm?spm=a1z10.5-b.w4011-17538325040.26.129d66dbA1Cn8D&id=576915359900&rn=de470f45922c94391043e09f1304e7e9&abbucket=3
 [jd]: https://item.jd.com/12424029.html?dist=jd
 [amazon]: https://www.amazon.cn/dp/B07GW2N5MX/ref=sr_1_1?ie=UTF8&qid=1537253553&sr=8-1&keywords=C%2B%2B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1+%E6%9D%8E%E9%95%BF%E6%B2%B3
-[dangdang]: http://search.dangdang.com/?key=C%2B%2B%B3%CC%D0%F2%C9%E8%BC%C6%20%C0%EE%B3%A4%BA%D3&act=input
+[dangdang]: http://product.dangdang.com/25338942.html
