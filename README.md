@@ -1,5 +1,5 @@
 # book-cplusplus
-《C++程序设计》教材例题源代码、讲义和实验指导书。
+《C++程序设计（基于C++11标准）》教材例题源代码、讲义和实验指导书。
 
 教材代码：在code目录下，每个chapter工程包含每一小节的代码，例如：chapter3.4工程包含教材中第3.4节的所以代码。开发环境： Windows 10系统， [Visual Studio Community 2017][vs2017]， Windows SDK Version：10.0.16299.0
 
@@ -7,7 +7,7 @@
 
 实验指导书：在practice目录下面给出了每一章上机的实验指导
 
-教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]、[亚马逊][amazon]等平台购买，或者联系戴晨辰编辑 dcc@phei.com.cn
+教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]、[亚马逊][amazon]，或者联系戴晨辰编辑 dcc@phei.com.cn
 
 [vs2017]: https://visualstudio.microsoft.com/vs/community/
 [miktex_]: https://miktex.org/download
