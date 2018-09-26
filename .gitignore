@@ -40,7 +40,6 @@ Debug/
 *.opendb
 
 *.db
-code/.vs/examples/v14/.suo
 *.aux
 *.aux
 *.log
@@ -49,5 +48,8 @@ code/.vs/examples/v14/.suo
 *.synctex
 *.toc
 *.vrb
-/.vs/book-cplusplus/v15
-/.vs
+code/.vs/v15/
+code/.vs/examples/v15/.suo
+*.ipch
+*.db-shm
+*.db-wal
