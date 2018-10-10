@@ -855,7 +855,7 @@ decltype (pi) rad=1.0;
 \begin{block}{左值和右值}
 	\begin{itemize}
         \item 左值所在的内存空间的地址是可以获取的（使用取址符 \texttt{\&}），但右值的地址是无法得到的
-        \item 左值对象由程序员创建并命名，具有持久性。右值对象中除了字面值常量以外，都是临时对象
+        \item 左值对象由程序员创建并命名，具有持久性。右值对象中除了字面值常量以外，都是\alert{临时对象}
         \item 一般来说，右值只能在 = 符号右边，左值没有限制
 	\end{itemize}
 \end{block}
@@ -1211,13 +1211,6 @@ j = ++i;
 不能，因为只要 k 大于等于1，表达式\texttt{~i~$<=$~j~$<=$~k}的值永远为真，应该使用逻辑与 \texttt{\&\&}构造表达式，即：\texttt{i <= j \texttt{\&\&} j <= k}
     \end{spacing}
 \end{greenblock}
-\pause
-%\begin{blueblock}<3->{表达式构造}
-%~\\
-%    \begin{spacing}{1.5}
-%逻辑和关系运算符常用来条件表达式的构造
-%    \end{spacing}
-%\end{blueblock}
 \end{columns}
 \end{frame}
 
@@ -1307,7 +1300,7 @@ bool b = !i && ++j;
 
 %---------------------------------------------------------------------------------------------
 \begin{frame}[fragile]{2.5 表达式\normalsize{~---~逗号运算符}}
-逗号表达式：由\alert{逗号运算符}连接起来的表达式。从左向右依次计算每个运算对象，结果为最右边的运算对象
+逗号表达式：由逗号运算符连接起来的表达式。\alert{从左向右}依次计算每个运算对象，结果为\alert{最右边}的运算对象
 \begin{columns}[t]
 \column{0.32\textwidth}
 \begin{blueblock}{格式如下}
@@ -1333,7 +1326,6 @@ i = (j=3, j+=6, 5+6);
 \begin{itemize}
   \item 逗号表达式的值是最右边表达式的值
   \item 在所有的运算符中，逗号运算符的优先级最低
-  \item 左侧代码中，\texttt{i}的值为11，\texttt{j}的值为9
 \end{itemize}
 \end{yellowblock}
 \end{columns}
@@ -1400,20 +1392,22 @@ cout << sizeof (++i);//输出4，i 的值为0
 %---------------------------------------------------------------------------------------------
 \begin{frame}[fragile]{2.5 表达式\normalsize{~---~位运算符}}
 \begin{itemize}
-  \item \alert{位运算符}：~\verb;~;~、\verb;<<;~、\verb;>>;~、\texttt{\&}~、\texttt{|} ~、~\verb;^;（\alert{优先级由高到低}）
-  \item 运算的对象是整型对象，处理二进制数
+  \item 位运算符：~\verb;~;~、\verb;<<;~、\verb;>>;~、\texttt{\&}~、\texttt{|} ~、~\verb;^;（优先级由高到低）
+  \item 运算的对象是\alert{整型对象}，处理二进制数
 \end{itemize}
 \pause
 \begin{columns}[t]
 \column{0.95\textwidth}
 \begin{blueblock}{~~\texttt{short a = 3, b = 5;}}
 \begin{center}
-\begin{tabular}{cr@{~}l@{}cr@{~}l@{~}cr@{~}l@{~}}
+\begin{tabular}{cr@{~}r@{}cr@{~}r@{~}cr@{~}r@{~}}
 b&\verb;~;&00000000~00000101&&\verb;<<;1&00000000~00000101&&\verb;>>;1&00000000~00000101\\\cline{3-3}\cline{6-6}\cline{9-9}
-&&11111111~11111010&&&00000000~00001010&&&00000000~00000010 \vspace{0.3cm}\\
+&&11111111~11111010&&&00000000~00001010&&&00000000~00000010 \\
+&&-6&&&10&&&2\vspace{0.3cm}\\
 a&&00000000~00000011&&&00000000~00000011&&&00000000~00000011\\
 b&\texttt{\&}&00000000~00000101&&\texttt{|}&00000000~00000101&&\verb;^;&00000000~00000101\\\cline{3-3}\cline{6-6}\cline{9-9}
 &&00000000~00000001&&&00000000~00000111&&&00000000~00000110\\
+&&1&&&7&&&6\vspace{0.3cm}\\
 \end{tabular}
 \end{center}
 \end{blueblock}
@@ -1495,9 +1489,9 @@ j = i * 2 + i++;
 
 %---------------------------------------------------------------------------------------------
 \begin{frame}[fragile]{2.6 类型转换\normalsize{~---~显示转换}}
-\alert{显示转换方式}：\\
+显示转换方式：\\
 \begin{itemize}
-  \item \texttt{static\_cast}、\texttt{dynamic\_cast}、\texttt{const\_cast}、\texttt{reinterpret\_cast}
+  \item \texttt{\alert{static\_cast}}、\texttt{dynamic\_cast}、\texttt{const\_cast}、\texttt{reinterpret\_cast}
 \end{itemize}
 \pause
 \begin{block}{几种转换方式的应用}
@@ -1561,6 +1555,29 @@ int k = static_cast<int>(i);
 \end{yellowblock}
 \end{columns}
 \end{frame}
+
+
+%---------------------------------------------------------------------------------------------
+\begin{frame}[fragile]{课后作业}
+
+\begin{columns}[t]
+\column{0.8\textwidth}
+\begin{blueblock}{作业本}
+ \begin{enumerate}
+   \item 习题2.2、2.3、2.6、2.10和2.12
+ \end{enumerate}
+
+\end{blueblock}
+
+\begin{blueblock}{上机练习}
+ \begin{enumerate}
+   \item 实验指导书：第二章
+ \end{enumerate}
+
+\end{blueblock}
+\end{columns}
+\end{frame}
+
 
 %---------------------------------------------------------------------------------------------
 \begin{frame}[fragile]
