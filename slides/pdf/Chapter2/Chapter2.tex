@@ -1291,7 +1291,7 @@ bool b = !i && ++j;
 ~~~(3)表达式的值为6，\texttt{a=6,b=5,c=5}\\
 ~~~(4)表达式的值为-3，\texttt{a=2,b=6,c=1,d=-3}\\
 ~~~(5)表达式的值为1，\texttt{a=0,b=5,c=1,d=6}\\
-2.答案一：\texttt{a==0\texttt{\&\&}b\texttt{!}=0\texttt{||}a\texttt{!}=0\texttt{\&\&}==0}\\
+2.答案一：\texttt{a==0\texttt{\&\&}b\texttt{!}=0\texttt{||}a\texttt{!}=0\texttt{\&\&}b==0}等价于\texttt{!a\&\&b||a\&\&!b}\\
 ~~~答案二：\texttt{a*b==0\texttt{\&\&}a+b\texttt{!}=0}\\
 }
 \end{spacing}

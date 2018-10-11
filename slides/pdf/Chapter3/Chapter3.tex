@@ -174,7 +174,7 @@
 
 \begin{frame}[fragile]
 	{3.1 语句\small{—控制结构语句作用域}}
-	\begin{block}{\texttt{C++}控制语句包括：}
+	\begin{block}{\texttt{C++}控制结构语句包括：}
 		\begin{itemize}
 			\item \textcolor[rgb]{0,0,1}{\texttt{if}}语句
 			\item \textcolor[rgb]{0,0,1}{\texttt{switch}}语句
@@ -189,9 +189,10 @@
 	{3.1 语句\small{—控制结构语句作用域}}
 	\begin{exampleblock}{下面\texttt{while}语句的作用域是什么？}
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-            while(i > 10 )
-                a = i;
-                b += i;
+           while(counter < 10 )  
+                ++counter; 
+           sum += counter;
+              
             \end{lstlisting}
 	\end{exampleblock}
 	\begin{block}{可用花括号扩展其作用域，如：}
@@ -770,33 +771,6 @@ do{
 \begin{frame}[fragile]
 	\frametitle{3.2 循环结构\small{—\texttt{do while}语句}}
 	% \framesubtitle{——\texttt{do while}语句}
-	\begin{exampleblock}{练习：}
-		\ttfamily 1.下面程序段中的循环执行几次？\\
-		\begin{lstlisting}[basicstyle=\small\ttfamily]
-    /*...*/
-    x = -1;
-    do{
-        x = x * x;
-    }while(!x);
-    /*...*/
-                \end{lstlisting}
-		A.死循环~~B.执行3次~~C.执行一次~~D.有语法错误\\
-		\ttfamily 2.下面程序段的输出结果是？\\
-		\begin{lstlisting}[basicstyle=\small\ttfamily]
-    int y = 10;
-    do{
-        y--;
-    }while(--y);
-    cout << y-- << endl;
-                \end{lstlisting}
-		A.-1~~B.1~~C.8~~D.0\\
-		\onslide<2->{答案：1.C~~2.D}
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{3.2 循环结构\small{—\texttt{do while}语句}}
-	% \framesubtitle{——\texttt{do while}语句}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\begin{exampleblock}{例3.5：}
@@ -841,6 +815,33 @@ int main() {
 			\end{column}
 		\end{columns}
 		\ttfamily 输入：ab12345~~~输出：数字字符个数为：5
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{3.2 循环结构\small{—\texttt{do while}语句}}
+	% \framesubtitle{——\texttt{do while}语句}
+	\begin{exampleblock}{练习：}
+		\ttfamily 1.下面程序段中的循环执行几次？\\
+		\begin{lstlisting}[basicstyle=\small\ttfamily]
+    /*...*/
+    x = -1;
+    do{
+        x = x * x;
+    }while(!x);
+    /*...*/
+                \end{lstlisting}
+		A.死循环~~B.执行3次~~C.执行一次~~D.有语法错误\\
+		\ttfamily 2.下面程序段的输出结果是？\\
+		\begin{lstlisting}[basicstyle=\small\ttfamily]
+    int y = 10;
+    do{
+        y--;
+    }while(--y);
+    cout << y-- << endl;
+                \end{lstlisting}
+		A.-1~~B.1~~C.8~~D.0\\
+		\onslide<2->{答案：1.C~~2.D}
 	\end{exampleblock}
 \end{frame}
 
