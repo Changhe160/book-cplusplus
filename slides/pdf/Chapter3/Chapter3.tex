@@ -849,7 +849,7 @@ int main() {
 	\frametitle{3.2 循环结构\small{—\texttt{do while}语句}}
 	% \framesubtitle{——\texttt{do while}语句}
 	\begin{exampleblock}{练习：}
-		\ttfamily 1.下面程序段中的循环执行几次？\\
+		\ttfamily 1.下面程序段中的循环执行几次？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
     int x = -1;
     do{
@@ -857,7 +857,7 @@ int main() {
     }while(!x);
                 \end{lstlisting}
 		A.死循环~~B.执行3次~~C.执行一次~~D.有语法错误\\\bigskip
-		\ttfamily 2.下面程序段的输出结果是？\\
+		\ttfamily 2.下面程序段的输出结果是？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
     int y = 10;
     do{
@@ -882,7 +882,7 @@ for(expr1; expr2; expr3){
     statement;
 }
                 \end{lstlisting}
-				\ttfamily 例如，1到100累加求和：\\
+				\ttfamily 例如，1到100累加求和：
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
 int sum = 0;
 for(int i = 1; i <= 100; ++i){
@@ -907,7 +907,7 @@ for(int i = 1; i <= 100; ++i){
 	% \framesubtitle{——\texttt{for}语句}
 	\begin{block}{\texttt{for}非常灵活，可以有多种形式}
 		\begin{itemize}
-			\item 可以省略任意一个表达式，但\alert{分号不能省略}：\\
+			\item 可以省略任意一个表达式，但\alert{分号不能省略}：
 		\end{itemize}
 	\end{block}
 	\begin{columns}
@@ -948,7 +948,7 @@ for(int i = 1; i <= 100; ++i){
 	% \framesubtitle{——\texttt{for}语句}
 	\begin{block}{\texttt{for}非常灵活，可以有多种形式}
 		\begin{itemize}
-			\item 表达式\texttt{expr1}可以\alert{定义多个对象}，表达式\texttt{expr3}可以是任意表达式：\\
+			\item 表达式\texttt{expr1}可以\alert{定义多个对象}，表达式\texttt{expr3}可以是任意表达式：
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 for (int i = 1, j = 100; i < j; ++i, --j) {
     sum += i + j;
@@ -965,7 +965,7 @@ for (int i = 1, j = 100; i < j; ++i, --j) {
 	\frametitle{3.3 循环结构\small{—\texttt{for}语句}}
 	% \framesubtitle{——\texttt{for}语句}
 	\begin{exampleblock}{练习：}
-		\ttfamily 1.下面程序段中的循环执行几次？\\
+		\ttfamily 1.下面程序段中的循环执行几次？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
     /*...*/
     int a,b;
@@ -1101,7 +1101,7 @@ int main(){
 	\begin{abstractblock}{跳转语句用于中断当前的执行顺序，包括：}
 		\begin{itemize}
 			\item \textcolor[rgb]{0,0,1}{\texttt{break}}语句
-			\item \textcolor[rgb]{0,0,1}{\texttt{return}}语句：\\
+			\item \textcolor[rgb]{0,0,1}{\texttt{return}}语句：
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
     int main(){
         return 0; /*返回一个整型值*/
@@ -1423,7 +1423,7 @@ int main() {
 			\end{column}
 			\begin{column}{0.94\textwidth}
 				\begin{lstlisting}[numbers=left,numberstyle=\small,firstnumber=18,basicstyle=\small\ttfamily]
-        case 1: case -2:
+            case 1: case -2:
                 cout << "你输了!" << endl;
                 break;
             case -1: case 2:
@@ -1480,7 +1480,7 @@ int main() {
             //跳过不能被3整除的数，执行流程跳转到++j
             if (k % 3) continue;
             if (5 * i + 3 * j + k / 3 == 100) {
-            cout<<"公鸡："<<i<<" 母鸡："<<j<<" 小鸡："<<k<<endl;
+                cout<<"公鸡："<<i<<" 母鸡："<<j<<" 小鸡："<<k<<endl;
             }
         }
     }
