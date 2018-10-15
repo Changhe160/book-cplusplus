@@ -111,7 +111,7 @@
 		\begin{itemize}
 			\item 掌握基本语句控制结构的语法和特点；
 			\item 学会运用基本控制结构解决简单问题；
-			\item 理解并能够运用递推法和穷举法解决实际应用问题。
+			\item 理解并能够运用\alert{递推法}和\alert{穷举法}解决实际应用问题。
 		\end{itemize}
 	\end{yellowblock}
 \end{frame}
@@ -189,10 +189,9 @@
 	{3.1 语句\small{—控制结构语句作用域}}
 	\begin{exampleblock}{下面\texttt{while}语句的作用域是什么？}
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-           while(counter < 10 )  
-                ++counter; 
+            while(counter < 10 )
+                ++counter;
            sum += counter;
-              
             \end{lstlisting}
 	\end{exampleblock}
 	\begin{block}{可用花括号扩展其作用域，如：}
@@ -368,13 +367,13 @@ int main() {
 			\end{column}
 			\begin{column}{0.4\textwidth}
 				\begin{lstlisting}[numbers=left,numberstyle=\small,firstnumber=16,basicstyle=\small\ttfamily]
-else if (score < 90) {
-    cout << "B" << endl;
-}
-else {
-    cout << "A" << endl;
-}
-return 0;
+    else if (score < 90) {
+        cout << "B" << endl;
+    }
+    else {
+        cout << "A" << endl;
+    }
+    return 0;
 }
         \end{lstlisting}\ttfamily
 			\end{column}
@@ -436,6 +435,10 @@ return 0;
 		\quad\\
 		\alert{提示}：创建对象存放方程系数$\rightarrow$计算判别式$\rightarrow$根据判别式处理
 	\end{exampleblock}
+    \begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.3]{example3_3.png}
+			\end{figure}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -454,7 +457,7 @@ int main() {
     double a,b,c;   //创建3个double类型对象存放三个系数值
     cout << "请输入a,b,c:";
     cin >> a >> b >> c;
-    if (a != 0) {；
+    if (a != 0) {
         double delta = b*b - 4 * a*c;
         if (delta > 0) {
             double x1, x2;     //需要时创建对象
@@ -478,17 +481,17 @@ int main() {
 			\end{column}
 			\begin{column}{0.94\linewidth}
 				\begin{lstlisting}[numbers=left,numberstyle=\small,firstnumber=17,basicstyle=\small\ttfamily]
-    else if (delta < 0) {
-        cout << "方程无实根" << endl;
+        else if (delta < 0) {
+            cout << "方程无实根" << endl;
+        }
+        else {
+            cout << "方程有两个相同的实根：" << -b / (2 * a) << endl;
+        }
     }
-    else {
-        cout << "方程有两个相同的实根：" << -b / (2 * a) << endl;
+    else {  //二次项系数不能为0
+        cout << "a不能为0" << endl;
     }
-}
-else {  //二次项系数不能为0
-    cout << "a不能为0" << endl;
-}
-return 0;
+    return 0;
 }
     \end{lstlisting}\ttfamily
 			\end{column}
@@ -590,6 +593,27 @@ return 0;
 			\item 开关语句里面定义对象时需要使用花括号。
 			      例如：\\
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
+        case 8:
+            char c = 'B';
+            break;
+        case 7:
+            c = 'C';  //修改在前面标签处定义的对象
+            break;
+            \end{lstlisting}
+            编译正确，但当进入开关case 7时，由于对象c未定义，出现错误
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{3.2 分支结构\small{—\texttt{switch}语句}}
+	% \framesubtitle{——\texttt{switch}语句}
+
+	\begin{block}{\texttt{switch}语句语法规则：}
+		\begin{itemize}
+			\item 开关语句里面定义对象时需要使用花括号。
+			      例如：\\
+			      \begin{lstlisting}[basicstyle=\small\ttfamily]
         case 8:{
             char c = 'B'; //对象c只在case 8的作用域内可见
             break;
@@ -598,6 +622,7 @@ return 0;
             c = 'C';  //修改在前面标签处定义的对象，报错
             break;
             \end{lstlisting}
+             编译错误，case 7处对象c未定义
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -632,17 +657,18 @@ int main() {
 			\end{column}
 			\begin{column}{0.4\textwidth}
 				\begin{lstlisting}[numbers=left,numberstyle=\small,firstnumber=16,basicstyle=\small\ttfamily]
-case 7:
-    cout << "C" << endl;
-break;
-case 6:
-    cout << "D" << endl;
-    break;
-default:
-    cout << "F" << endl;
-    break;
+    case 7:
+        cout << "C" << endl;
+        break;
+    case 6:
+        cout << "D" << endl;
+        break;
+    default:
+        cout << "F" << endl;
+        break;
+    }
+    return 0;
 }
-return 0;}
         \end{lstlisting}\ttfamily
 			\end{column}
 		\end{columns}
@@ -818,20 +844,19 @@ int main() {
 	\end{exampleblock}
 \end{frame}
 
+
 \begin{frame}[fragile]
 	\frametitle{3.2 循环结构\small{—\texttt{do while}语句}}
 	% \framesubtitle{——\texttt{do while}语句}
 	\begin{exampleblock}{练习：}
 		\ttfamily 1.下面程序段中的循环执行几次？\\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-    /*...*/
-    x = -1;
+    int x = -1;
     do{
         x = x * x;
     }while(!x);
-    /*...*/
                 \end{lstlisting}
-		A.死循环~~B.执行3次~~C.执行一次~~D.有语法错误\\
+		A.死循环~~B.执行3次~~C.执行一次~~D.有语法错误\\\bigskip
 		\ttfamily 2.下面程序段的输出结果是？\\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
     int y = 10;
@@ -840,10 +865,11 @@ int main() {
     }while(--y);
     cout << y-- << endl;
                 \end{lstlisting}
-		A.-1~~B.1~~C.8~~D.0\\
+		A.-1~~B.1~~C.8~~D.0\\\bigskip
 		\onslide<2->{答案：1.C~~2.D}
 	\end{exampleblock}
 \end{frame}
+
 
 \begin{frame}[fragile]
 	\frametitle{3.3 循环结构\small{—\texttt{for}语句}}
@@ -856,7 +882,7 @@ for(expr1; expr2; expr3){
     statement;
 }
                 \end{lstlisting}
-				\ttfamily 例如：\\
+				\ttfamily 例如，1到100累加求和：\\
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
 int sum = 0;
 for(int i = 1; i <= 100; ++i){
@@ -980,9 +1006,9 @@ for (int i = 1, j = 100; i < j; ++i, --j) {
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
 A. i=100;
     while(1)
-        { i=i%100; i++;
-          if (i > 100) break;
-        }
+    { i=i%100; i++;
+      if (i > 100) break;
+    }
     \end{lstlisting}
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
 C. short k=32765;
@@ -1000,9 +1026,9 @@ B. for(; ;)
 				~\\
 				~\\~\\~\\
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
-D. short S=32765;
-    while((S++%2)||(S%2))
-    S++;
+D. short i=32765;
+    while((i++%2)||(i%2))
+        i++;
     \end{lstlisting}
 			\end{column}
 		\end{columns}
@@ -1218,7 +1244,7 @@ int main(){
         for(int i=0; i<2; i++){
             x++;
             for(int j=0; j<=3; j++){
-            if(j%2) continue;
+                if(j%2) continue;
                 x++;
             }
             x++;
@@ -1239,42 +1265,21 @@ int main(){
 		\ttfamily 2.下面程序段的输出结果是什么？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
     int k=0; char c='A';
-        do{
-            switch(c++){
-                case 'A':k++; break;
-                case 'B':k--;
-                case 'C':k+=2; break;
-                case 'D':k=k%2; continue;
-                case 'E':k=k*10; break;
-                default :k=k/3;
-            }
-            k++;
+    do{
+        switch(c++){
+            case 'A':k++; break;
+            case 'B':k--;
+            case 'C':k+=2; break;
+            case 'D':k=k%2; continue;
+            case 'E':k=k*10; break;
+            default :k=k/3;
+        }
+        k++;
     } while(c<'G');
     cout<<k<<endl;
         \end{lstlisting}\ttfamily
 		A.k = 3~~B.k = 4~~C.k = 2~~D.k = 0\\
 		\onslide<2->{答案：B}
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{3.4 跳转语句\small{—\texttt{continue}语句}}
-	% \framesubtitle{——\texttt{continue}语句}
-	\begin{exampleblock}{练习：}
-		\ttfamily 3.下面程序段的输出结果是什么？
-		\begin{lstlisting}[basicstyle=\small\ttfamily]
-        int main(){
-            for(int i=1; i<5; i++){
-                if(i%2) cout<<"*";
-                else  continue;
-                    cout<<"#";
-                }
-            cout<<"$"<<endl;
-            return 0;
-    }
-    \end{lstlisting}\ttfamily
-		A.*\#*\#*\#\$~~B.\#*\#*\#*\$~~C.*\#*\#\$~~D.\#*\#*\$\\
-		\onslide<2->{答案：C}
 	\end{exampleblock}
 \end{frame}
 
