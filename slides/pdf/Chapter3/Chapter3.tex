@@ -1073,7 +1073,7 @@ D. short i=32765;
 using namespace std;
 int main(){
     srand(time(0));//系统当前时间作为随机数发生器的种子
-    int target = rand() % 100;//获取一个0-100内的随机数
+    int target = rand() % 100;//获取一个[0-100)内的随机数
     int guess;
     cout << "`请猜0-100之内的数`" << endl;
     do {
@@ -1253,7 +1253,7 @@ int main(){
         return 0;
     }
     \end{lstlisting}\ttfamily
-		A.X = 4~~B.X = 8~~C.X = 6~~D.X = 12\\
+		A. x = 4~~B. x = 8~~C. x = 6~~D. x = 12\\
 		\onslide<2->{答案：B}
 	\end{exampleblock}
 \end{frame}
@@ -1359,9 +1359,10 @@ int main() {
 	\begin{exampleblock}{例3.8：石头剪刀布游戏}
 		% \begin{columns}
 		%     \begin{column}{0.4\textwidth}
-		\ttfamily{玩家和电脑出法相减结果如右图所示。\\
-			\alert{提示}：程序主要流程如左图所示}
+		\ttfamily{玩家和电脑出法相减结果如右图所示。}
+			%\alert{提示}：程序主要流程如左图所示}
 	\end{exampleblock}
+\vspace{-0.5cm}
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
 			\begin{figure}[ht]
