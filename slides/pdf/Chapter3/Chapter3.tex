@@ -1362,20 +1362,20 @@ int main() {
 		\ttfamily{玩家和电脑出法相减结果如右图所示。}
 			%\alert{提示}：程序主要流程如左图所示}
 	\end{exampleblock}
-\vspace{-0.5cm}
+\vspace{-0.4cm}
 	\begin{columns}
-		\begin{column}{0.4\textwidth}
+		\begin{column}{0.5\textwidth}
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[scale=0.28]{example3_8.png}
+				\includegraphics[scale=0.18]{Fig3-3.png}
 				% \caption{\texttt{程序主要流程}}
 				% \label{fig:label}
 			\end{figure}
 		\end{column}
-		\begin{column}{0.4\textwidth}
+		\begin{column}{0.5\textwidth}
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[scale=0.18]{Fig3-3.png}
+                \includegraphics[scale=0.28]{example3_8.png}
 				% \caption{\texttt{玩家和电脑出法编号相减结果}}
 				% \label{fig:label}
 			\end{figure}
@@ -1433,8 +1433,7 @@ int main() {
             default:
                 cout << "你出错了！" << endl;
             }
-        //电脑和你出的一样，双方继续出
-        } while (computer == you);
+        } while (computer == you); //平手，双方继续出
         cout << "还要玩吗？Y/N:";
         char play;
         cin >> play;
@@ -1442,7 +1441,8 @@ int main() {
     }
     return 0;
 }
-    \end{lstlisting}\ttfamily
+    \end{lstlisting}
+    \onslide<2->{如何让电脑更聪明？提示：尝试人工智能-\alert{强化学习}方法}
 			\end{column}
 		\end{columns}
 	\end{exampleblock}
