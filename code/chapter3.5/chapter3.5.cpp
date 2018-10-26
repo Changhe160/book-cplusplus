@@ -24,39 +24,31 @@ int main() {
 	//例3.8 石头剪刀布游戏
 	{
 		srand(time(0));
-		int computer, you;
 		while (1) {
+			int computer, you;
 			do {
-				cout << "你好！ 石头=0, 剪刀=1, 布=2";
 				computer = rand() % 3;
-				cout << "请出手：";
-				cin >> you;
-				switch (computer) {
+				do {
+					cout << "请出手, 0(石头), 1(剪刀), 2(布)：";
+					cin >> you;
+				} while (you < 0 || you>2);//如果输入有误，从新输入
+				switch (you - computer) {
 				case 0:
-					if (you == 1)
-						cout << "你输了!" << endl;
-					else if (you == 2)
-						cout << "你赢了!" << endl;
+					cout << "平手" << endl;
 					break;
-				case 1:
-					if (you == 2)
-						cout << "你输了!" << endl;
-					else if (you == 0)
-						cout << "你赢了!" << endl;
+				case 1: case -2:					
+					cout << "你输了!" << endl;					
 					break;
-				case 2:
-					if (you == 0)
-						cout << "你输了!" << endl;
-					else if (you == 1)
-						cout << "你赢了!" << endl;
-					break;
+				case -1: case 2:					
+					cout << "你赢了!" << endl;
 				}
-			} while (computer == you);
+			} while (computer == you);//双方出法相同，继续出
 			cout << "还要玩吗？Y/N:";
 			char play;
 			cin >> play;
 			if (play == 'N' || play == 'n') break;
 		}
+		return 0;
 	}
 
 	//例3.9 百钱买百鸡问题
