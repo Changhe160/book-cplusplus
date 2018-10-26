@@ -110,12 +110,6 @@
 			\item 学会运用数组、\texttt{string}~和~\texttt{vector}~解决实际问题。
 		\end{itemize}
 	\end{yellowblock}
-	\begin{minipage}[m]{0.15\linewidth}
-		\includegraphics[scale=0.05]{question_icon.png}
-	\end{minipage}
-	\begin{minipage}[m]{0.45\linewidth}
-		什么是复合类型？
-	\end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -130,15 +124,11 @@
 			\item 函数间共享局部对象的重要途径，对于提高程序的效率有重要作用
 		\end{itemize}
 	\end{abstractblock}
-	\begin{columns}
-		\begin{column}{0.43\linewidth}
-			\begin{yellowblock}{说明：}
-				如无提示，引用默认为左值引用
-			\end{yellowblock}
-		\end{column}
-		\begin{column}{0.55\linewidth}
-		\end{column}
-	\end{columns}
+
+	\begin{yellowblock}{说明：}
+		C++11引入了右值引用，如无提示，引用默认为左值引用
+	\end{yellowblock}
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -158,7 +148,7 @@ int i = refCnt;//通过引用读取counter对象的内容，并初始化对象i
 		书写上，把\textcolor[rgb]{1,0,0}{引用符号与对象名放在一起}，而不是把类型名和引用符号放在一起，这样有助于\textcolor[rgb]{1,0,0}{提高程序的可读性}。如：\\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int counter = 0;
-int& refCnt = counter; //这样书写引用，可读性不高
+int& refCnt = counter; 
     \end{lstlisting}
 	\end{alertblock}
 \end{frame}
@@ -205,7 +195,7 @@ int &r4 = 100, &r5 = i+1, &r6 = ci; //错误：只能引用非 const 左值
 \begin{frame}[fragile]
 	\frametitle{4.1 引用\small{—引用\texttt{const}对象}}
 	% \framesubtitle{—}
-	\begin{block}{引用\texttt{const}对象语法格式：}
+	\begin{block}{引用\texttt{const}对象：}
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 const int ci = 0;
 const int &r1 = ci;  //r1 引用const 对象ci
@@ -214,10 +204,10 @@ r1 = 1;                //错误：相当于修改const 对象ci 的值
 	\end{block}
 	\begin{block}{\texttt{const}对象的引用}
 		\begin{itemize}
-			\item \alert{无法}通过\texttt{const}引用\alert{修改其引用对象的内容}
-			\item \alert{只能}通过\texttt{const}引用对绑定的对象\alert{进行读操作}
-			\item 可用任何类型兼容的对象来初始化\texttt{const}引用\\
-			      \ttfamily 例如：\\
+			\item 无法通过\texttt{const}引用\alert{修改其引用对象的内容}
+			\item 只能通过\texttt{const}引用对绑定的对象\alert{进行读操作}
+			\item 可用任何类型兼容的对象来初始化\texttt{const}引用，例如：\\
+			      \ttfamily 
 			      int i = 0;\\
 			      const int \&r1 = i;~~~~~~//正确：使用左值对象初始化\\
 			      const int \&r2 = 1;~~~~~~//正确：使用字面值常量初始化\\
@@ -232,7 +222,7 @@ r1 = 1;                //错误：相当于修改const 对象ci 的值
 	% \framesubtitle{——\texttt{auto}和引用}
 	\begin{block}{\texttt{auto}和引用}
 		\begin{itemize}
-			\item \texttt{auto}\textcolor[rgb]{1,0,0}{不能}正确\alert{推导}出引用
+			\item \texttt{auto}不能推导出引用
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 0, &ri = i;
 auto r = ri; //r 是 int 类型而不是 int 类型引用，auto 被推导为 int
@@ -242,7 +232,7 @@ auto r = ri; //r 是 int 类型而不是 int 类型引用，auto 被推导为 in
 int i = 0;
 auto &r = i; //r是int类型引用
             \end{lstlisting}
-			\item 利用\texttt{auto}推导\texttt{const}引用也需明确指出引用类型：
+			\item 利用\texttt{auto}推导\texttt{const}引用也需明确指出引用类型，\texttt{const}属性被保留：
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 const int ci=0;
 auto &cr = ci; //cr 是 const int 类型引用，auto 被推导为 const int
@@ -255,7 +245,7 @@ auto &cr = ci; //cr 是 const int 类型引用，auto 被推导为 const int
 	\frametitle{4.1 引用\small{—\texttt{auto}和引用}}
 	% \framesubtitle{——\texttt{auto}和引用}
 	\ttfamily
-	\begin{exampleblock}{练习： 以下程序的输出结果是？}
+	\begin{exampleblock}{ 以下程序的输出结果是？}
 		1.
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int a = 0, &b = a;
@@ -265,12 +255,12 @@ cout << "a=" << a << "," << "b=" << b << endl;
             \end{lstlisting}
 		2.
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-const int a = 0;
-auto b = a;
-b = 100;
-cout << "a=" << a << endl;
+int a = 0, &b = a;
+auto &c = b;
+c = 100;
+cout << "a=" << a << "," << "b=" << b << endl;
             \end{lstlisting}
-		\onslide<3->{答案：1.a=0,b=0~~~2.a=0}
+		\onslide<2->{答案：1.a=0,b=0~~~2.a=100,b=100~~~}
 	\end{exampleblock}
 \end{frame}
 
@@ -286,7 +276,7 @@ auto &b = a;
 b = 100;
 cout << "a= " << a << endl;
             \end{lstlisting}
-		\onslide<3->{答案：语句b = 100;错误。b为a的const引用，无法修改b的值}
+		\onslide<2->{答案：语句b = 100;错误。b为a的const引用，无法修改b的值}
 	\end{exampleblock}
 \end{frame}
 
@@ -301,7 +291,7 @@ cout << "a= " << a << endl;
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 0, &r1 = i;
 decltype (r1) r2 = i; //r2 为int 引用
-decltype (r1 + 0) r2; //r2 为int 类型
+decltype (r1 + 0) r3; //r3 为int 类型
             \end{lstlisting}
 		\end{itemize}
 	\end{block}
@@ -316,31 +306,32 @@ decltype (r1 + 0) r2; //r2 为int 类型
 \begin{frame}[fragile]
 	\frametitle{4.1 引用\small{—右值引用}}
 	% \framesubtitle{——右值引用}
-	\begin{block}{右值引用定义:}
-		必须绑定到右值的引用（只能绑定到一个将要销毁的对象），通过\texttt{\&\&}实现。
-	\end{block}
-	\begin{block}{右值引用语法格式为:}
+	\begin{block}{右值引用:}
+		绑定到右值的引用，通过\texttt{\&\&}来定义。
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 0;
 int &&rr1 = i+1; //正确：rr1 为右值引用，绑定到一个临时对象
 int &&rr2 = i;      //错误：rr2 为右值引用，不能绑定到左值对象
         \end{lstlisting}
 	\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{4.1 引用\small{—右值引用}}
-	% \framesubtitle{——右值引用}
 	\begin{block}{右值引用功能}
 		\begin{itemize}
 			\item 程序员可以\alert{操纵右值对象}，尤其是临时对象
 			\item 可以通过右值引用\alert{获取}即将消亡的右值对象的\alert{资源}\\
 		\end{itemize}
 	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{4.1 引用\small{—右值引用}}
+	% \framesubtitle{——右值引用}
+
 	\begin{thinkblock}{思考：}
 		\ttfamily
 		以下代码会出现什么情况？为什么？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
+int i = 0;
+int &&rr1 = i+1;
 int &&rr3 = rr1;
     \end{lstlisting}
 		\onslide<2->{\textcolor[rgb]{1,0,0}{编译器报错：rr1 为左值，rr3 不能绑定到左值对象}}
@@ -354,7 +345,7 @@ int &&rr3 = rr1;
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int &&rr3 = std::move(rr1); //将rr1 转换成右值
         \end{lstlisting}
-		有时候有些左值对象具有“临时性”,可以像右值一样使用。如函数形参
+		有时候有些左值对象具有“临时性”，可以像右值一样使用。如只会使用一次的左值对象
 	\end{block}
 	\begin{block}{通用引用}
 		右值引用声明\texttt{\&\&}与类型推导结合，变成一种\alert{通用引用类型}，可与右值或左值绑定：
@@ -368,7 +359,7 @@ auto &&rr2 = i;    //rr2 为左值引用
 
 \begin{frame}
 	\frametitle{4.2 指针}
-	\begin{abstractblock}{访问数据的方式}
+	\begin{block}{访问数据的方式}
 		\begin{itemize}
 			\item 直接访问：\\
 			      \begin{itemize}
@@ -380,7 +371,7 @@ auto &&rr2 = i;    //rr2 为左值引用
 				      \item \alert{指针}：把数据的内存地址存放到专门存放地址的对象中，通过地址对象对数据进行访问
 			      \end{itemize}
 		\end{itemize}
-	\end{abstractblock}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -449,8 +440,8 @@ int i, *ptr1, *ptr2; //i 为int 类型，ptr1 和ptr2 为指针对象
 			\item 指向无具体的指向对象，需用\alert{\texttt{nullptr}}来初始化
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 {
-int *ptr1 = nullptr; //ptr1 为空指针，没有指向任何对象
-int *ptr2;              //ptr2 为野指针，有潜在危险
+    int *ptr1 = nullptr; //ptr1 为空指针，没有指向任何对象
+    int *ptr2;              //ptr2 为野指针，有潜在危险
 }
             \end{lstlisting}
 		\end{itemize}
@@ -475,7 +466,7 @@ ptr1 = nullptr;              //改变ptr1 的指向，ptr1 变成空指针
 	% \framesubtitle{——\texttt{const}和指针}
 	\begin{block}{\texttt{const}和指针}
 		\begin{itemize}
-			\item 用\texttt{const}修饰符修饰的指针对象，\alert{不能修改}所指向对象的值。\\
+			\item 用\texttt{const}修饰符修饰的指针对象，\alert{不能修改}所指向对象的值，即指向const对象的指针。
 			      语法格式为：\\
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 const int ci = 10, cj = 1;
@@ -488,12 +479,10 @@ const int *ptrc = &ci; //ptrc 指向常量ci
 		\begin{columns}
 			\begin{column}{0.4\linewidth}
 				\begin{lstlisting}[basicstyle=\small\ttfamily]
-    const int a = 30, b = 1;
+    const int a = 30;
     const int *c = &a;
-    int j = 45;
-    if (j >= 30) {
-        *c = 100;
-    }
+    *c = 100;
+
     \end{lstlisting}
 			\end{column}
 			\hfill
@@ -532,10 +521,7 @@ ptrc = &i;                //还可以指向一个非const 对象
     const int a = 30;
     const int *c = &a;
     int b = 0;
-    int j = 45;
-    if (j >= 30) {
-        c = &b;
-    }
+    c = &b;
     *c = 100;
     \end{lstlisting}
 			\end{column}
@@ -565,7 +551,7 @@ int *ptr = &ci; //错误：ptr 不能指向常量
 	\frametitle{4.2 指针\small{—\texttt{const}和指针}}
 	% \framesubtitle{——\texttt{const}和指针}
 	\begin{block}{\texttt{const}指针}
-		\texttt{const}指针的指向不允许被改变。\texttt{const}指针语法格式：
+		不允许改变指向的指针，语法格式：
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int j = 0, i = 0;
 int *const cptr = &i; //定义时初始化，cptr 只能指向对象i
@@ -607,11 +593,14 @@ auto pc = &ci;//pc 被推导为const int * 类型，ci 的const 属性被保留
 	\begin{alertblock}{提示：}
 		\begin{itemize}
 			\item 符号\textcolor[rgb]{1,0,0}{\texttt{\&}}和\alert{\texttt{*}}从属于对象名，并不是类型名的一部分，\texttt{auto}~只是一个“占位符”
-			\item 同一条语句中定义多个对象时，对象类型必须一致\\
-			      \ttfamily 例如：\\
+			\item 同一条语句中定义多个对象时，对象类型必须一致，例如：\\
+			      \ttfamily 
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
+int i(0);
 auto &ref = i, *ptr = &i;     //auto 被推导为int
 auto &ref2 = i, ptr2 = &i; //错误：auto 的推导类型不一致
+// ref2： auto被推导为int; 
+// ptr2: auto被推导为 int *
         \end{lstlisting}
 		\end{itemize}
 	\end{alertblock}
@@ -641,7 +630,7 @@ cout << m << "," << n << "," << *p << "," << *q << endl;
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 0, *ptr = &i;
 decltype (ptr) ptr2;         //ptr2 为int *
-decltype (*ptr) refi = i;//正确：ref i 为int &，必须初始化
+decltype (*ptr) refi = i;//正确：refi 为int &，必须初始化
 decltype (*ptr+0) j;         //正确：j 为int 类型
         \end{lstlisting}
 	\end{block}
@@ -668,7 +657,8 @@ p = &i;         //正确：也可以存放int 类型对象的地址
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 double x = 0, *ptrd = &x;
 void *ptr = &x;
-ptrd = ptr; //报错：不能将void *的值分配到double *类型的实体。正确语句：ptrd = static_cast<double *>(ptr);
+ptrd = ptr; //报错：不能直接将void指针赋值double *类型的指针。正确语句：
+ptrd = static_cast<double *>(ptr);
         \end{lstlisting}
 	\end{alertblock}
 \end{frame}
