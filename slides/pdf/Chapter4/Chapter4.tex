@@ -148,7 +148,7 @@ int i = refCnt;//通过引用读取counter对象的内容，并初始化对象i
 		书写上，把\textcolor[rgb]{1,0,0}{引用符号与对象名放在一起}，而不是把类型名和引用符号放在一起，这样有助于\textcolor[rgb]{1,0,0}{提高程序的可读性}。如：\\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int counter = 0;
-int& refCnt = counter; 
+int& refCnt = counter;
     \end{lstlisting}
 	\end{alertblock}
 \end{frame}
@@ -207,7 +207,7 @@ r1 = 1;                //错误：相当于修改const 对象ci 的值
 			\item 无法通过\texttt{const}引用\alert{修改其引用对象的内容}
 			\item 只能通过\texttt{const}引用对绑定的对象\alert{进行读操作}
 			\item 可用任何类型兼容的对象来初始化\texttt{const}引用，例如：\\
-			      \ttfamily 
+			      \ttfamily
 			      int i = 0;\\
 			      const int \&r1 = i;~~~~~~//正确：使用左值对象初始化\\
 			      const int \&r2 = 1;~~~~~~//正确：使用字面值常量初始化\\
@@ -594,12 +594,12 @@ auto pc = &ci;//pc 被推导为const int * 类型，ci 的const 属性被保留
 		\begin{itemize}
 			\item 符号\textcolor[rgb]{1,0,0}{\texttt{\&}}和\alert{\texttt{*}}从属于对象名，并不是类型名的一部分，\texttt{auto}~只是一个“占位符”
 			\item 同一条语句中定义多个对象时，对象类型必须一致，例如：\\
-			      \ttfamily 
+			      \ttfamily
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int i(0);
 auto &ref = i, *ptr = &i;     //auto 被推导为int
 auto &ref2 = i, ptr2 = &i; //错误：auto 的推导类型不一致
-// ref2： auto被推导为int; 
+// ref2： auto被推导为int;
 // ptr2: auto被推导为 int *
         \end{lstlisting}
 		\end{itemize}
@@ -847,6 +847,7 @@ int (&rarr)[5] = arr; //定义arr 的一个引用定义
 	% \framesubtitle{——数组的定义和初始化}
 	\begin{block}{定义一个指向\texttt{arrp}的指针或引用：}
 		\ttfamily
+int *arrp[5]; \\
 		int *(*parrp)[5] = \&arrp;\\
 		int *(\&rarrp)[5] = arrp;\\
 		parrp~和~rarrp~分别为指向指针数组~arrp~的指针和引用。
@@ -1008,75 +1009,74 @@ int main() {
 	\end{figure}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
 	\frametitle{4.3 数组\small{—访问数组元素}}
+\begin{columns}
+    \begin{column}{0.6\linewidth}
+        \begin{exampleblock}{例4.2：解的表示}
+        		\ttfamily
+        		用一个数组~que[8]~来存放每一个皇后的位置，如~que[0]=3~代表第0行的皇后在第3列。\\
+        ~~~~que[8] = \{3, 6, 2, 7, 1, 4, 0, 5\};\\
+        ~~~~\\
+        冲突情况：\\
+        1）第~i~行和第~j~行的皇后在同一列：\\
+        ~~~~ que[i] == que[j]\\
+        2）第~i~行和第~j~行的皇后在同一对角线上：\\
+        ~~~~ {|que[i] - que[j]| == |i - j|}\\
+        比如~que[0]=1，que[1]=2~表明第0行和第1行的两个皇后在同一个对角线上。
+        \end{exampleblock}
+    \end{column}
+	\begin{column}{0.4\textwidth}
+        \begin{figure}
+        \centering
+        	\includegraphics[scale=0.4]{Fig4-3.png}
+        \end{figure}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+	%\frametitle{4.3 数组\small{—访问数组元素}}
 	% \framesubtitle{——访问数组元素}
-	\begin{exampleblock}{代码清单4.2，例4.2：}
+\vspace{-5mm}
+	\begin{exampleblock}{}%代码清单4.2，例4.2：
 		% \begin{minipage}[t]{0.4\linewidth}
-		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,basicstyle=\small\ttfamily]
-#include <iostream>
-using namespace std;
+		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,basicstyle=\footnotesize\ttfamily]
 int main() {
     constexpr int sz = 8;
     int que[sz] = { 0 };//每一行皇后都从第0列开始摆放
     int i = 0;//从第0行开始摆放
-    while (i >= 0)
+    while (i >= 0){
         int k = 0;
-        while (k<i) //检查前面所有皇后是否和第i行皇后冲突
-            if(que[k]!=que[i]&&(abs(que[i]-que[k])!=abs(i-k)))
-                ++k;//第k行和第i行皇后没有冲突
-            else
-                break;//第k行和第i行皇后产生冲突，退出，转到第15行
+        while (k<i){ //检查前面所有皇后是否和第i行皇后冲突
+            if(que[k]!=que[i]&&(abs(que[i]-que[k])!=abs(i-k))) ++k;
+            else   break;//第k行和第i行皇后产生冲突，退出，转到第11行
         }
-
-        \end{lstlisting}\ttfamily
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{4.3 数组\small{—访问数组元素}}
-	% \framesubtitle{——访问数组元素}
-	\begin{exampleblock}{代码清单4.2，例4.2：}
-		% \begin{minipage}[t]{0.4\linewidth}
-		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,firstnumber=15,basicstyle=\small\ttfamily]
-if (k < i) {//检测到冲突
-    ++que[i];//处理冲突：移动第i行皇后到当前位置的下一列
-    while (que[i] == sz) //当前行所有尝试都失败，需要回溯
-        que[i] = 0; //重置当前行皇后位置
-        --i;//回溯到上一行
-        if (i < 0)
-            break; //如果回溯到第0行之前，结束运行，转到第24行
-        ++que[i];//前一行皇后后移一列
-    }
-    continue; //重新检测是否与前面已安排皇后冲突，转到第7行
-}
-        \end{lstlisting}\ttfamily
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{4.3 数组\small{—访问数组元素}}
-	% \framesubtitle{——访问数组元素}
-	\begin{exampleblock}{代码清单4.2，例4.2：}
-		% \begin{minipage}[t]{0.4\linewidth}
-		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,firstnumber=26,basicstyle=\small\ttfamily]
-        else { //没有检测到冲突，安排下一行皇后
+        if (k < i) {//检测到冲突
+            ++que[i];//处理冲突：移动第i行皇后到当前位置的下一列
+            while (que[i] == sz){ //当前行所有尝试都失败，需要回溯
+                que[i] = 0; //重置当前行皇后位置
+                --i;//回溯到上一行
+                if (i < 0) break; //如果回溯到第0行之前，结束运行，转到第19行
+                ++que[i];//前一行皇后后移一列
+            }
+            continue; //重新检测是否与前面已安排皇后冲突，转到第5行
+        }else { //没有检测到冲突，安排下一行皇后
             ++i;//移动到下一行
-            if (i < sz)
-                continue; //安排下一行皇后，已安排在第0列，转到第7行
-            cout << "找到一个方案：";//否则找到一个方案并输出
-            for (k = 0; k<sz; ++k)
-                cout << que[k];
-            cout << endl;
-            break; //结束运行，转到第37行
+            if (i < sz)  continue; //安排下一行皇后，已安排在第0列，转到第5行
+            for (k = 0; k<sz; ++k)   cout << que[k]; //找到一个方案并输出
+            break; //结束运行
         }
     }
     return 0;
 }
         \end{lstlisting}\ttfamily
-		输出为：找到一个方案： 04752613
 	\end{exampleblock}
 \end{frame}
+
 
 \begin{frame}[fragile]
 	\frametitle{4.3 数组\small{—多维数组}}
