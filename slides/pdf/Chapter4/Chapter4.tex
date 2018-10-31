@@ -437,7 +437,7 @@ double *ptr = &i;        //错误：ptr 和i 的类型不匹配
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int i, *ptr1, *ptr2; //i 为int 类型，ptr1 和ptr2 为指针对象
             \end{lstlisting}
-			\item 指向无具体的指向对象，需用\alert{\texttt{nullptr}}来初始化
+			\item 无具体的指向对象时，需用\alert{\texttt{nullptr}}来初始化
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 {
     int *ptr1 = nullptr; //ptr1 为空指针，没有指向任何对象
@@ -455,7 +455,7 @@ int i, *ptr1, *ptr2; //i 为int 类型，ptr1 和ptr2 为指针对象
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 10, j = 100;
 int *ptr1 = &i, *ptr2 = &j; //ptr1 指向i，ptr2 指向j
-ptr1 = ptr2;                 //改变ptr1 的指向，使其指向j，与ptr1 = &j; 等价
+ptr1 = ptr2;                 //改变ptr1 的指向，使其指向j，与ptr1 = &j 等价
 ptr1 = nullptr;              //改变ptr1 的指向，ptr1 变成空指针
         \end{lstlisting}
 	\end{block}
@@ -466,8 +466,8 @@ ptr1 = nullptr;              //改变ptr1 的指向，ptr1 变成空指针
 	% \framesubtitle{——\texttt{const}和指针}
 	\begin{block}{\texttt{const}和指针}
 		\begin{itemize}
-			\item 用\texttt{const}修饰符修饰的指针对象，\alert{不能修改}所指向对象的值，即指向const对象的指针。
-			      语法格式为：\\
+			\item 可以用\texttt{const}修饰符，使其不能修改所指向对象的值，即\alert{指向const对象}的指针。
+			      例如：\\
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 const int ci = 10, cj = 1;
 const int *ptrc = &ci; //ptrc 指向常量ci
@@ -487,7 +487,7 @@ const int *ptrc = &ci; //ptrc 指向常量ci
 			\end{column}
 			\hfill
 			\begin{column}{0.55\linewidth}
-				\onslide<2->{答案：语句\texttt{*c = 100;}错误， 用\texttt{const}修饰符修饰的指针对象，不能修改所指向对象的值}
+				\onslide<2->{答案：语句\texttt{*c = 100;}错误， 不能修改所指向对象的值}
 			\end{column}
 		\end{columns}
 	\end{exampleblock}
@@ -527,7 +527,7 @@ ptrc = &i;                //还可以指向一个非const 对象
 			\end{column}
 			\hfill
 			\begin{column}{0.55\linewidth}
-				\onslide<2->{答案：语句\texttt{*c = 100;}错误， 用\texttt{const}修饰符修饰的指针对象，可以指向非\texttt{const}对象，但依然不能修改所指向对象的值}
+				\onslide<2->{答案：语句\texttt{*c = 100;}错误， 可以指向非\texttt{const}对象，但依然不能修改所指向对象的值}
 			\end{column}
 		\end{columns}
 	\end{exampleblock}
@@ -693,7 +693,7 @@ cout << ***ppptr << endl; //输出1
 			\item 定义引用时\alert{必须初始化}，定义指针时不需要初始化：\\
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int i = 0, j = 1;
-int &r;//报错：引用变量“r”需要初始值设定项
+int &r;//错误：引用在定义时需要给定初始值
 int *p;//正确
             \end{lstlisting}
 			\item \alert{不存在空引用}。引用必须与有效的内存单元关联，指针可以为\texttt{nullptr}；
@@ -727,7 +727,7 @@ int &ri = i;          //引用 ri 只能与 i 绑定
 	\frametitle{4.3 数组\small{—数组的定义和初始化}}
 	% \framesubtitle{——数组的定义和初始化}
 	% \ttfamily
-	\begin{block}{数组}
+	\begin{block}{数组---\color{yellow}{处理批量数据}}
 		\alert{数组}是由有限个\alert{同类型}元素组成的\alert{有序集合}，所有元素顺序存放在一段连续的内存空间中。\\如下定义一个存储5个整型元素的数组：\\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int arr[5];
@@ -954,7 +954,7 @@ for(auto &i: arr){ //i为arr中当前元素的引用
 #include <iostream>
 using namespace std;
 int main() {
-    srand(0);//使用固定种子，每次运行得到一样的结果，对于程序的调试是很重要的
+    srand(0);//使用固定种子，每次运行得到一样的结果，有助于调式
     constexpr int sz = 30;
     int score[sz]; //定义一个数组，存放30个学生的成绩
     int mean = 0;//存放平均分数, 初始值必须为0
