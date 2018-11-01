@@ -82,19 +82,6 @@
 
 \maketitle
 
-\section{引用}
-
-\section{指针}
-
-\section{数组}
-
-\section{指针和数组}
-
-\section{string 类型}
-
-\section{vector 类型}
-
-\section{枚举类型}
 
 \begin{frame}
 	{目录}
@@ -112,6 +99,8 @@
 	\end{yellowblock}
 \end{frame}
 
+\section{引用}
+\subsection{左值引用}
 \begin{frame}
 	\frametitle{4.1 引用}
 	\begin{block}{复合类型}
@@ -302,7 +291,7 @@ decltype (r1 + 0) r3; //r3 为int 类型
         \end{lstlisting}
 	\end{alertblock}
 \end{frame}
-
+\subsection{右值引用}
 \begin{frame}[fragile]
 	\frametitle{4.1 引用\small{—右值引用}}
 	% \framesubtitle{——右值引用}
@@ -357,6 +346,8 @@ auto &&rr2 = i;    //rr2 为左值引用
 	\end{block}
 \end{frame}
 
+\section{指针}
+\subsection{指针定义}
 \begin{frame}
 	\frametitle{4.2 指针}
 	\begin{block}{访问数据的方式}
@@ -461,6 +452,7 @@ ptr1 = nullptr;              //改变ptr1 的指向，ptr1 变成空指针
 	\end{block}
 \end{frame}
 
+\subsection{const和指针}
 \begin{frame}[fragile]
 	\frametitle{4.2 指针\small{—\texttt{const}和指针}}
 	% \framesubtitle{——\texttt{const}和指针}
@@ -684,7 +676,7 @@ cout << ***ppptr << endl; //输出1
         \end{lstlisting}
 	\end{block}
 \end{frame}
-
+\subsection{指针和引用}
 \begin{frame}[fragile]
 	\frametitle{4.2 指针\small{—引用和指针}}
 	% \framesubtitle{——引用和指针}
@@ -723,6 +715,8 @@ int &ri = i;          //引用 ri 只能与 i 绑定
 	\end{alertblock}
 \end{frame}
 
+\section{数组}
+\subsection{定义和初始化}
 \begin{frame}[fragile]
 	\frametitle{4.3 数组\small{—数组的定义和初始化}}
 	% \framesubtitle{——数组的定义和初始化}
@@ -1077,7 +1071,7 @@ int main() {
 	\end{exampleblock}
 \end{frame}
 
-
+\subsection{多维数组}
 \begin{frame}[fragile]
 	\frametitle{4.3 数组\small{—多维数组}}
 	% \framesubtitle{——多维数组}
@@ -1150,7 +1144,8 @@ int a2d[][5] = {{0}, {1}, {2}};
 	% \framesubtitle{——多维数组}
 	\begin{exampleblock}{练习：}
 		\ttfamily 以下不能对二维数组a进行正确初始化的是？\\
-		A. int a[2][3] = \{ 0 \};~~~~B. int a[][3] = \{ \{ 1,2 \},\{ 0 \} \};\\
+		A. int a[2][3] = \{ 0 \};\\
+B. int a[][3] = \{ \{ 1,2 \},\{ 0 \} \};\\
 		C. int a[2][3] = \{ \{ 1,2 \},\{ 3,4 \},\{ 5,6 \} \};\\
 		D. int a[][3] = \{ 1,2,3,4,5,6 \};\\
 		\onslide<2->{答案：C}
@@ -1239,7 +1234,7 @@ for (auto &row : a2d) {//row被推导为int(&)[5] 类型
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int a2d[2][2] = { { 1,2 },{ 3,4 } };
 for (auto row : a2d) { //row 被推导为int *类型
-    for (auto col : row) //错误：row不是列表类型，不能使用范围 for 语句
+    for (auto col : row) //错误：row不是列表类型，不能使用范围 for
         cout << col << " ";
     cout << endl;
 }
@@ -1316,6 +1311,8 @@ return 0;}
 		\end{columns}
 	\end{exampleblock}
 \end{frame}
+
+\section{指针和数组}
 
 \begin{frame}[fragile]
 	\frametitle{4.4 指针和数组\small{—指针指向数组}}
@@ -1416,7 +1413,7 @@ int *p = arr; //p 指向数组arr
 	\frametitle{4.4 指针和数组\small{—利用指针访问数组}}
 	% \framesubtitle{——利用指针访问数组}
 	\begin{block}{利用指针访问数组}
-		\texttt{C++}支持如下指针运算：
+		当指针和数组数组关联时，\texttt{C++}支持如下指针运算：
 		\begin{itemize}
 			\item 指针的移动
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
@@ -1519,6 +1516,9 @@ for (auto p = &a2d[0][0]; p < a2d[0] + 15; ++p) {
 		1~0~0~0~0\\
 	\end{block}
 \end{frame}
+
+\section{string 类型}
+
 
 \begin{frame}[fragile]
 	\frametitle{4.5 \texttt{string}类型}
@@ -1798,6 +1798,8 @@ strcpy(carr, str.c_str());
 	\end{abstractblock}
 \end{frame}
 
+\section{vector 类型}
+
 \begin{frame}[fragile]
 	\frametitle{4.6 \texttt{vector}类型\small{—定义和初始化\texttt{vector}对象}}
 	% \framesubtitle{——定义和初始化\texttt{vector}对象}
@@ -2006,6 +2008,8 @@ return 0;
 
 	\end{exampleblock}
 \end{frame}
+
+\section{枚举类型}
 
 \begin{frame}[fragile]
 	\frametitle{4.7 枚举类型\small{—定义枚举类型}}
