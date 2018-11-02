@@ -24,6 +24,7 @@
     \usepackage{graphicx}
     \usepackage{animate}
     \usepackage{tabularx}
+    \usepackage{multicol}
     % \usepackage{movie15}
     \definecolor{indiagreen}{rgb}{0.07, 0.53, 0.03}
     \definecolor{indianred}{rgb}{0.8, 0.36, 0.36}
@@ -83,9 +84,10 @@
 \maketitle
 
 
-\begin{frame}
-	{目录}
+\begin{frame}{目录}
+\begin{multicols}{2}
 	\tableofcontents
+\end{multicols}
 \end{frame}
 
 \begin{frame}{~}
@@ -205,7 +207,7 @@ r1 = 1;                //错误：相当于修改const 对象ci 的值
 		\end{itemize}
 	\end{block}
 \end{frame}
-
+\subsection{引用和类型推导}
 \begin{frame}[fragile]
 	\frametitle{4.1 引用\small{—\texttt{auto}和引用}}
 	% \framesubtitle{——\texttt{auto}和引用}
@@ -564,7 +566,7 @@ const int *const cptrc = &ci;//cptrc 是一个指向常量ci 的常量指针
 		\ttfamily 第一个~const~修饰符表明~cptrc~为一个指向~const~对象的指针，第二个~const~修饰符表明~cptrc~不能改变指向
 	\end{block}
 \end{frame}
-
+\subsection{指针和类型推导}
 \begin{frame}[fragile]
 	\frametitle{4.2 指针\small{—类型推导和指针}}
 	% \framesubtitle{——类型推导和指针}
@@ -856,7 +858,7 @@ int *arrp[5]; \\
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int arr[5] ={1, 2, 3, 4, 5} ;
 arr[0] = 10;                //写操作：修改第一个元素的值
-cout << arr[0] << endl; //读操作：读取第一个元素，输出结果为：10
+cout << arr[0] <<" "<< arr[4] <<endl; //读操作，输出结果为：10 5
         \end{lstlisting}
 	\end{block}
 	\begin{alertblock}{提示：}
@@ -903,6 +905,11 @@ for(auto i: arr){           //i 为arr 中当前元素的副本
 		\begin{column}{0.7\linewidth}
 			\begin{thinkblock}{思考：}
 				上述\texttt{range for}语句可以对对象的内容进行修改吗？
+		\begin{lstlisting}[basicstyle=\small\ttfamily]
+for(auto i: arr){  
+    i =0;    
+}
+        \end{lstlisting}
 			\end{thinkblock}
 		\end{column}
 	\end{columns}
@@ -1313,7 +1320,7 @@ return 0;}
 \end{frame}
 
 \section{指针和数组}
-
+\subsection{指针指向数组}
 \begin{frame}[fragile]
 	\frametitle{4.4 指针和数组\small{—指针指向数组}}
 	% \framesubtitle{——指针指向数组}
@@ -1393,6 +1400,7 @@ cout << sizeof(arr) << " " << sizeof(p);
 	\end{block}
 \end{frame}
 
+\subsection{通过指针访问数组}
 \begin{frame}[fragile]
 	\frametitle{4.4 指针和数组\small{—利用指针访问数组}}
 	% \framesubtitle{——利用指针访问数组}
@@ -1537,7 +1545,7 @@ using namespace::std;
                 \end{lstlisting}
 	\end{abstractblock}
 \end{frame}
-
+\subsection{string类型定义和常用操作}
 \begin{frame}[fragile]
 	\frametitle{\texttt{string}类型\small{—定义和初始化\texttt{string}对象}}
 	% \framesubtitle{——定义和初始化\texttt{string}对象}
@@ -1709,6 +1717,8 @@ do{
 	\end{exampleblock}
 \end{frame}
 
+\subsection{C风格字符串}
+
 \begin{frame}[fragile]
 	\frametitle{4.5 \texttt{string}类型\small{—\texttt{C}风格字符串}}
 	% \framesubtitle{——\texttt{C}风格字符串}
@@ -1799,7 +1809,7 @@ strcpy(carr, str.c_str());
 \end{frame}
 
 \section{vector 类型}
-
+\subsection{vector 类型定义和常用操作}
 \begin{frame}[fragile]
 	\frametitle{4.6 \texttt{vector}类型\small{—定义和初始化\texttt{vector}对象}}
 	% \framesubtitle{——定义和初始化\texttt{vector}对象}
@@ -1850,6 +1860,7 @@ cout << vi.at(1);//或者cout << vi[1];
 	\end{block}
 \end{frame}
 
+\subsection{使用迭代器}
 \begin{frame}[fragile]
 	\frametitle{4.6 \texttt{vector}类型\small{—使用迭代器}}
 	% \framesubtitle{——使用迭代器}
