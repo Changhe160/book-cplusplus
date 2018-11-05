@@ -906,8 +906,8 @@ for(auto i: arr){           //i 为arr 中当前元素的副本
 			\begin{thinkblock}{思考：}
 				上述\texttt{range for}语句可以对对象的内容进行修改吗？
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-for(auto i: arr){  
-    i =0;    
+for(auto i: arr){
+    i =0;
 }
         \end{lstlisting}
 			\end{thinkblock}
@@ -1019,12 +1019,14 @@ int main() {
         		用一个数组~que[8]~来存放每一个皇后的位置，如~que[0]=3~代表第0行的皇后在第3列。\\
         ~~~~que[8] = \{3, 6, 2, 7, 1, 4, 0, 5\};\\
         ~~~~\\
+       \onslide<2->{
         冲突情况：\\
         1）第~i~行和第~j~行的皇后在同一列：\\
         ~~~~ que[i] == que[j]\\
         2）第~i~行和第~j~行的皇后在同一对角线上：\\
         ~~~~ {|que[i] - que[j]| == |i - j|}\\
         比如~que[0]=1，que[1]=2~表明第0行和第1行的两个皇后在同一个对角线上。
+        }
         \end{exampleblock}
     \end{column}
 	\begin{column}{0.4\textwidth}
@@ -1340,11 +1342,12 @@ int *p = &arr[0];
 	\begin{exampleblock}{练习：}
 		\ttfamily 对于以下程序段：
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
-int a[3] = { 5,7,3 };
-cout << &a[0] << endl;
+int a[3] = { 5,7,3 }, *p = a;
+cout << a << " " << &a[0] <<" "<< p << endl;
+cout << a[0] <<" "<< *p << endl;
         \end{lstlisting}
-		若数组a的第二个元素的地址为02F602FFA8C,则该程序的输出为？\\
-		\onslide<2->{答案：02F602FFA88}
+		若数组a的第二个元素的地址为004FFB74,则该程序的输出为？\\
+		\onslide<2->{004FFB70 004FFB70 004FFB70 \\ 5 5}
 	\end{exampleblock}
 \end{frame}
 
@@ -1472,14 +1475,24 @@ int val2 = p[2];            //等价于 int val2 = arr[2];
 	\frametitle{4.4 指针和数组\small{—利用指针访问数组}}
 	% \framesubtitle{——利用指针访问数组}
 	\begin{block}{利用指针访问二维数组}
-		\begin{lstlisting}[basicstyle=\small\ttfamily]
-int a2d[3][5] = { { 0 },{ 0 },{ 0 } };
+		\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+int a2d[3][5] = { { 0 },{ 1 },{ 2 } };
 int(*p2d)[5] = a2d;
-cout << a2d[1][1] << endl;//输出为0
-p2d[1][1] = 1;
-cout << a2d[1][1] << endl;//输出为1
+cout << p2d[1][1] << endl;//输出为0
+
+cout << "a2d: " << a2d << "\t\t &a2d[0]: " << &a2d[0] << "\t p2d: " << p2d << endl;
+cout << "a2d[0]: " << a2d[0] << "\t &a2d[0][0]: " << &a2d[0][0] <<"\t *p2d: "<<*p2d<<endl;
+cout << "a2d[0][0]: " << a2d[0][0] << "\t\t **p2d: " << **p2d << endl;
+//输出:
+a2d: 008FFD98            &a2d[0]: 008FFD98       p2d: 008FFD98
+a2d[0]: 008FFD98         &a2d[0][0]: 008FFD98    *p2d: 008FFD98
+a2d[0][0]: 0             **p2d: 0
         \end{lstlisting}
-		\texttt{p2d[1][1]}与下面代码等价：\\
+a2d $\Leftrightarrow$ \&a2d[0] $\Leftrightarrow$ p2d\\
+a2d[0] $\Leftrightarrow$ \&a2d[0][0] $\Leftrightarrow$ *p2d\\
+a2d[0][0] $\Leftrightarrow$ **p2d\\
+~~~\\
+		\texttt{p2d[1][1] = 1;}与下面代码等价：\\
 		\texttt{*(*(p2d + 1) + 1) = 1;~~~~~~*(*(a2d + 1) + 1) = 1;\\
 			*(p2d[1] + 1) = 1; ~~~~~~~~~*(a2d[1] + 1) = 1;}
 	\end{block}
@@ -1555,7 +1568,7 @@ string str1;                //默认初始化，定义一个空字符串
 string str2(str1);          //等价于string str2 = str1; str2是str1的一个拷贝
 string str3 = "Rosita"; //复制初始化
 string str4("Rosita");      //直接初始化
-string str5(5, ’R’);      //直接初始化，str5 的内容为 RRRRR
+string str5(5, 'R');      //直接初始化，str5 的内容为 RRRRR
         \end{lstlisting}
 	\end{block}
 \end{frame}
@@ -1697,10 +1710,10 @@ do{
 	\begin{exampleblock}{代码清单4.4，例4.4：}
 		% \begin{minipage}[t]{0.4\linewidth}
 		\begin{lstlisting}[numbers=left,numberstyle=\small,numbers=left,xleftmargin=2em,framexleftmargin=2em,firstnumber=26,basicstyle=\small\ttfamily]
-            else {
+        else {
                 cout << "有这个字母，继续加油!" << endl;
                 do {//把attempt里面相应的*用猜对的字母替换
-                    attempt[loc]=letter;//如果找到了，则下一次搜索从loc+1开始
+                    attempt[loc]=letter;//如果找到，下一次搜索从loc+1开始
                     loc = target.find(letter, loc + 1);
                 } while (loc != string::npos);
         }
