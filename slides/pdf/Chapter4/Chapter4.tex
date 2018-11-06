@@ -1327,20 +1327,29 @@ return 0;}
 	\frametitle{4.4 指针和数组\small{—指针指向数组}}
 	% \framesubtitle{——指针指向数组}
 	\begin{block}{指针和数组的关系}
+\begin{columns}
+\begin{column}{0.5\textwidth}
 		\begin{itemize}
-			\item 数组名被转换成数组第一个元素的地址
+			\item 数组名被转换成第一个元素的地址
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int arr[] = {1, 2, 3, 4, 5};
-int *p = arr; //arr被转换成arr[0]的地址
+int *p = arr; 
             \end{lstlisting}
 			      第二句等价于：
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int *p = &arr[0];
                 \end{lstlisting}
 		\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{center}
+		\includegraphics[scale=0.25]{pointer_array.png}
+	\end{center}
+\end{column}
+\end{columns}
 	\end{block}
-	\begin{exampleblock}{练习：}
-		\ttfamily 对于以下程序段：
+	\begin{exampleblock}{对于以下程序段：}
+		\ttfamily 
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int a[3] = { 5,7,3 }, *p = a;
 cout << a << " " << &a[0] <<" "<< p << endl;
@@ -1878,6 +1887,7 @@ cout << vi.at(1);//或者cout << vi[1];
 	\frametitle{4.6 \texttt{vector}类型\small{—使用迭代器}}
 	% \framesubtitle{——使用迭代器}
 	\begin{block}{借助容器的成员函数获取元素迭代器}
+迭代器行为与指针类似，支持对数据的间接访问以及在元素间移动
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 vector<int> vi = {0,1,2,3};
 auto itb = vi.begin();//itb 指向 vi 的第一个元素
@@ -1944,12 +1954,32 @@ for(auto it = vs.begin(); it != vs.end(); ++it ){
 		\alert{提示}：采用宽度优先搜索（breadth-first search）策略来求解。
 	\end{exampleblock}
 	\begin{columns}
-		\begin{column}{0.4\linewidth}
+		\begin{column}{0.35\linewidth}
 			\includegraphics[scale=0.2]{Fig4-5.png}
 		\end{column}
-		\begin{column}{0.4\linewidth}
+		\begin{column}{0.51\linewidth}
 			\begin{figure}
 				\animategraphics[scale=0.3,autoplay]{1}{example4_5/example4_5-}{1}{5}
+			\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{4.6 \texttt{vector}类型\small{—使用迭代器}}
+	% \framesubtitle{——使用迭代器}
+	\begin{exampleblock}{例4.5}
+		\ttfamily 为例4.3中的扫雷游戏地图中的每个方格编号，编号从0开始，按照从上到下、从左到右的顺序依次编号。例如，第0行第0列编号为0，第0行第1列编号为1，依次类推。\\
+		\alert{要求}：若玩家点击的方格无地雷，则找出所有与该方格连通的非雷区。如点击编号为49的方格，则下图中编号下划线的方格都是与之相邻的非雷区\\
+		\alert{提示}：采用宽度优先搜索（breadth-first search）策略来求解。
+	\end{exampleblock}
+	\begin{columns}
+		\begin{column}{0.35\linewidth}
+			\includegraphics[scale=0.2]{Fig4-5.png}
+		\end{column}
+		\begin{column}{0.51\linewidth}
+			\begin{figure}
+				\includegraphics[scale=0.17]{Fig4-6.png}
 			\end{figure}
 		\end{column}
 	\end{columns}
