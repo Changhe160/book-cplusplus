@@ -1333,7 +1333,7 @@ return 0;}
 			\item 数组名被转换成第一个元素的地址
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
 int arr[] = {1, 2, 3, 4, 5};
-int *p = arr; 
+int *p = arr;
             \end{lstlisting}
 			      第二句等价于：
 			      \begin{lstlisting}[basicstyle=\small\ttfamily]
@@ -1349,7 +1349,7 @@ int *p = &arr[0];
 \end{columns}
 	\end{block}
 	\begin{exampleblock}{对于以下程序段：}
-		\ttfamily 
+		\ttfamily
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
 int a[3] = { 5,7,3 }, *p = a;
 cout << a << " " << &a[0] <<" "<< p << endl;
@@ -1960,6 +1960,7 @@ for(auto it = vs.begin(); it != vs.end(); ++it ){
 		\begin{column}{0.51\linewidth}
 			\begin{figure}
 				\animategraphics[scale=0.3,autoplay]{1}{example4_5/example4_5-}{1}{5}
+\caption{宽度优先}
 			\end{figure}
 		\end{column}
 	\end{columns}
@@ -1980,6 +1981,7 @@ for(auto it = vs.begin(); it != vs.end(); ++it ){
 		\begin{column}{0.51\linewidth}
 			\begin{figure}
 				\includegraphics[scale=0.17]{Fig4-6.png}
+\caption{宽度优先}
 			\end{figure}
 		\end{column}
 	\end{columns}
@@ -2068,6 +2070,11 @@ return 0;
 \begin{frame}[fragile]
 	\frametitle{4.7 枚举类型\small{—定义枚举类型}}
 	% \framesubtitle{——定义枚举类型}
+\begin{block}{增加常量}
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+const int red = 0; const int green = 1;  const int blue = 2;  ...
+\end{lstlisting}
+\end{block}
 	\begin{block}{定义枚举类型}
 		\begin{itemize}
 			\item 不限定作用域
@@ -2092,6 +2099,7 @@ stoplight a = red; //错误：stoplight 类型的枚举成员red在此不可访�
 \begin{frame}[fragile]
 	\frametitle{4.7 枚举类型\small{—定义枚举类型}}
 	% \framesubtitle{——定义枚举类型}
+
 	\begin{block}{定义枚举类型}
 		每个枚举成员都有一个\alert{常量整数值}，默认值从0开始，依次加1。也可以指定枚举成员的值：
 		\begin{lstlisting}[basicstyle=\small\ttfamily]
@@ -2141,12 +2149,30 @@ case stoplight::yellow:
     break;
 default:
     cout << "light broken, call 122"<< endl;
-break;
+    break;
 }
                 \end{lstlisting}
 			\end{column}
 		\end{columns}
 	\end{block}
+\end{frame}
+
+%---------------------------------------------------------------------------------------------
+\begin{frame}[fragile]{课后作业}
+\begin{columns}[t]
+\column{0.8\textwidth}
+\begin{block}{作业本}
+ \begin{enumerate}
+   \item 习题4.3、4.9和4.14
+ \end{enumerate}
+\end{block}
+
+\begin{block}{上机练习}
+ \begin{enumerate}
+   \item 实验指导书：第四章
+ \end{enumerate}
+\end{block}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
