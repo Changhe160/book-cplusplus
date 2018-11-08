@@ -182,7 +182,7 @@
 int maxnum(int a, int b) { //a和b为两个int类型(*@\alert{形参}@*)
      int c;                //用来保存结果
      c=a > b ? a : b;
-     return c              //返回结果
+     return c;              //返回结果
 }
 
 \end{lstlisting}\vspace{-1.5mm}
@@ -197,12 +197,16 @@ int maxnum(int a, int b) { //a和b为两个int类型(*@\alert{形参}@*)
 \begin{frame}[fragile]
     {5.1 认识函数\small{~---~调用函数}}
 
-
 \begin{columns}
 \column{0.5\textwidth}
 
-    \begin{blueblock}{通过函数名\texttt{maxnum} 作用于两个实参$x$和$y$来调用\texttt{maxnum}函数。}
-\vspace{-1.5mm}\begin{lstlisting}
+    \begin{blueblock}{调用maxnum函数}
+\vspace{-1.5mm}\begin{lstlisting}[basicstyle=\small\ttfamily]
+int maxnum(int a, int b) {
+     int c;
+     c=a > b ? a : b;
+     return c;
+}
 int main() {
     int x, y, z;
     cin >> x >> y;
@@ -239,7 +243,7 @@ int main() {
 \begin{block}{调用规则}
 \begin{itemize}
   \item 调用处的函数名要和被调函数的函数名一致；
-  \item 实参和形参存在一一对应的关系；
+  \item 实参和形参存在一一对应的关系，类型要兼容；
   \item 实参可以是左值或右值，但形参必须是左值（用于接受实参的值）。
 \end{itemize}
 \end{block}
@@ -259,54 +263,15 @@ int maxnum(int a, int b)
 \begin{greenblock}{是否正确调用\texttt{maxnum}函数。}
 
 \vspace{-1.5mm}\begin{lstlisting}
-  maximum(1);
-  maximum("c++", "max");
-  maxi(1, 2);
-  maximum(1, 2, 3);
-  maximum(2.3, 4 + 1);
-
-\end{lstlisting}\vspace{-1.5mm}
-\end{greenblock}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-    {5.1 认识函数\small{~---~调用规则}}
-\begin{block}{调用规则}
-\begin{itemize}
-  \item 调用处的函数名要和被调函数的函数名一致；
-  \item 实参和形参存在一一对应的关系；
-  \item 实参可以是左值或右值，但形参必须是左值（用于接受实参的值）。
-\end{itemize}
-\end{block}
-\begin{columns}
-\column{0.3\textwidth}
-    \begin{blueblock}{\texttt{maxnum}函数}
-\vspace{-1.5mm}\begin{lstlisting}
-int maxnum(int a, int b)
-{
-     int c;
-     c=a > b ? a : b;
-     return c
-}
-\end{lstlisting}\vspace{-1.5mm}
-\end{blueblock}
-\column{0.65\textwidth}
-\begin{greenblock}{是否正确调用\texttt{maxnum}函数。}
-
-\vspace{-1.5mm}\begin{lstlisting}
   maximum(1); //错误：实参数目不足
   maximum("c++", "max"); //错误：类型不匹配
   maxi(1, 2); //错误：函数名和被调函数名不一致
   maximum(1, 2, 3); //错误：实参个数太多
   maximum(2.3, 4 + 1); //正确：第一个实参将被转换为int类型
 \end{lstlisting}\vspace{-1.5mm}
-
-
 \end{greenblock}
 \end{columns}
 \end{frame}
-
 
 
 \subsection{无参列表和~void~返回类型}
@@ -320,15 +285,7 @@ int maxnum(int a, int b)
 \end{itemize}
 \end{greenblock}
 
-\begin{greenblock}<3->{问题：}
-
-\begin{itemize}
-  \item<3->[]若主调函数和被调函数间无信息传递，如何设置函数的形参和返回值？
-  \item<4->[]使用无参列表和 void 返回类型。
-\end{itemize}
-\end{greenblock}
-
-\begin{blueblock}<5->{无参列表和~void~返回类型例子}
+\begin{blueblock}<3->{无参列表和~void~返回类型例子}
 \vspace{-1.5mm}\begin{lstlisting}
 void fun(){/**/} // 隐式定义空形参列表，返回值类型为~void
 \end{lstlisting}
@@ -399,12 +356,17 @@ return x*x;
 \begin{block}{引入函数声明的原因}
 语法上对程序文件中函数的排列次序要求满足\alert{先定义后使用}。
 \end{block}
-
-\begin{block}<2->{函数声明的要素}
-函数的\alert{返回类型}、\alert{名字}和\alert{形参类型}。
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\begin{block}{函数声明（函数原型）}
+\begin{itemize}
+  \item 返回值类型
+  \item 名字
+  \item 形参列表
+\end{itemize}
 \end{block}
 
-\begin{blueblock}<3->{函数声明的示例}
+\begin{blueblock}{函数声明的示例}
 %\indent ~~~~\\
 %\indent ~~~~\\
 
@@ -415,9 +377,29 @@ int maximum(int a, int b);
 int maximum(int, int);
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
-\begin{redblock}<4->{建议}
-函数声明放到头文件中
-\end{redblock}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\vspace{-1.5mm}
+\begin{block}{}
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+int maxnum(int a, int b); //函数声明
+
+int main() {
+    int x, y, z;
+    cin >> x >> y;
+    z = maximum(x, y);
+    cout << "z=" << z << endl;
+}
+int maxnum(int a, int b) {
+     return c=a > b ? a : b;
+}
+\end{lstlisting}
+\end{block}
+\vspace{-1.5mm}
+\end{column}
+\end{columns}
+
 
 \end{frame}
 
@@ -425,15 +407,15 @@ int maximum(int, int);
 
 \subsection{存储周期}
 
-
 \begin{frame}[fragile]
     {5.2 认识函数\small{~---~存储周期}}
-\begin{block}{存储周期}
-存储周期（storage duration\index{S!storage duration}）表明了对象可以在内存里面存在的时间。
+    
+\begin{block}{对象的生命期和作用域}
+一个对象的生命期取决于其存储周期类型，可访问性取决于作用域和链接性
 \end{block}
 
-\begin{block}<2->{生命期}
-一个对象的生命期是指在其存储周期内可以访问该对象的时间。
+\begin{block}<2->{存储周期}
+存储周期（storage duration\index{S!storage duration}）表明了对象可以在内存里面存在的时间。
 \end{block}
 
 \begin{block}<3->{~C++~支持四种类型的存储周期}
@@ -484,7 +466,7 @@ int maximum(int, int);
 \begin{block}{自动对象}
 \begin{itemize}
   \item 自动存储周期；
-  \item 初始化方式：（1）初始值；（2）默认初始化。
+  \item 初始化方式：（1）初始值；（2）默认初始化（内置类型除外）。
 \end{itemize}
 \end{block}
 \begin{blueblock}<2->{使用自动对象的例子}
@@ -510,11 +492,11 @@ int main() {
 
 \begin{frame}[fragile]
     {5.2.2 认识函数\small{~---~局部对象}}
-\begin{block}{局部静态对象}
+\begin{block}{局部静态对象（static）}
+函数体内部定义的局部对象需要静态存储周期，保存上一次调用的计算结果
 \begin{itemize}
   \item 局部作用域；
-  \item 静态生命周期；
-  \item \textcolor{blue}{static}~定义。
+  \item 静态生命周期。
 \end{itemize}
 \end{block}
 \begin{blueblock}<2->{请问程序输出结果？}\vspace{-1.5mm}\begin{lstlisting}
@@ -526,7 +508,6 @@ int fun() {
 int main() {
     for (int i = 0; i < 3; ++i)
          cout << fun() << endl;
-    return 0;
 }
 \end{lstlisting}\vspace{-1.5mm}
 \begin{itemize}
@@ -534,6 +515,9 @@ int main() {
   结果为：2 3 4
 \end{itemize}
 \end{blueblock}
+\begin{itemize}
+  \item<4-> 如果内置类型的局部静态对象没有提供初始值，则初始化为0
+\end{itemize}
 \end{frame}
 
 
@@ -558,6 +542,9 @@ int main() {
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
+\begin{itemize}
+  \item<2-> 如果内置类型的全局对象没有提供初始值，则初始化为0
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -574,14 +561,14 @@ int main() {
 \column{0.45\textwidth}
 \begin{blueblock}<2->{fun.cpp}\vspace{-1.5mm}\begin{lstlisting}
 //g_val~具有外部链接性
-int g_val = 10; 
+int g_val = 10;
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \column{0.45\textwidth}
 \begin{blueblock}<2->{main.cpp}\vspace{-1.5mm}\begin{lstlisting}
 extern int g_val;
 //gs_val内部链接性
-static int gs_val = 20; 
+static int gs_val = 20;
 int main() {
     cout << g_val + gs_val;
     return 0;
@@ -1120,7 +1107,7 @@ const int &ref = maximum(x,y);
 \vspace{-2.5mm}\begin{lstlisting}
 int& setMaximum(int &a, int &b) {
     //返回对象a 或对象b 的引用
-    return a > b ? a : b; 
+    return a > b ? a : b;
 }
 int main(){
    int x = 0, y = 1;
@@ -1136,7 +1123,7 @@ int main(){
 \vspace{-2.5mm}\begin{lstlisting}
 int* setMaximum(int &a, int &b) {
 //返回引用a或b所绑定的实参对象的地址
-    return a > b ? &a : &b; 
+    return a > b ? &a : &b;
 }
 int main(){
    int x = 0, y = 1;
@@ -1441,7 +1428,7 @@ constexpr~函数会隐式转化为内联函数，应该放头文件中。
 \begin{blueblock}<2->{示例}
 \vspace{-2.5mm}\begin{lstlisting}
 //声明一个~compareInt~函数：比较两个整数大小
-bool compareInt(int, int); 
+bool compareInt(int, int);
 bool(*pf)(int, int);//定义一个指向此类型函数的指针
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
@@ -1662,8 +1649,8 @@ int divisor = 5;
 vector<int> numbers{ 1, 2, 3, 4, 5, 10, 15, 20, 25, 35, 45, 50 };
 for_each(numbers.begin(), numbers.end(), [divisor](int y) {
     //divisor为外围divisor的拷贝
-    if (y % divisor == 0) 
-        cout << y << endl; 
+    if (y % divisor == 0)
+        cout << y << endl;
     //输出被divisor整除的元素
 });
 \end{lstlisting}\vspace{-1.5mm}
@@ -1676,8 +1663,8 @@ int sum = 0;
 
 for_each(numbers.begin(), numbers.end(), [divisor, &sum](int y) {
     //sum为外围sum 的引用
-    if (y % divisor == 0) 
-        sum += y; 
+    if (y % divisor == 0)
+        sum += y;
     //累加被divisor整除的元素，结果存放到外围对象sum中
 });
 
@@ -1873,7 +1860,7 @@ int main() {
 \vspace{-2.5mm}\begin{lstlisting}
 bool isSafe(int i, const vector<int> &que) {
     for (int k = 0; k < i; ++k)
-        if (que[k] == que[i] || (abs(que[i] - que[k]) == abs(i - k))) 
+        if (que[k] == que[i] || (abs(que[i] - que[k]) == abs(i - k)))
         return false;
     return true;
 }
@@ -1937,7 +1924,7 @@ void testPI() {
     cout << 2 * PI << endl;
 }
 //用来编译希望执行的代码
-#define DEBUG 
+#define DEBUG
 
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
