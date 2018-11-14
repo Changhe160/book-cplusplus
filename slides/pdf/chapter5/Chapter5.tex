@@ -409,9 +409,9 @@ int maxnum(int a, int b) {
 
 \begin{frame}[fragile]
     {5.2 认识函数\small{~---~存储周期}}
-    
+
 \begin{block}{对象的生命期和作用域}
-一个对象的生命期取决于其存储周期类型，可访问性取决于作用域和链接性
+一个对象的生命期取决于其\alert{存储周期}类型，可访问性取决于\alert{作用域}和\alert{链接性}
 \end{block}
 
 \begin{block}<2->{存储周期}
@@ -452,12 +452,14 @@ int maxnum(int a, int b) {
 \subsection{局部对象}
 \begin{frame}[fragile]
     {5.2 认识函数\small{~---~局部对象}}
-\begin{block}{局部对象}
-在语句块内部定义的对象称为\alert{局部对象}（local object\index{L!local object}），包括函数的形参。
+\begin{block}{局部对象（local object）}
+在\alert{语句块内部}定义的对象，包括函数的形参。
+\begin{itemize}
+  \item 仅在相应的语句块内部可见；
+  \item 屏蔽外层作用域中的同名对象；
+  \item 生命期取决于存储类型。
+\end{itemize}
 \end{block}
-\begin{redblock}{局部对象}
-局部对象仅在相应的语句块内部可见，而且还会屏蔽外层作用域中的同名对象。
-\end{redblock}
 \end{frame}
 
 
@@ -471,16 +473,16 @@ int maxnum(int a, int b) {
 \end{block}
 \begin{blueblock}<2->{使用自动对象的例子}
 \vspace{-1.5mm}\begin{lstlisting}
-void fun() {
-    int t = 5;
-    cout << "fun()中的t=" << t << endl;
+void fun(float x) {
+    int t = x + 5;
+    cout << "t=" << t << endl;
 }
 int main() {
     float t = 3.5;
-    cout << "main()中的t=" << t << endl;
-    fun();
+    cout << "t=" << t << endl;
+    fun(t);
     for (int i = 0; i<10; i++) {
-        float x = t + i;
+        float t = i, x = t + i;
         cout << x << endl;
     }
     cout << x << endl; // 在此不可见
@@ -492,7 +494,7 @@ int main() {
 
 \begin{frame}[fragile]
     {5.2.2 认识函数\small{~---~局部对象}}
-\begin{block}{局部静态对象（static）}
+\begin{block}{局部静态对象}
 函数体内部定义的局部对象需要静态存储周期，保存上一次调用的计算结果
 \begin{itemize}
   \item 局部作用域；
@@ -549,7 +551,7 @@ int main() {
 
 \begin{frame}[fragile]
     {5.2.3 认识函数\small{~---~全局对象}}
-\begin{block}{链接性（linkage\index{L!linkage}）：如何共享}
+\begin{block}{链接性（linkage\index{L!linkage}）：在作用域外部的可见性}
 \begin{itemize}
   \item 局部对象没有链接性，不能共享；
   \item 全局对象具有外部链接性\text{（external linkage\index{E!external linkage}）}，可在文件间共享；
@@ -853,7 +855,7 @@ f_ref(x+1);//错误：左值引用不能绑定右值表达式
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \begin{redblock}<3->{建议}
-尽量使用引用形参
+尽量使用引用形参，避免指针形参
 \end{redblock}
 \end{frame}
 
