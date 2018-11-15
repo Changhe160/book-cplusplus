@@ -177,9 +177,9 @@
 
 \end{block}
 
-    \begin{blueblock}<2->{\texttt{maxnum}函数:返回两个整数中较大的数}
+    \begin{blueblock}<2->{\texttt{maximum}函数:返回两个整数中较大的数}
 \vspace{-1.5mm}\begin{lstlisting}
-int maxnum(int a, int b) { //a和b为两个int类型(*@\alert{形参}@*)
+int maximum(int a, int b) { //a和b为两个int类型(*@\alert{形参}@*)
      int c;                //用来保存结果
      c=a > b ? a : b;
      return c;              //返回结果
@@ -202,7 +202,7 @@ int maxnum(int a, int b) { //a和b为两个int类型(*@\alert{形参}@*)
 
     \begin{blueblock}{调用maxnum函数}
 \vspace{-1.5mm}\begin{lstlisting}[basicstyle=\small\ttfamily]
-int maxnum(int a, int b) {
+int maximum(int a, int b) {
      int c;
      c=a > b ? a : b;
      return c;
@@ -249,9 +249,9 @@ int main() {
 \end{block}
 \begin{columns}
 \column{0.3\textwidth}
-    \begin{blueblock}{\texttt{maxnum}函数}
+    \begin{blueblock}{\texttt{maximum}函数}
 \vspace{-1.5mm}\begin{lstlisting}
-int maxnum(int a, int b)
+int maximum(int a, int b)
 {
      int c;
      c = a > b ? a : b;
@@ -260,7 +260,7 @@ int maxnum(int a, int b)
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \column{0.65\textwidth}
-\begin{greenblock}{是否正确调用\texttt{maxnum}函数。}
+\begin{greenblock}{是否正确调用\texttt{maximum}函数。}
 
 \vspace{-1.5mm}\begin{lstlisting}
   maximum(1); //错误：实参数目不足
@@ -383,7 +383,7 @@ int maximum(int, int);
 \vspace{-1.5mm}
 \begin{block}{}
 \begin{lstlisting}[basicstyle=\small\ttfamily]
-int maxnum(int a, int b); //函数声明
+int maximum(int a, int b); //函数声明
 
 int main() {
     int x, y, z;
@@ -391,7 +391,7 @@ int main() {
     z = maximum(x, y);
     cout << "z=" << z << endl;
 }
-int maxnum(int a, int b) {
+int maximum(int a, int b) {
      return c=a > b ? a : b;
 }
 \end{lstlisting}
@@ -697,21 +697,12 @@ int main(){
 
 \begin{frame}[fragile]
     {5.3.1 参数传递\small{~---~值传递}}
-\begin{block}{地址传递}
+    \begin{block}{地址传递}
 将实参的地址传递给形参，也就是说形参的类型为指针类型，通过形参改变实参的值。
 \end{block}
-\end{frame}
-
-
-
-
-
-
-\begin{frame}[fragile]
-    {5.3.1 参数传递\small{~---~值传递}}
 \begin{columns}
 \column{0.45\textwidth}
-\begin{blueblock}<1->{示例1}\vspace{-3.5mm}\begin{lstlisting}
+\begin{blueblock}<2->{示例1}\vspace{-3.5mm}\begin{lstlisting}
 void Swap(int *x, int *y) {
     int z(*x);
     *x = *y;
@@ -727,7 +718,7 @@ int main() {
 \end{blueblock}
 \column{0.45\textwidth}
 \begin{itemize}
-  \item<2->[]
+  \item<3->[]
 
 \begin{figure}
   \centering
@@ -742,9 +733,12 @@ int main() {
 
 \begin{frame}[fragile]
     {5.3.1 参数传递\small{~---~值传递}}
+        \begin{block}{地址传递}
+将实参的地址传递给形参，也就是说形参的类型为指针类型，通过形参改变实参的值。
+\end{block}
 \begin{columns}
 \column{0.45\textwidth}
-\begin{blueblock}<1->{示例2}\vspace{-3.5mm}\begin{lstlisting}
+\begin{blueblock}<2->{示例2}\vspace{-3.5mm}\begin{lstlisting}
 void Swap(int *x, int *y) {
     int *z(x);
     x = y;
@@ -760,7 +754,7 @@ int main() {
 \end{blueblock}
 \column{0.45\textwidth}
 \begin{itemize}
-  \item<2->[]
+  \item<3->[]
 
 \begin{figure}
   \centering
@@ -771,11 +765,6 @@ int main() {
 \end{columns}
 
 \end{frame}
-
-
-
-
-
 
 
 \subsection{引用传递}\label{chap5-3-2}
@@ -855,7 +844,7 @@ f_ref(x+1);//错误：左值引用不能绑定右值表达式
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \begin{redblock}<3->{建议}
-尽量使用引用形参，避免指针形参
+尽量使用引用形参，需要的时候使用指针形参
 \end{redblock}
 \end{frame}
 
@@ -908,7 +897,7 @@ void print(char *str, unsigned size) {
 \end{blueblock}
 %\vspace{-2em}
 \begin{columns}
-\column{0.45\textwidth}
+\column{0.48\textwidth}
 \begin{blueblock}<2->{使用标记位来识别数组长度}\vspace{-1.5mm}\begin{lstlisting}
 void print(char *str) {
     if (str) //如果str不是一个空指针
@@ -920,8 +909,8 @@ void print(char *str) {
 \end{lstlisting}\vspace{-1.5mm}
 常处理~C~风格的字符数组，对其他数据类型的数组可能没有效果。
 \end{blueblock}
-\column{0.45\textwidth}
-\begin{blueblock}<3->{利用指针标明访问的数组元素的范围}\vspace{-1.5mm}\begin{lstlisting}
+\column{0.48\textwidth}
+\begin{blueblock}<3->{利用指针标明访问范围}\vspace{-1.5mm}\begin{lstlisting}
 void print(char *beg, char * end) {
     //输出beg和end之间的元素（包含beg但不包含end指向的元素）
     while (beg != end)
@@ -938,6 +927,7 @@ void print(char *beg, char * end) {
 
 \begin{frame}[fragile]
     {5.3.3 参数传递\small{~---~数组形参}}
+
 \begin{blueblock}<1->{使用~const~形参}\vspace{-2.5mm}\begin{lstlisting}
 void print(const char *str);
 void print(const char *str, unsigned size);
@@ -1335,7 +1325,7 @@ inline void Swap(int &x, int &y){ /*...*/ }
 \vspace{-1em}
 \begin{blueblock}{利用冒泡排序法将容器中的学生成绩排序}
 \vspace{-3.5mm}\begin{lstlisting}
-inline void swap(int & x, int &y) {
+inline void Swap(int & x, int &y) {
     int z(x);
     x = y;
     y = z;
@@ -1348,7 +1338,7 @@ int main() {
     for (int i = score.size()-1; i >=0; --i) {
         for (int j = 0; j < i;++j) {//每一轮冒泡过程将最大的数浮出来（右边）
              if (score[j+1] < score[j ])//相邻的两个数比较
-                 swap(score[j+1], score[j]);
+                 Swap(score[j+1], score[j]);
         }
     }
     for (auto &i : score)
@@ -1372,8 +1362,9 @@ int main() {
       \item<1->[]
       以下程序是否正确，为什么，该如何修改？
 \vspace{-2.5mm}\begin{lstlisting}
-const int numStudent = 30;
 const int getNumber() { return 10; }
+const int numStudent = getNumber();
+
 int arr[numStudent];
 \end{lstlisting}\vspace{-1.5mm}
       \item<2->[]
@@ -1405,8 +1396,8 @@ int num = 10;
 int stu2[getNumber(num)]; //错误：运行时才能确定num的值
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
-\begin{redblock}<3->{注意}
-constexpr~函数会隐式转化为内联函数，应该放头文件中。
+\begin{redblock}<3->{提示}
+constexpr~函数会隐式转化为内联函数。
 \end{redblock}
 \end{frame}
 
