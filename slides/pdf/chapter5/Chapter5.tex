@@ -225,7 +225,7 @@ int main() {
 
             \begin{figure}[ht]
                 \centering
-                \includegraphics[scale=0.7]{FIG/Fig5-1}
+                \includegraphics[scale=0.7]{Fig5-1}
                 % \caption{\texttt{do while}语句执行流程}
                 % \label{fig:label}
             \end{figure}
@@ -722,7 +722,7 @@ int main() {
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{FIG/exp5-3-1-2-a}
+  \includegraphics[width=0.6\textwidth]{exp5-3-1-2-a}
 \end{figure}
 
 \end{itemize}
@@ -758,7 +758,7 @@ int main() {
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{FIG/exp5-3-1-2-b}
+  \includegraphics[width=0.6\textwidth]{exp5-3-1-2-b}
 \end{figure}
 
 \end{itemize}
@@ -1316,7 +1316,7 @@ inline void Swap(int &x, int &y){ /*...*/ }
   \item<2->[]
 \begin{figure}
   \centering
-  \includegraphics[width=0.9\textwidth]{FIG/Fig7-2}
+  \includegraphics[width=0.7\textwidth]{Fig7-3}
 \end{figure}
 
 \end{itemize}
@@ -1330,7 +1330,7 @@ inline void Swap(int &x, int &y){ /*...*/ }
 \vspace{-1em}
 \begin{blueblock}{利用冒泡排序法将容器中的学生成绩排序}
 \vspace{-3.5mm}\begin{lstlisting}
-inline void Swap(int & x, int &y) {
+inline void Swap(int &x, int &y) {
     int z(x);
     x = y;
     y = z;
@@ -1342,7 +1342,7 @@ int main() {
         i = rand() % 100;
     for (int i = score.size()-1; i >=0; --i) {
         for (int j = 0; j < i;++j) {//每一轮冒泡过程将最大的数浮出来（右边）
-             if (score[j+1] < score[j ])//相邻的两个数比较
+             if (score[j+1] < score[j])//相邻的两个数比较
                  Swap(score[j+1], score[j]);
         }
     }
@@ -1358,9 +1358,9 @@ int main() {
 %--------------------
 
 
-\subsection{constexpr~函数}\label{chap5-5-4}
+\subsection{constexpr~函数*}
 \begin{frame}[fragile]
-    {5.5 函数重载和特殊用途的函数\small{~---~constexpr~函数}}
+    {5.5 函数重载和特殊用途的函数\small{~---~constexpr~函数*}}
 
     \begin{greenblock}{问题}
     \begin{itemize}
@@ -1381,7 +1381,7 @@ int arr[numStudent];
 
 
 \begin{frame}[fragile]
-    {5.5 函数重载和特殊用途的函数\small{~---~constexpr~函数}}
+    {5.5 函数重载和特殊用途的函数\small{~---~constexpr~函数*}}
 
 \begin{block}<1->{constexpr~函数}
 constexpr~函数指的是能用于常量表达式的函数。要求：
@@ -1503,7 +1503,7 @@ bool b2 = (*pf2)(1, 2);
   \item[]<3->
             \begin{figure}[ht]
                 \centering
-                \includegraphics[width=0.4\textwidth]{FIG/Fig5-2}
+                \includegraphics[width=0.4\textwidth]{Fig5-2}
                 \caption{梯形法求积分示例图}
                 % \label{fig:label}
             \end{figure}
@@ -1609,10 +1609,6 @@ PF c(int, PF);
 
 \end{frame}
 
-
-
-
-\subsection{lambda~表达式}\label{chap5-6-2}
 \begin{frame}[fragile]
     {5.6 函数指针和~lambda~表达式\small{~---~lambda~表达式}}
 
@@ -1727,7 +1723,7 @@ int main() {
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{FIG/Fig5-3}
+    \includegraphics[width=0.5\textwidth]{Fig5-3}
      \caption{函数调用~sumTo(3)~的执行过程}
     % \label{fig:label}
 \end{figure}
@@ -1748,7 +1744,7 @@ int main() {
   \item<2->[]
   \begin{figure}[h]
 \centering
- \includegraphics[width=0.5\textwidth]{FIG/Fig5-4}
+ \includegraphics[width=0.5\textwidth]{Fig5-4}
 \end{figure}
 \end{itemize}
 
@@ -1810,7 +1806,7 @@ int main() {
   \item<2->[]
   	\begin{figure}
 		\centering
-		\animategraphics[scale=0.2,autoplay,loop]{1}{FIG/exp5-7/exp5-7-1-}{1}{8}
+		\animategraphics[scale=0.2,autoplay,loop]{1}{exp5-7/exp5-7-1-}{1}{8}
         \caption{移动过程}
 	\end{figure}
 \end{itemize}
