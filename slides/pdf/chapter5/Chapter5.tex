@@ -1614,18 +1614,20 @@ PF c(int, PF);
 
 
 \begin{blueblock}<1->{~auto~关键字}
-\vspace{-2.5mm}\begin{lstlisting}
+\begin{lstlisting}
 auto fun = [](int i) {cout << i << endl; };
 fun(17); //输出17
-\end{lstlisting}\vspace{-1.5mm}
-~auto~关键字把一个~lambda~表达式存放到一个对象
+\end{lstlisting}
+\begin{itemize}
+  \item ~auto~关键字把一个~lambda~表达式存放到一个对象
+  \item lambda~可以根据函数主体来推断返回类型。
+\end{itemize}
 \end{blueblock}
 
-\begin{blueblock}<2->{省略~return type~说明}
-\vspace{-2.5mm}\begin{lstlisting}
+\begin{blueblock}<2->{显式指明~return type}
+\begin{lstlisting}
 [](int i)->int { return i*i; }
-\end{lstlisting}\vspace{-1.5mm}
-lambda~可以根据函数主体来推断返回类型。
+\end{lstlisting}
 \end{blueblock}
 
 \end{frame}
@@ -1727,9 +1729,14 @@ int main() {
      \caption{函数调用~sumTo(3)~的执行过程}
     % \label{fig:label}
 \end{figure}
-
-
 \end{columns}
+    \begin{block}<2->{递归调用三要素}
+\begin{itemize}
+  \item 递推；
+  \item 回归；
+  \item 终止条件。
+\end{itemize}
+\end{block}
 \end{frame}
 
 
@@ -1776,7 +1783,7 @@ int main() {
 \begin{frame}[fragile]
     {5.7 递归调用\small{~---~递推和回归}}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.55\textwidth}
 \begin{blueblock}<1->{汉诺塔问题}
 \vspace{-2.5mm}\begin{lstlisting}
 #include<iostream>
@@ -1801,7 +1808,7 @@ int main() {
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
   \item<2->[]
   	\begin{figure}
