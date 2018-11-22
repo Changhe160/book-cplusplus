@@ -1246,8 +1246,8 @@ void turnoff(int time = 21);
 \column{0.45\textwidth}
 \begin{blueblock}<3->{使用}
 \vspace{-2.5mm}\begin{lstlisting}
-turnoff(); //省略实参，形参使用默认值
-turnoff(22); //包含实参，形参接受实参值
+turnoff(); //省略实参，使用默认值
+turnoff(22); //提供实参，接受实参值
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \end{columns}
@@ -1292,7 +1292,7 @@ void print(int a = 1, int b = 2, int c = 3); //正确：所有参数具有默认
   \item 函数的使用体现了模块化程序设计思想，降低了程序设计的复杂性；
   \item 函数调用，比如执行流的转移操作、参数传递、返回值处理等，需要时间和空间的开销。
 \end{itemize}
-C++~提供了一种即保证函数化的形式又兼顾程序的执行效率的方法，即内联函数。
+C++~提供了一种即保证函数化的形式又兼顾执行效率的方法：\alert{内联函数}。
 \end{block}
 \begin{blueblock}<2->{示例}
 \vspace{-2.5mm}\begin{lstlisting}
@@ -1865,7 +1865,7 @@ bool isSafe(int i, const vector<int> &que) {
         return false;
     return true;
 }
-void queen(int i, vector<int> &que, int&cnt) {
+void queen(int i, vector<int> &que, int &cnt) {
     if (i == 8) {
         cout << "方案" << ++cnt << ":";
         for (int k = 0; k < que.size(); ++k) cout << que[k];
@@ -1956,7 +1956,7 @@ void testFun() {
 可以使用一些特殊的操作符来实现特殊的功能
 \end{block}
 \begin{columns}
-\column{0.45\textwidth}
+\column{0.47\textwidth}
 \begin{block}<2->{~字符串化操作符\#~}
 把语言符号转化成字符串，即将后面的宏参数进行字符串化操作。\\
 \indent \#define str(a) \#a\\
@@ -1969,9 +1969,9 @@ cout << str(test) << endl;
 cout << "test" << endl;
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
-\column{0.45\textwidth}
+\column{0.47\textwidth}
 \begin{block}<3->{连接符~\#\#}
-用来将两个语言符号连接为一个语言符号\\
+将两个语言符号连接为一个语言符号\\
 \indent \#define glue(a,b) a\#\#b\\
  \begin{lstlisting}
 #define glue(a,b) a##b
@@ -2031,31 +2031,34 @@ int x1 = 1;
 \begin{block}{多文件结构}
 编写一个较大的程序时，通常根据代码之间的耦合关系将它们放到不同的文件里面，进行单独的编写与编译，最终完成一个完整的程序。
 \begin{itemize}
-  \item 标识符的可见性：把标识符的声明放到头文件里面，实现名字共享。；
- % \item 头文件保护：与~\#endif~之间、\#pragma once~；
+  \item 标识符的可见性：把标识符的声明放到头文件里面，实现名字共享；
+
   \item 头文件保护：~\#ifndef、\#define 、~\#endif~预编译指令或者\#pragma once宏；
-  \item 头文件包含：函数的声明、~const~对象、全局对象的声明、内联函数、~constexpr~函数、类和模版的定义。
+  \item 头文件包含\begin{itemize}
+               \item 函数的声明
+               \item const~对象
+               \item 全局对象的声明
+               \item 内联函数
+               \item constexpr~函数
+               \item 类和模版的定义
+             \end{itemize}
 \end{itemize}
 \end{block}
-
-\begin{redblock}<2->{提示}
-C++支持分离式编译。
-\end{redblock}
 \end{frame}
 
 
 \begin{frame}[fragile]
     {5.8 编译预处理和多文件结构\small{~---~多文件结构}}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.54\textwidth}
 \begin{block}{myHeader.h}
 \vspace{-2.5mm} \begin{lstlisting}
 #ifndef MYHEADER_H
 #define MYHEADER_H
 const double pi = 3.1415926;  //const对象
-int add(int, int);	 //函数声明
+int add(int, int);//函数声明
 extern int g_sum;   //全局对象声明
-inline bool isNumber(char ch) {     //内联函数
+inline bool isNumber(char ch) {//内联函数
     return ch >= '0'&&ch <= '9' ? 1 : 0;
 }
 constexpr int scale() {  //constexpr 函数
@@ -2088,6 +2091,7 @@ using namespace std;
 int main() {
     g_sum = add(4, 5);
     cout << g_sum << endl;
+    return 0;
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
@@ -2095,6 +2099,24 @@ int main() {
 
 \end{columns}
 
+\end{frame}
+
+%---------------------------------------------------------------------------------------------
+\begin{frame}[fragile]{课后作业}
+\begin{columns}[t]
+\column{0.8\textwidth}
+\begin{block}{作业本}
+ \begin{enumerate}
+   \item 习题5.6、5.9和5.17
+ \end{enumerate}
+\end{block}
+
+\begin{block}{上机练习}
+ \begin{enumerate}
+   \item 实验指导书：第五章
+ \end{enumerate}
+\end{block}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
