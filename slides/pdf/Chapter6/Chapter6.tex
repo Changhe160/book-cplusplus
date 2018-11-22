@@ -296,7 +296,8 @@ inline double Fraction::value(Fraction *const this) const{
 \begin{block}<1->{常量成员函数（const member function\index{C!const!const member function}）}
 \begin{itemize}
   \item 函数参数列表后面（圆括号后面）引入~\textcolor{blue}{const}~关键字；
-  \item 函数体内部写操作是非法的。
+  \item this指针指向const对象；
+  \item 禁止在函数体内部对数据成员进行写操作。
 \end{itemize}
 
 \end{block}
@@ -350,7 +351,7 @@ print(cout,a);//打印0/1
 \begin{block}<1->{封装的意义}
 \begin{itemize}
   \item 类的开发者：有利于程序的模块化设计，提高代码的重用性；
-  \item 类的使用者：隐藏类的实现细节，使使用者不能在类的外面操控数据成员，从而形成一种保护机制。
+  \item 类的使用者：隐藏类的实现细节，使用者不能在类的外面操控数据成员，形成一种保护机制。
 \end{itemize}
 \end{block}
 
@@ -373,33 +374,38 @@ print(cout,a);//打印0/1
 \begin{frame}[fragile]
     {6.1.4 访问控制}
 
-\begin{greenblock}{下面函数是否正确？为什么？}
+\begin{greenblock}{下面函数是否正确？}
  \vspace{-2.5mm}\begin{lstlisting}
 ostream& print(ostream &out, const Fraction &f) {
     out << f.m_numerator << "/" << f.m_denominator; //错误：无法访问私有成员
     return out;
 }
 \end{lstlisting}\vspace{-1.5mm}
-
-  \onslide<2-> 利用~\textcolor{blue}{class}~定义的类，如果没有显式指明成员的访问属性，它们的访问属性默认为~\textcolor{blue}{private}，在类的外部直接访问它们是非法的。
-
+  \onslide<2-> 利用~\textcolor{blue}{class}~定义的类，如果没有显式指明成员的访问属性，则默认为~\textcolor{blue}{private}。
 \end{greenblock}
 
-\begin{redblock}<3->{\textcolor{blue}{class}~和~\textcolor{blue}{struct}}
-\begin{itemize}
-  \item 都可以定义一个类。
-     \item 使用~\textcolor{blue}{class}~定义的类中成员的访问属性默认为~\textcolor{blue}{private}；
-  \item 使用~\textcolor{blue}{struct}~定义的类中成员的访问属性默认为~\textcolor{blue}{public}；
-\end{itemize}
-\end{redblock}
-
-\begin{redblock}<4->{私有成员函数}
+\begin{redblock}<3->{私有成员函数:对外是隐藏的，只能在类内部的成员函数中使用}
  \vspace{-2.5mm}\begin{lstlisting}
 private:
     int gcd(int x, int y);
 \end{lstlisting}\vspace{-1.5mm}
-私有成员函数，对外是隐藏的，只能在类内部的成员函数中使用。
+\begin{lstlisting}
+void Fraction::reduce(){
+    int n=gcd(m_numerator, m_denominator); //获取分子分母的最大公约数
+    m_denominator /= n;    m_numerator /= n;
+}
+\end{lstlisting}
+ \vspace{-0.1em}
 \end{redblock}
+
+\begin{redblock}<4->{\textcolor{blue}{class}~和~\textcolor{blue}{struct}}
+\begin{itemize}
+  \item 使用~\textcolor{blue}{class}~定义的类中成员的访问属性默认为~\textcolor{blue}{private}；
+  \item 使用~\textcolor{blue}{struct}~定义的类中成员的访问属性默认为~\textcolor{blue}{public}；
+\end{itemize}
+\end{redblock}
+
+
 \end{frame}
 
 
@@ -410,8 +416,9 @@ private:
 \begin{block}<1->{友元函数}
 类的辅助函数，声明为类的友元之后，它们就可以访问类的非公有成员。
 \begin{itemize}
-  \item 辅助函数的声明放到类的内部；
-  \item 使用关键字~\textcolor{blue}{friend}~进行说明。
+  \item 辅助函数的声明必须放到类的内部；
+  \item 使用关键字~\textcolor{blue}{friend}~进行说明；
+  \item 非类成员函数，仅显示授予访问权限。
 \end{itemize}
 \end{block}
 
@@ -443,9 +450,6 @@ ostream& print(ostream &out, const Fraction &f) {
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
-\begin{redblock}<3->{友元函数的优点}
-通过友元声明，免去了成员函数的调用。
-\end{redblock}
 \end{frame}
 
 
