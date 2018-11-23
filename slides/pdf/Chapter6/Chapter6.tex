@@ -541,6 +541,9 @@ class Fraction {//注意，Fraction 类其它成员在此没有列出
 public:
    Fraction(int above, int below) :
        m_numerator(above), m_denominator(below) {}
+private:
+    int m_numerator = 0;  
+    int m_denominator = 1; 
 };
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
@@ -603,7 +606,8 @@ public:
    Fraction(int above, int below) :
        m_numerator(above), m_denominator(below) {}
 };
-Fraction a; //正确：默认的构造函数。
+Fraction a; //正确：默认构造函数。
+Fraction b(1,2); //正确：带参构造函数。
 \end{lstlisting}\vspace{-1.5mm}
 \end{itemize}
 \end{block}
@@ -695,7 +699,7 @@ public:
        m_numerator(above), m_denominator(below) {}
 };
 
-Fraction a;       //默认构造函数
+Fraction a;       //形参默认值构造函数
 Fraction b(1,2);  //使用提供的实参
 
 \end{lstlisting}\vspace{-1.5mm}
