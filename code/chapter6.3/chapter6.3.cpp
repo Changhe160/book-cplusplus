@@ -8,9 +8,12 @@ using namespace std;
 int main() {
 	//6.3.1
 	{
+		Fraction obj;
+		print(cout, obj);
+
 		Fraction a(1, 5);	//直接初始化
 		Fraction b(a);		//直接初始化，b为对象a的拷贝
-
+		
 		a / b;
 		operator/(a, b);
 
@@ -46,6 +49,13 @@ int main() {
 	{
 		Fraction f;
 		f(3, 5); //调用函数调用运算符
+	}
+
+	//6.3.6
+	{
+		Fraction f=2;
+		double x = 1.5 + f;
+		int i = f;
 	}
 
 }
