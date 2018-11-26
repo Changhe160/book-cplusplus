@@ -26,6 +26,11 @@ private:
 	int gcd(int x, int y); //计算x和y的最大公约数
 };
 
+//6.1.2
+inline double Fraction::value() const {
+	return static_cast<double>(m_numerator) / m_denominator;
+}
+
 //ostream& print(ostream &os, const Fraction &a);
 
 ////6.1.5

@@ -1,5 +1,4 @@
 #include "Fraction.h"
-//#include <complex>
 
 //6.1.5 友元类
 class Circle;
@@ -22,7 +21,7 @@ int main(){
 	//6.1.2
 	{
 		Fraction a;					//定义一个对象 a，a 的数据成员使用默认值
-//		cout << a.value() << endl;	//通过对象 a 调用成员函数 value
+		cout << a.value() << endl;	//通过对象 a 调用成员函数 value
 	}
 	return 0;
 }
