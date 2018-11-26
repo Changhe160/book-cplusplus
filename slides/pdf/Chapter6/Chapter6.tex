@@ -264,7 +264,7 @@ cout << a.value() <<endl; //打印默认值0
 
 \begin{blueblock}<3->{编译器转化~value~成员函数声明}
  \vspace{-2.5mm}\begin{lstlisting}
-double value(Fraction *const this) const;
+double value(Fraction *const this) const;//伪代码，说明成员函数的执行过程
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 
@@ -280,7 +280,7 @@ cout << a.value(&a) <<endl;
   \item 指向调用成员函数对象的\alert{指针常量}；
 \end{itemize}
  \vspace{-0.5em}\begin{lstlisting}
-inline double Fraction::value(Fraction *const this) const{
+double Fraction::value() const{
     return static_cast<double>(this->m_numerator) / this->m_denominator;
 }
 \end{lstlisting}
@@ -539,11 +539,10 @@ public:
 \begin{lstlisting}
 class Fraction {//注意，Fraction 类其它成员在此没有列出
 public:
-   Fraction(int above, int below) :
-       m_numerator(above), m_denominator(below) {}
+   Fraction(int above, int below) :m_numerator(above), m_denominator(below) {}
 private:
-    int m_numerator = 0;  
-    int m_denominator = 1; 
+    int m_numerator = 0;
+    int m_denominator = 1;
 };
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
@@ -580,10 +579,10 @@ private:
 \begin{lstlisting}
 class Fraction {
 public:
-   Fraction(int above, int below) :
-       m_numerator(above), m_denominator(below) {}
+   Fraction(int above, int below) :m_numerator(above), m_denominator(below) {}
 };
-Fraction a;
+
+Fraction a; //错误：没有默认构造函数
 \end{lstlisting}\vspace{-1.5mm}
 \begin{itemize}
   \item<2-> 如果显式地定义了构造函数，那么编译器将不会合成默认的构造函数。
@@ -603,9 +602,9 @@ C++11~允许在显式定义构造函数的情况下，使用默认的构造函�
 class Fraction {//注意，Fraction 类其它成员在此没有列出
 public:
    Fraction() = default ;
-   Fraction(int above, int below) :
-       m_numerator(above), m_denominator(below) {}
+   Fraction(int above, int below) :m_numerator(above), m_denominator(below) {}
 };
+
 Fraction a; //正确：默认构造函数。
 Fraction b(1,2); //正确：带参构造函数。
 \end{lstlisting}\vspace{-1.5mm}
@@ -757,7 +756,7 @@ Fraction b(a);//直接初始化，b 为对象 a 的拷贝
 \begin{itemize}
   \item 功能是将给定对象的数据成员依次复制给正在创建的对象；
   \item 复制构造函数的形参必须是\alert{引用类型}，即给定实参的引用；
-  \item 编译器会自动合成。
+  \item 编译器会自动合成： 逐个成员\alert{按值复制}，数组成员按元素逐个复制。
 \end{itemize}
 \end{block}
 \begin{blueblock}<3->{定义形式}
@@ -810,8 +809,8 @@ int main(){
     {6.2.2 复制构造函数\small{~---~复制初始化}}
 \begin{blueblock}{复制初始化例子}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction c = Fraction(3, 2); //复制初始化
-Fraction d = 7;//复制初始化
+Fraction c = Fraction(3, 2); 
+Fraction d = 7;
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \vspace{2em}
@@ -843,6 +842,12 @@ Fraction d = 7;//复制初始化
 
 \begin{frame}[fragile]
     {6.2.2 复制构造函数\small{~---~复制初始化}}
+
+\begin{yellowblock}{直接初始化}
+\begin{itemize}
+  \item 使用普通函数匹配方式选择构造函数，没有临时对象的产生。
+\end{itemize}
+\end{yellowblock}
 
 \begin{yellowblock}{复制初始化}
 \begin{itemize}
@@ -949,7 +954,6 @@ Fraction e = divide(b, c);
 class Employee {
 public:
     Employee(const Employee &) = delete;//阻止复制
-    Employee &operator=(const Employee &) = delete; //阻止赋值
 };
 
 Employee e1;  //调用默认构造函数
@@ -965,20 +969,28 @@ Employee e2(e1); //错误：复制构造函数是删除的，不能调用
 
 \begin{greenblock}{以下代码会输出什么？}
 \vspace{-2.5mm}\begin{lstlisting}
-class Fraction {
-public:
-    Fraction(const Fraction &rhs) : m_numerator(rhs.m_numerator),
-        m_denominator(rhs.m_denominator) {
-        cout; << ; "Copy constructor called"; << ; endl;
-    }
-};
-
+Fraction::Fraction(const Fraction &rhs) : m_numerator(rhs.m_numerator),
+    m_denominator(rhs.m_denominator) {
+    cout<< "Copy constructor called" << endl;
+}
 Fraction c2 = Fraction(3, 2);
 \end{lstlisting}\vspace{-1.5mm}
 \end{greenblock}
 \begin{block}<2->{复制优化}
 C++~编译器使用一种名为\alert{拷贝去除}（copy ellision\index{C!constructor!copy ellision}）的优化技术：创建临时对象和调用拷贝构造函数这两个过程完全可以用直接初始化的方式来完成。
 \end{block}
+
+\begin{greenblock}<3->{使用引用提高代码性能}
+\vspace{-1.5mm}
+\begin{lstlisting}
+Fraction divide(const Fraction &dividend, const Fraction &divisor) {
+    return Fraction(divident.numerator()*divisor.denominator(),divident.denominator()*divisor.numerator());//返回值优化
+}
+Fraction b(2,3),c(4,5);
+Fraction e = divide(b, c);
+\end{lstlisting}\vspace{-1.5mm}
+\end{greenblock}
+
 \end{frame}
 
 
