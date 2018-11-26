@@ -16,11 +16,7 @@ public:
 	double value() const;			//计算分数值
 	void reduce();					//约分
 	
-	friend ostream& print(ostream &os, const Fraction &a){
-		//os << a.m_numerator << "/" << a.m_denominator;//错误：不能访问私有成员
-		os << a.numerator() << "/" << a.denominator();
-		return os;
-	}
+	friend ostream& print(ostream &os, const Fraction &a);
 
 private:
 	int gcd(int x, int y); //计算x和y的最大公约数
@@ -31,12 +27,7 @@ inline double Fraction::value() const {
 	return static_cast<double>(m_numerator) / m_denominator;
 }
 
-//ostream& print(ostream &os, const Fraction &a);
+ostream& print(ostream &os, const Fraction &a);
 
-////6.1.5
-//ostream& Fraction::print(ostream &os, const Fraction &a) {
-//	//os << a.m_numerator << "/" << a.m_denominator;//错误：不能访问私有成员
-//	os << a.numerator() << "/" << a.denominator();
-//	return os;
-//}
+
 #endif

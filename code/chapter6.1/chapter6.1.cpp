@@ -23,5 +23,17 @@ int main(){
 		Fraction a;					//定义一个对象 a，a 的数据成员使用默认值
 		cout << a.value() << endl;	//通过对象 a 调用成员函数 value
 	}
+	//6.1.3
+	{
+		Fraction a;					//定义一个对象 a，a 的数据成员使用默认值
+		print(cout, a);
+	}
+
+	//6.1.5
+	{
+		Circle c;
+		c.moveXTo(1);
+	}
+
 	return 0;
 }

@@ -53,8 +53,11 @@ int main() {
 	//4.5.3
 	{
 		char cstr[] = "Hello";
+		cout << cstr << endl;
+
 		char *ps = cstr;			//指向字符数组cstr
-		char *ps2 = "C++";
+		const char *ps2 = "C++";
+
 		cout << ps << "," << ps2 << endl;	//输出Hello,C++
 		char cs[] = { 'C', '+ ', '+ ' };
 		//cout << strlen(cs) << endl;			//错误：cs没有以空字符结束

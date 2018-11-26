@@ -22,7 +22,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\chapter6.1\Fraction.h">
+    <ClInclude Include="Fraction.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

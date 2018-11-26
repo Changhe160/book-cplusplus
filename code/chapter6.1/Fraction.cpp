@@ -15,4 +15,10 @@ int Fraction::gcd(int x, int y)
 	return 0;
 }
 
+//6.1.5
+ostream& print(ostream &os, const Fraction &a) {
+	//os << a.m_numerator << "/" << a.m_denominator;//错误：不能访问私有成员
+	os << a.numerator() << "/" << a.denominator();
+	return os;
+}
 
