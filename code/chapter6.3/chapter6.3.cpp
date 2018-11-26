@@ -10,6 +10,10 @@ int main() {
 	{
 		Fraction a(1, 5);	//直接初始化
 		Fraction b(a);		//直接初始化，b为对象a的拷贝
+
+		a / b;
+		operator/(a, b);
+
 		a *= b;				//调用重载的 * =
 		a.operator *= (b);	//与 a*= b 等价
 	}
@@ -17,8 +21,25 @@ int main() {
 	{
 		Fraction a(1, 5);	//直接初始化
 		Fraction b(a);		//直接初始化，b为对象a的拷贝
+
+		5 / a;
 		//int operator-(int, int); //错误，不能重新定义内置运算符
+
+	}
+
+	//6.3.3
+	{
+		Fraction a(1, 5);	//直接初始化
+		Fraction b(a);		//直接初始化，b为对象a的拷贝
 		cout << a << " " << b << endl;
+		cin >> a;
+	}
+
+	//6.3.4
+	{
+		Fraction a(1, 5);	//直接初始化
+		a++;
+		++a;
 	}
 
 	//6.3.5

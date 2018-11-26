@@ -54,9 +54,7 @@ public:
 	friend ostream &operator<<(ostream & out, const Fraction& f);
 	friend Fraction operator/(int left, const Fraction& right);
 	friend bool operator>(const Fraction&lhs, const Fraction&rhs);  // 7.1.2 ½Ú
-	/*Fraction(Fraction&& rhs) {
-		cout << "move" << endl;
-	}*/
+
 
 	operator double() const {
 		return 1.*m_numerator / m_denominator;

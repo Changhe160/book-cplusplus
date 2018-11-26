@@ -43,10 +43,16 @@ bool Fraction::operator<(double real)const {
 	if (m_numerator*1. / m_denominator<real) return true;
 	return false;
 }
-ostream &operator<<(ostream & out, const Fraction& f) {
+ostream& operator<<(ostream & out, const Fraction& f) {
 	out << f.m_numerator << "/" << f.m_denominator;
 	return out;
 }
+
+istream& operator>>(istream &is, Fraction &a) {
+	is >> a.m_numerator >> a.m_denominator;
+	return is;
+}
+
 void makeCommon(Fraction &a, Fraction &b) {
 	a.m_numerator *= b.m_denominator;
 	b.m_numerator *= a.m_denominator;
@@ -59,4 +65,11 @@ ostream &print(ostream & out, const Fraction &a) {
 
 bool operator==(const Fraction &left, const Fraction &right) {
 	return left.numerator()*right.denominator() == left.denominator()*right.numerator();
+}
+
+Fraction operator/(const Fraction &left, const Fraction &right) {
+	return Fraction(left.m_numerator*right.m_denominator, left.m_denominator*right.m_numerator);
+}
+Fraction operator/(int left, const Fraction &right) {
+	return Fraction(left*right.m_denominator, right.m_numerator);
 }

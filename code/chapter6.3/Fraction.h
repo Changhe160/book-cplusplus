@@ -51,9 +51,11 @@ public:
 
 	friend void makeCommon(Fraction &a, Fraction &b);//将分数a和b通分
 													 //类的辅助函数声明为友元；
-	friend ostream &operator<<(ostream & out, const Fraction& f);
-	friend Fraction operator/(int left, const Fraction& right);
-	friend bool operator>(const Fraction&lhs, const Fraction&rhs);
+	friend ostream& operator<<(ostream &out, const Fraction &f);
+	friend istream& operator>>(istream &is, Fraction &a);
+	friend Fraction operator/(int left, const Fraction &right);
+	friend Fraction operator/(const Fraction &left, const Fraction &right);
+	friend bool operator>(const Fraction &lhs, const Fraction &rhs);
 	/*Fraction(Fraction&& rhs) {
 	cout << "move" << endl;
 	}*/
@@ -65,6 +67,7 @@ public:
 
 void makeCommon(Fraction &a, Fraction &b);
 ostream &operator<<(ostream &out, const Fraction &f);
+istream& operator>>(istream &is, Fraction &a);
 
 bool operator==(const Fraction &left, const Fraction &right);
 Fraction operator/(const Fraction &left, const Fraction &right);
