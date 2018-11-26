@@ -1,4 +1,3 @@
-#include "myHeader.h"
 #include <cstdlib>
 #include <iostream>
 #include <vector>
@@ -40,8 +39,6 @@ inline void swap(int & x, int &y) {
 
 int main() {
 
-	g_sum = add(4, 5);
-	cout << g_sum << endl;
 	enum class stoplight
 	{
 		red, green, yellow

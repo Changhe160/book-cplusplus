@@ -18,6 +18,9 @@
     <ClCompile Include="chapter5.8.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="add.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myHeader.h">

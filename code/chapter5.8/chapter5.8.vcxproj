@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="add.cpp" />
     <ClCompile Include="chapter5.8.cpp" />
   </ItemGroup>
   <ItemGroup>
