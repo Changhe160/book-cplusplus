@@ -1662,7 +1662,7 @@ const int PartTimeWorker::ms_maxHourWeek;//在类内部已经有了初始值，�
 静态成员函数~initRate~在类外的定义：
 \begin{lstlisting}
 void PartTimeWorker::initRate(double rate) {
-    ms_maxHourWeek = rate;
+    ms_payRate = rate;
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
@@ -1700,10 +1700,10 @@ double PartTimeWorker::salary() {
 %#####################################
 
 
-\section{类成员指针}
+\section{类成员指针*}
 
  \begin{frame}[fragile]
-    {6.5 类成员指针}
+    {6.5 类成员指针*}
 
 \begin{block}{类成员指针（pointer to member\index{P!pointer!pointer-to-member}）}
 指向类的非静态成员的指针。
@@ -1711,12 +1711,12 @@ double PartTimeWorker::salary() {
 
 \end{frame}
 
-\subsection{数据成员指针}
+\subsection{数据成员指针*}
 
 
 
 \begin{frame}[fragile]
-    {6.5.1 数据成员指针}
+    {6.5.1 数据成员指针*}
 \begin{block}{数据成员指针}
 \begin{itemize}
   \item 需要指明类成员的类型；
@@ -1748,7 +1748,7 @@ cout << w2->*p1 << endl; //数据成员指针访问方式，等价于 w2->m_name
 
 
 \begin{frame}[fragile]
-    {6.5.1 数据成员指针}
+    {6.5.1 数据成员指针*}
 \begin{redblock}{注意}
 类的\alert{访问控制规则}同样适用于成员指针：\\
 m\_name~为~PartTimeWorker~类的私有数据成员，因此上面的代码必须位于类的成员函数或类的友元函数中；否则，会出现编译错误。
@@ -1765,7 +1765,7 @@ m\_name~为~PartTimeWorker~类的私有数据成员，因此上面的代码必�
 
 
 \begin{frame}[fragile]
-    {6.5.2 成员函数指针}
+    {6.5.2 成员函数指针*}
 \begin{block}{成员函数指针}
 \begin{itemize}
   \item 需要指明类成员函数的类型；
@@ -1800,8 +1800,7 @@ PTWS pf3 = &PartTimeWorker::salary;
 
 
 \begin{frame}[fragile]
-    {6.5.2 成员函数指针}
-
+    {6.5.2 成员函数指针*}
 
 \begin{blueblock}<1->{示例：类成员指针的使用}
 需要使用~.*~或者~->*~运算符作用于指向成员函数的指针，来调用类成员函数。
