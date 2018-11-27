@@ -14,35 +14,65 @@ int Fraction::gcd(int x, int y)//Õ·×ªÏà³ý·¨
 }
 Fraction::Fraction(int a, int b)
 	:m_numerator(a), m_denominator(b) {
-	cout << "default" << endl;
 
 }
 Fraction::Fraction(const Fraction& rhs) : m_numerator(rhs.m_numerator), m_denominator(rhs.m_denominator) {
-	cout << "copy" << endl;
+	
 }
-Fraction& Fraction::operator=(const Fraction& rhs) {
-	cout << "copy" << endl;
+Fraction& Fraction::operator=(const Fraction &rhs) {
+	
 	if (&rhs == this) return *this;   //do not assign itself, e.g. a=a;
 	m_numerator = rhs.m_numerator;
 	m_denominator = rhs.m_denominator;
 	return *this;
 }
-Fraction Fraction::operator*(const Fraction&rhs)const {
-	return Fraction(m_numerator*rhs.m_numerator, m_denominator*rhs.m_denominator);
-}
-Fraction& Fraction::operator*=(const Fraction&rhs) {
+
+Fraction& Fraction::operator*=(const Fraction &rhs) {
 	m_numerator *= rhs.m_numerator;
 	m_denominator *= rhs.m_denominator;
 	return *this;
 }
-Fraction Fraction::reverse()const {
+Fraction Fraction::reciprocal()const {
 	return Fraction(m_denominator, m_numerator);
 }
-
-bool Fraction::operator<(double real)const {
-	if (m_numerator*1. / m_denominator<real) return true;
-	return false;
+void Fraction::reverse() {
+	int i = m_denominator;
+	m_denominator = m_numerator;
+	m_numerator = i;
 }
+Fraction::operator double() const { 
+	return 1.*m_numerator / m_denominator;
+}
+
+const Fraction& Fraction::operator()(int a, int b) { 
+	m_numerator = a;
+	m_denominator = b;
+	return *this;
+}
+
+
+Fraction& Fraction::operator++() {
+	++m_numerator;
+	return *this;
+}
+Fraction& Fraction::operator--() {
+	--m_numerator;
+	return *this;
+}
+
+Fraction Fraction::operator++(int) {
+	Fraction a(*this);
+	m_numerator++;
+	return a;
+}
+
+Fraction Fraction::operator--(int) {
+	Fraction a(*this);
+	m_numerator++;
+	return a;
+}
+
+
 ostream& operator<<(ostream & out, const Fraction& f) {
 	out << f.m_numerator << "/" << f.m_denominator;
 	return out;
@@ -53,15 +83,6 @@ istream& operator>>(istream &is, Fraction &a) {
 	return is;
 }
 
-void makeCommon(Fraction &a, Fraction &b) {
-	a.m_numerator *= b.m_denominator;
-	b.m_numerator *= a.m_denominator;
-	b.m_denominator = a.m_denominator *= b.m_denominator;
-}
-ostream &print(ostream & out, const Fraction &a) {
-	out << a.numerator() << "/" << a.denominator();
-	return out;
-}
 
 bool operator==(const Fraction &left, const Fraction &right) {
 	return left.numerator()*right.denominator() == left.denominator()*right.numerator();

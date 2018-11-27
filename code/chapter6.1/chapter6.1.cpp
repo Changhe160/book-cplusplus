@@ -31,6 +31,9 @@ int main(){
 
 	//6.1.5
 	{
+		Fraction a,b;
+		makeCommon(a, b);
+
 		Circle c;
 		c.moveXTo(1);
 	}

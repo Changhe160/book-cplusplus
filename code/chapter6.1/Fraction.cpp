@@ -21,4 +21,10 @@ ostream& print(ostream &os, const Fraction &a) {
 	os << a.numerator() << "/" << a.denominator();
 	return os;
 }
+//6.1.5
+void makeCommon(Fraction &a, Fraction &b) {
+	a.m_numerator *= b.m_denominator;
+	b.m_numerator *= a.m_denominator;
+	b.m_denominator = a.m_denominator *= b.m_denominator;
+}
 

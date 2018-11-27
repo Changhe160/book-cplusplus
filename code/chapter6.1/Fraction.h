@@ -17,7 +17,7 @@ public:
 	void reduce();					//约分
 	
 	friend ostream& print(ostream &os, const Fraction &a);
-
+	friend void makeCommon(Fraction &a, Fraction &b);
 private:
 	int gcd(int x, int y); //计算x和y的最大公约数
 };
@@ -27,7 +27,8 @@ inline double Fraction::value() const {
 	return static_cast<double>(m_numerator) / m_denominator;
 }
 
+//6.1.5
 ostream& print(ostream &os, const Fraction &a);
-
+void makeCommon(Fraction &a, Fraction &b);
 
 #endif
