@@ -83,7 +83,6 @@ istream& operator>>(istream &is, Fraction &a) {
 	return is;
 }
 
-
 bool operator==(const Fraction &left, const Fraction &right) {
 	return left.numerator()*right.denominator() == left.denominator()*right.numerator();
 }

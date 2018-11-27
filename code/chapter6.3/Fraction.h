@@ -8,13 +8,11 @@
 using namespace std;
 
 class Fraction {
-	int m_numerator = 0;				// 分子默认为0；
-	int m_denominator = 1;				//分母默认为1；
+	int m_numerator = 0;				
+	int m_denominator = 1;				
 public:
-
 	Fraction& operator=(const Fraction &);			//重载=运算符
-	Fraction& operator*=(const Fraction &);			//两分相乘
-	
+	Fraction& operator*=(const Fraction &);			//重载=*运算符
 						
 	Fraction& operator++();//前置++
 	Fraction& operator--();//前置--
@@ -52,7 +50,6 @@ Fraction operator/(const Fraction &left, const Fraction &right);
 Fraction operator/(int left, const Fraction &right);
 
 //普通函数声明
-bool operator>(const Fraction &lhs, const Fraction &rhs);
 bool operator==(const Fraction &left, const Fraction &right);
 
 #endif
