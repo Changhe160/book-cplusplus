@@ -150,6 +150,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="chapter6.4_5.cpp" />
+    <ClCompile Include="PartTime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartTime.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

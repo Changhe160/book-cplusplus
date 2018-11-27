@@ -14,5 +14,11 @@
     <ClCompile Include="chapter6.4_5.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PartTime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartTime.h" />
   </ItemGroup>
 </Project>
