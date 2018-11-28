@@ -231,7 +231,7 @@ ostream& print(ostream &out, const Fraction &f);
     \item 类的内部：建议为\alert{内联函数}；
     \item 类的外部： 可利用~\textcolor{blue}{inline}~指明其为内联函数。
   \end{itemize}
-  \item 需要使用\alert{作用域符}标明成员函数所属的类；
+  \item 类外定义需要使用\alert{作用域符}标明成员函数所属的类；
 \end{itemize}
 \end{block}
 \begin{blueblock}<2->{类外定义成员函数}
@@ -256,8 +256,8 @@ void Fraction::reduce(){
 
 \begin{blueblock}<1->{使用~value~成员函数}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction a;
-cout << a.value() <<endl; //打印默认值0
+Fraction a, *p = &a;
+cout << a.value() <<" "<< p->value() << endl; //打印默认值0
 \end{lstlisting}\vspace{-1.5mm}
 \onslide<2-> a的数据成员如何传到value成员函数中？
 \end{blueblock}
@@ -270,14 +270,13 @@ double value(Fraction *const this) const;//伪代码，说明成员函数的执�
 
 \begin{blueblock}<3->{~value~成员函数等价调用}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction a;
-cout << a.value(&a) <<endl;
+a.value(&a);
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 
 \begin{block}<4->{this~指针}
 \begin{itemize}
-  \item 指向调用成员函数对象的\alert{指针常量}；
+  \item 指向调用成员函数对象的\alert{const指针（指针常量）}，运行代码演示
 \end{itemize}
  \vspace{-0.5em}\begin{lstlisting}
 double Fraction::value() const{
@@ -809,7 +808,7 @@ int main(){
     {6.2.2 复制构造函数\small{~---~复制初始化}}
 \begin{blueblock}{复制初始化例子}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction c = Fraction(3, 2); 
+Fraction c = Fraction(3, 2);
 Fraction d = 7;
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
