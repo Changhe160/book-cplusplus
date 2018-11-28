@@ -432,7 +432,7 @@ void Fraction::reduce(){
 class Fraction {
     //类的辅助函数声明为友元；
     friend ostream& print(ostream &out, const Fraction &f);
-    friend Fraction operator/(int left, const Fraction &right);
+    friend void makeCommon(Fraction &a, Fraction &b);
     //其它成员与之前一致
 };
 //Fraction类辅助函数声明
