@@ -82,23 +82,7 @@
 
 \maketitle
 
-\section{继承}
-\subsection{定义基类}
-\subsection{定义派生类}
-\subsection{访问控制}
-\subsection{类型转换}
 
-
-\section{构造、拷贝控制与继承}
-\subsection{派生类对象的构造}
-\subsection{拷贝控制与继承}
-
-\section{虚函数与多态性}
-\subsection{虚函数}
-\subsection{动态绑定}
-\subsection{抽象类}
-\subsection{继承与组合}
-\subsection{再探计算器}
 
 
 
@@ -117,6 +101,8 @@
     \end{yellowblock}
 \end{frame}
 
+\section{继承}
+
 \begin{frame}
     {9.1 继承\small{—定义基类和派生类}}
     \begin{exampleblock}{例9.1：}
@@ -129,6 +115,7 @@
     \includegraphics[width=25em]{Fig/Fig9-1.png}
     \end{figure}
 \end{frame}
+\subsection{定义基类}
 
 \begin{frame}[fragile]
     {9.1 继承\small{—定义基类和派生类}}
@@ -137,7 +124,7 @@
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Person {                          //人员类
 protected:
     string m_name;                      //名字
@@ -162,7 +149,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Course {                 //课程类
     string m_name;             //课程名
     int m_score;               //成绩
@@ -178,6 +165,7 @@ public:
     \end{columns}
     \end{exampleblock}
 \end{frame}
+\subsection{定义派生类}
 
 \begin{frame}[fragile]
     {9.1 继承\small{—定义基类和派生类}}
@@ -186,7 +174,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class PartTimeWorker : public Person {  //兼职人员类，公有                                                        继承Person
 private:
     double m_hour;                      //工作小时数
@@ -211,7 +199,7 @@ double PartTimeWorker::ms_payRate = 7.53;  //静态成员初始化
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Student : public Person {  //学生类，公有继承Person
 private:
     Course m_course;                 //课程信息
@@ -249,6 +237,8 @@ public:
     \end{columns}
 \end{frame}
 
+\subsection{访问控制}
+
 \begin{frame}
     {9.1 继承\small{—访问控制}}
     \begin{block}{三类访问限定声明}
@@ -268,7 +258,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Base {
 private:
     int m_pri;          //private成员
@@ -314,7 +304,7 @@ void test() {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class PriDerv : private Base {  //私有继承不影响派生类成员对                                              基类的访问
     void foo() {
         m_pro = 1;      //正确：可以访问Base类受保护成员
@@ -341,7 +331,7 @@ void test() {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class PubDerv : public Base {
 public:
     using base::m_pro;          //声明为公有的
@@ -367,7 +357,7 @@ void test() {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Base {
 protected:
     int m_data;
@@ -396,7 +386,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Derived : public Base {
     /*...*/
     int foo() { return Base::m_data; }       //返回Base中的m_data
@@ -421,6 +411,8 @@ class Derived : public Base {
     \end{columns}
 \end{frame}
 
+\subsection{类型转换}
+
 \begin{frame}[fragile]
     {9.1 继承\small{—类型转换}}
     \begin{block}{派生类到基类的转换}
@@ -429,7 +421,7 @@ class Derived : public Base {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 PartTimeWorker w("Kevin", 21);
 Person p, *ptr;
 ptr = &w;                        //基类指针ptr指向派生类对象w
@@ -449,7 +441,7 @@ p = w;                           //派生类对象赋值给基类对象
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 PartTimeWorker *w2 = &p;             //错误：不能将基类转换为派生类
 w = p;                               //错误：不能将基类转换为派生类
     \end{lstlisting}\ttfamily
@@ -460,7 +452,7 @@ w = p;                               //错误：不能将基类转换为派生�
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 PartTimeWorker w("Kevin", 21);       //派生类对象
 Person p(w);                         //利用派生类对象构造基类对象
     \end{lstlisting}\ttfamily
@@ -471,7 +463,7 @@ Person p(w);                         //利用派生类对象构造基类对象
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 PriDerv d;                           //priDerv私有继承Base
 Base b(d);                           //错误：PriDerv不能转换为Base
     \end{lstlisting}\ttfamily
@@ -492,6 +484,8 @@ Base b(d);                           //错误：PriDerv不能转换为Base
     \end{yellowblock}
 \end{frame}
 
+\section{构造、拷贝控制与继承}
+
 \begin{frame}[fragile]
     {9.2 构造、拷贝控制与继承}
 \begin{figure}
@@ -504,6 +498,7 @@ Base b(d);                           //错误：PriDerv不能转换为Base
 析构顺序：\uncover<9->{D3}\uncover<10->{(c3} \uncover<11->{c2} \uncover<12->{c1)} \uncover<13->{D2} \uncover<14->{D1} \uncover<15->{B}
 
 \end{frame}
+\subsection{派生类对象的构造}
 
 \begin{frame}[fragile]
     {9.2 构造、拷贝控制与继承\small{—派生类对象的构造}}
@@ -513,7 +508,7 @@ Base b(d);                           //错误：PriDerv不能转换为Base
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 Student::Student(const string &name,int age,const Course &c):
     Person(name, age),/*初始化基类成员*/
     m_course(c)/*初始化自有成员*/ {
@@ -527,7 +522,7 @@ Student::Student(const string &name,int age,const Course &c):
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 Course::Course(const Course &rhs): m_name(rhs.name),
     m_score(rhs.m_score) {
     cout<< "Copy constr of Course" <<endl;
@@ -537,6 +532,8 @@ Course::Course(const Course &rhs): m_name(rhs.name),
     \end{columns}
     \end{block}
 \end{frame}
+\subsection{拷贝控制与继承}
+
 
 \begin{frame}[fragile]
     {9.2 构造、拷贝控制与继承\small{—派生类对象的构造}}
@@ -546,7 +543,7 @@ Course::Course(const Course &rhs): m_name(rhs.name),
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 Person::Person(const string &name = "",int age = 0):
     m_name(name), m_age(age) {
     cout<<"Constr of Person"<<endl;
@@ -574,7 +571,7 @@ Person::Person(const string &name = "",int age = 0):
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 Person::~Person() {
     cout<< "Destr of Person" <<endl;
 }
@@ -614,7 +611,7 @@ Course::~Course() {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class A{/*...*/};
 class B : public A {
     string m_d;
@@ -642,7 +639,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 B& B::operator=(const B &d) {
     if(this == &d) return *this;
     A::operator=(d);                  //赋值A的成员
@@ -658,6 +655,9 @@ B& B::operator=(const B &d) {
     \end{yellowblock}
 \end{frame}
 
+\section{虚函数与多态性}
+\subsection{虚函数}
+
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—虚函数}}
     \begin{block}{Shape、Circle和Square}
@@ -666,7 +666,7 @@ B& B::operator=(const B &d) {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Shape {
 protected:
     string m_name;
@@ -696,7 +696,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Square : public Shape {
 private:
     double m_len;
@@ -710,6 +710,8 @@ public:
     \end{block}
 \end{frame}
 
+\subsection{动态绑定}
+
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—动态绑定}}
     \begin{block}{静态类型和动态类型}
@@ -718,7 +720,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Base { }
     Base *p;        //指针p的静态类型为Base
     \end{lstlisting}\ttfamily
@@ -729,7 +731,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Derived : public Base { };
     Derived d;
     Base *p = &d;   //指针p的动态类型为Derived
@@ -747,7 +749,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     Shape sh, *p = &sh;       //p指向Shape类对象
     Square sq(1.0);
     cout<<p->area()<<endl;    //打印输出0
@@ -767,7 +769,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     bool operator>(const Shape &s1, const Shape &s2) {
         return s1.area()>s2.area();
     }
@@ -790,7 +792,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Shape {
     public:
         virtual ~Shape() {
@@ -817,7 +819,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     Shape *p = new Circle();
     delete p;
     \end{lstlisting}\ttfamily
@@ -929,7 +931,7 @@ void test(){
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 struct B {
     virtual void fun1(int) { }
     virtual void fun2() { }
@@ -948,6 +950,7 @@ struct D2 : public D1 {
     \end{columns}
     \end{block}
 \end{frame}
+\subsection{抽象类}
 
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—抽象类}}
@@ -957,7 +960,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Shape {
     public:
         virtual double area() const = 0;      //纯虚函数
@@ -983,6 +986,7 @@ struct D2 : public D1 {
 类外。
     \end{yellowblock}
 \end{frame}
+\subsection{继承与组合}
 
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—继承与组合}}
@@ -991,7 +995,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Cat {
     protected:
         string m_name;
@@ -1022,7 +1026,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Dog : public Cat {
     public:
         void bark();
@@ -1044,7 +1048,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Dog {
         Cat m_cat;
     public:
@@ -1065,7 +1069,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Mammal {
     protected:
         string m_name;
@@ -1091,7 +1095,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
     class Dog : public Mammal {
     protected:
         void bark();
@@ -1107,7 +1111,7 @@ struct D2 : public D1 {
     ~~~~~~cat.sounding();  ~~~~~~\texttt{//}cat能正常的喵喵叫\\
     \end{block}
 \end{frame}
-
+\subsection{再探计算器}
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—再探计算器}}
     \begin{thinkblock}{思考:}
@@ -1137,7 +1141,7 @@ struct D2 : public D1 {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Operator{
 public:
     Operator(char c, int numOprd, int pre) :
@@ -1165,7 +1169,7 @@ protected:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Plus : public Operator{     //运算符 +
 public:
     Plus() :Operator('+', 2, 2) {}
@@ -1194,7 +1198,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Divide :public Operator{      //运算符 /
 public:
     Divide() :Operator('/', 2, 3) {}
@@ -1241,7 +1245,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 class Calculator {
 private:
     Stack<double> m_num;               //操作数栈
@@ -1265,7 +1269,7 @@ public:
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 void Calculator::calculate(){   //操作数出栈并进行相应计算
     double a[2] = {0};
     for (auto i = 0; i < m_opr.top()->numOprand(); ++i) {
@@ -1288,7 +1292,7 @@ void Calculator::calculate(){   //操作数出栈并进行相应计算
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
 double Calculator::doIt(const string & exp){
     for (auto it = exp.begin(); it != exp.end();){
         if (isNum(it))  //如果是操作数, 则将其压栈
@@ -1317,7 +1321,7 @@ double Calculator::doIt(const string & exp){
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[numbers=left,numberstyle=\small,basicstyle=\normalsize\ttfamily]
+    \begin{lstlisting}[]
             else if (o == '=')
                 oo = make_unique<Equal>();//与Equal对象绑定
             while (oo->precedence()<=m_opr.top()->precedence()){

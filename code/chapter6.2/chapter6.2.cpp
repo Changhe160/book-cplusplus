@@ -48,4 +48,31 @@ int main() {
 		Employee e1;
 		//Employee e2(e1);//错误：不能调用删除的复制构造函数
 	}
+	{
+		class Point {
+			double m_x = 0, m_y = 0;
+		public:
+			Point(double x=0,double y=0):m_x(x),m_y(y) { 
+				cout << "Constructor of Point" << endl; 
+			}
+			Point(const Point &p) :m_x(p.m_x), m_y(p.m_y) {
+				cout << "Copy constructor of Point" << endl;
+			}
+			~Point() { cout << "Destructor of Point" << endl; }
+		};
+		class Circle {
+			Point m_center; //圆心
+			double m_radius = 1.0;//半径
+		public:
+			Circle(double r = 1, const Point &p = Point()) :
+				m_center(p), m_radius(r) {
+				cout << "Constructor of Circle" << endl;
+			}
+			~Circle() {
+				cout << "Destructor of Circle" << endl;
+			}
+		};
+
+		Circle a(2, Point(1, 1));
+	}
 }

@@ -183,8 +183,8 @@ struct A {
     const static double PI(3.14);
 }
 const double E = 2.72;
-int main(){
-    ...
+void fun(){
+    static int a(10);
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
@@ -270,6 +270,7 @@ C++语言使用~\alert{运算符\texttt{delete}}~来释放动态内存：
 \column{0.65\textwidth}
 \begin{blueblock}<2->{释放动态内存一}
 \vspace{-2.5mm}\begin{lstlisting}[moreemph={}]
+TYPE *P = new TYPE;
 delete p;
 \end{lstlisting}\vspace{-2mm}
 \end{blueblock}
@@ -909,8 +910,8 @@ MyStr operator+(const MyStr &s1, const MyStr &s2){
     MyStr res;
     res.m_length = s1.m_length + s2.m_length;
     res.m_buff = new char[res.m_length];
-    strncpy(res.m_buff, s1.m_buff, s1.m_length);
-    strncpy(res.m_buff + s1.m_length, s2.m_buff, s2.m_length);
+    MyStr::strncpy(res.m_buff, s1.m_buff, s1.m_length);
+    MyStr::strncpy(res.m_buff + s1.m_length, s2.m_buff, s2.m_length);
     return res; //返回局部对象 res
 }
 \end{lstlisting}
@@ -1313,8 +1314,8 @@ void SList<T>::push_back(const T &val) {
     if (m_head == nullptr)
         m_head = m_tail= node;
     else {
-    m_tail->m_next = node;
-    m_tail = node;
+        m_tail->m_next = node;
+        m_tail = node;
     }
 }
 \end{lstlisting}
@@ -2441,7 +2442,7 @@ Node<T> * BinaryTree<T>::insert_(Node<T>* &p, const T &value){
 \end{block}
 \begin{block}<23->{后序遍历}
 左子树-->右子树-->\alert{根结点}\\
-\texttt{\uncover<24->{1} \uncover<25->{3} \uncover<26->{4} \uncover<27->{6} \uncover<28->{7} \uncover<29->{8} \uncover<30->{10} \uncover<31->{13} \uncover<32->{14}}
+\texttt{\uncover<24->{1} \uncover<25->{4} \uncover<26->{7} \uncover<27->{6} \uncover<28->{3} \uncover<29->{13} \uncover<30->{14} \uncover<31->{10} \uncover<32->{8}}
 \end{block}
 
 \end{columns}
@@ -2474,7 +2475,7 @@ void BinaryTree<T>::inOrder(Node<T> *p,void (*visit)(T&)){
 
 \column{0.23\textwidth}
 \begin{yellowblock}{说明}
-\texttt{inOrder}函数的第二个参数，为用户自定义的访问处理函数，类型为一个指向返回值为空、包含一个\texttt{Node}类型的引用形参的函数指针
+第二个形参为一个返回值为空、包含一个\texttt{T\&}类型形参的函数指针，指向用户自定义的访问处理函数
 \end{yellowblock}
 
 \end{columns}
@@ -2497,7 +2498,7 @@ void visit(T &value) { cout << value << " "; }
 
 \column{0.23\textwidth}
 \begin{yellowblock}<2->{说明}
-打印输出每个结点的数据
+打印结点的数据
 \end{yellowblock}
 
 \end{columns}

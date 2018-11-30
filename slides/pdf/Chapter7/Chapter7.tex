@@ -85,7 +85,7 @@
 %\medskip
 %\textit{lichanghe@cug.edu.cn} % Your email address
 %}
-\date{} % Date, can be changed to a custom date
+%\date{} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -230,7 +230,7 @@ $\bullet$ 列表含有多个模板参数则参数之间用\alert{逗号}分开
 \subsection{实例化函数模板}
 %-------------------------------------
 
-\begin{frame}[fragile]{7.1.2~实例化函数模板}
+\begin{frame}[fragile]{7.1.2~实例化函数模板\small{~---~模板参数推断}}
 
 实例化模板函数时，使用者需要提供具体的数据类型或值:
 
@@ -241,8 +241,15 @@ $\bullet$ 列表含有多个模板参数则参数之间用\alert{逗号}分开
 \column{0.65\textwidth}
 \begin{blueblock}<2->{实例化方法一}
 \begin{lstlisting}
-cout << getMax(1.0, 2.5) << endl; // T为double
+cout << getMax(1.0, 2.5) << endl; // T被推断为double
 \end{lstlisting}
+生成如下函数实例
+\begin{lstlisting}
+const double & getMax(const double &a, const double &b){
+    return a>b ? a : b;
+}
+\end{lstlisting}
+
 \end{blueblock}
 \begin{blueblock}<3->{实例化方法二}
 \begin{lstlisting}
@@ -253,8 +260,9 @@ cout << getMax<string>("Hi ", "C++") << endl; // 显式指明T为 string
 
 \column{0.3\textwidth}
 \begin{yellowblock}<2->{说明}
-编译器在编译的过程中，利用实参来推断模板参数的类型
+编译器在\alert{编译}的过程中，利用实参来推断模板参数的类型
 \end{yellowblock}
+\vspace{1.5cm}
 \begin{yellowblock}<3->{说明}
 用户显式地指明模板参数的类型
 \end{yellowblock}
@@ -345,7 +353,7 @@ T foo(const T &t, const U &u) {
 \begin{blueblock}{\texttt{maxElem}函数定义}
 \begin{lstlisting}[moreemph={T}]
 template<typename T, int size>
-const T& maxElem(T(&arr)[size]) {
+const T& maxElem(T (&arr)[size]) {
     T *p = &arr[0];
     for (auto i = 0; i < size; ++i)
         if (*p < arr[i])
@@ -425,7 +433,7 @@ getMax(&a, &b);
 \begin{blueblock}{\texttt{getMax}定义一}
 \begin{lstlisting}[moreemph={T}]
 template <typename T>
-const T & getMax(const T & a, const T & b){
+const T & getMax(const T &a, const T &b){
     return a > b ? a : b;
 }
 \end{lstlisting}
@@ -501,7 +509,7 @@ cout << getMax(a, b) << endl;
 \begin{blueblock}{\texttt{getMax}函数定义二}
 \vspace{-2.5mm}\begin{lstlisting}[moreemph={T}]
 template <typename T>
-const T & getMax(const T & a, const T & b){
+const T & getMax(const T &a, const T &b){
     return a > b ? a : b;
 }
 
@@ -800,7 +808,7 @@ rvalue(val);
 \column{0.3\textwidth}
 \begin{greenblock}<2->{答案}
 $\bullet$ 右值引用声明 \texttt{\&\&}与类型推导结合可以与右值绑定，所以\texttt{val}为右值引用\\
-$\bullet$ 临时对象\texttt{42}通过右值引用\texttt{val}引用之后生命期能延续是因为\alert{右值引用\texttt{val}是左值}\\
+$\bullet$ 右值引用\texttt{val}引用右值42，但\alert{\texttt{val}本身是左值}\\
 $\bullet$ \texttt{rvalue}函数只接受右值形参，但\texttt{val}是左值
 \end{greenblock}
 \begin{greenblock}<3->{问题}
@@ -822,10 +830,10 @@ $\bullet$ \texttt{rvalue}函数只接受右值形参，但\texttt{val}是左值
 \begin{columns}[t]
 
 \column{0.65\textwidth}
-\begin{blueblock}{\texttt{std::forward}函数描述性声明}
-\vspace{-2mm}\begin{lstlisting}[moreemph={T}]
+\begin{blueblock}{\texttt{std::forward}转发左值描述性声明}
+\vspace{-2mm}\begin{lstlisting}[basicstyle=\scriptsize\ttfamily,moreemph={T}]
 template<typename T>
-T&& forward(T val);
+T&& forward( typename std::remove_reference<T>::type& t );
 \end{lstlisting}\vspace{-2mm}
 \end{blueblock}
 \begin{blueblock}<2->{\texttt{forwardValue}函数定义二}
@@ -846,16 +854,13 @@ forwardValue(a); // 正确
 
 \column{0.3\textwidth}
 \begin{yellowblock}<3->{说明}
-当传入\texttt{forwardValue}的实参为\texttt{42}是右值，\texttt{T}被推断为非引用类型，\texttt{forward<T>}将返回右值
+$\bullet$ 当传入\texttt{forwardValue}的实参为右值，\texttt{T}被推断为非引用类型，forward<T>返回右值引用
+$\bullet$ 当传入\texttt{forwardValue}的实参为左值，\texttt{T}被推断为左值引用类型，此时\texttt{forward<T>}将返回左值引用
 \end{yellowblock}
 \vspace{-2mm}
-\begin{yellowblock}<4->{说明}
-当传入\texttt{forwardValue}的实参为\texttt{a}是左值，\texttt{T}被推断为左值引用类型，此时\texttt{forward<T>}将返回左值
-\end{yellowblock}
-\vspace{-2mm}
-\begin{redblock}<5->{注意}
+\begin{redblock}<4->{注意}
 在C++11新标准下，\\
-\texttt{\&\&\&} 折叠为 \texttt{\&}
+\texttt{\&\& \&和\& \&\&}折叠为 \texttt{\&}
 \end{redblock}
 
 \end{columns}
@@ -872,13 +877,12 @@ forwardValue(a); // 正确
 
 \begin{columns}[t]
 
-\column{0.65\textwidth}
+\column{0.5\textwidth}
 \begin{blueblock}<2->{\texttt{fun}函数定义二和\texttt{foo}函数定义二}
 \vspace{-2mm}\begin{lstlisting}[moreemph={Args}]
 void foo(const string &s, int &&i) {
     cout << s << i << endl;
 }
-
 template<typename... Args>
 void fun(Args&&... args) {
     foo(std::forward<Args>(args)...);
@@ -892,7 +896,7 @@ fun("abc", 42);
 \end{lstlisting}\vspace{-2mm}
 \end{blueblock}
 
-\column{0.3\textwidth}
+\column{0.45\textwidth}
 \begin{yellowblock}<2->{说明}
 \texttt{std::forward<Args>(args)...}\\
 相当于：\\

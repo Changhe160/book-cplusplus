@@ -745,6 +745,7 @@ Employee member("Kevin");
 \begin{blueblock}<1->{示例}
 复制一个已存在对象的内容来创建对象
 \begin{lstlisting}
+int i(1), j(i);
 Fraction a(1, 5); //直接初始化
 Fraction b(a);//直接初始化，b 为对象 a 的拷贝
 \end{lstlisting}\vspace{-1.5mm}
@@ -845,6 +846,9 @@ Fraction d = 7;
 \begin{yellowblock}{直接初始化}
 \begin{itemize}
   \item 使用普通函数匹配方式选择构造函数，没有临时对象的产生。
+ \vspace{-1.5mm}\begin{lstlisting}
+Fraction c(3, 2);
+\end{lstlisting}\vspace{-1.5mm}
 \end{itemize}
 \end{yellowblock}
 
@@ -853,7 +857,11 @@ Fraction d = 7;
   \item 将~=~右侧的对象复制给待创建对象；
   \item 类型不一致，编译器尝试通过构造函数进行类型转换；
   \item 如果没有可用构造函数，将产生类型无法转换的错误。
+   \vspace{-1.5mm}\begin{lstlisting}
+Fraction d = 7;
+\end{lstlisting}\vspace{-1.5mm}
 \end{itemize}
+
 \end{yellowblock}
 
 \end{frame}
@@ -931,6 +939,7 @@ Fraction divide(Fraction dividend, Fraction divisor) {
 
 Fraction e = divide(b, c);
 \end{lstlisting}\vspace{-1.5mm}
+\onslide<2-> 调用几次构造函数？
 \end{blueblock}
 \column{0.2\textwidth}
 \begin{figure}
@@ -988,6 +997,7 @@ Fraction divide(const Fraction &dividend, const Fraction &divisor) {
 Fraction b(2,3),c(4,5);
 Fraction e = divide(b, c);
 \end{lstlisting}\vspace{-1.5mm}
+\onslide<4->divide函数调用过程中Fraction类构造函数调用几次？
 \end{greenblock}
 
 \end{frame}
@@ -1017,13 +1027,58 @@ public:
 \begin{block}<3->{析构函数的行为}
 \begin{itemize}
   \item 先执行函数体，然后按照初始化的顺序逆序销毁每个成员；
-  \item 类类型的成员执行自己的析构函数，内置类型的成员什么也不需要做；
+  \item 类类型的成员执行自己的析构函数；
   \item 释放对象成员在生命期内被分配的所有资源。
 \end{itemize}
 \end{block}
+
 \end{frame}
 
+\begin{frame}[fragile]
+    {6.2.3 析构函数}
+\begin{columns}
+\column{0.65\textwidth}
+\begin{block}{构造函数和析构函数的调用}
+ \vspace{-2.5mm}\begin{lstlisting}
+class Point {
+    double m_x = 0, m_y = 0;
+public:
+    Point(double x=0,double y=0):m_x(x),m_y(y) {
+        cout << "Constructor of Point" << endl;
+    }
+    Point(const Point &p) :m_x(p.m_x), m_y(p.m_y) {
+        cout << "Copy constructor of Point" << endl;
+    }
+    ~Point() { cout << "Destructor of Point" << endl; }
+};
+class Circle {
+    Point m_center;   double m_radius = 1.0;
+public:
+    Circle(double r = 1, const Point &p = Point()) :
+        m_center(p), m_radius(r) {
+        cout<<"Constructor of Circle"<<endl;
+    }
+    ~Circle() { cout<<"Destructor of Circle"<<endl;}
+};
+\end{lstlisting}\vspace{-1.5mm}
+\end{block}
+\column{0.33\textwidth}
+\begin{block}{构造和析构}
+ \vspace{-2.5mm}\begin{lstlisting}
 
+{
+    Circle a(2,Point(1,1));
+}
+Constructor of Point
+Copy constructor of Point
+Constructor of Circle
+Destructor of Point
+Destructor of Circle
+Destructor of Point
+\end{lstlisting}\vspace{-1.5mm}
+\end{block}
+\end{columns}
+\end{frame}
 
 \section{运算符重载}
 
