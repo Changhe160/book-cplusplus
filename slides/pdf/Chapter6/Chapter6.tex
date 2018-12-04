@@ -61,7 +61,7 @@
     breaklines,                                                           % 控制是否折行
     % postbreak=\space,                                                     % 控制折行后显示的标识字符
     breakindent=5pt,                                                      % 控制折行后缩进数量
-    emph={size\_t,array,deque,list,map,queue,set,stack,vector,string,pair,tuple,ostream}, % 非内置类型
+    emph={size\_t,array,deque,list,map,queue,set,stack,vector,string,pair,tuple,ostream,istream}, % 非内置类型
     emphstyle={\color{teal}},
     escapeinside={(*@}{@*)},
 }
@@ -1086,16 +1086,21 @@ Destructor of Point
 \begin{frame}[fragile]
     {6.3 运算符重载}
 
-\begin{blueblock}<1->{打印一个对象~obj}
-为~Fraction~类定义了一个辅助打印函数~print
+\begin{blueblock}<1->{通过Fraction类辅助函数print打印一个对象~obj}
+\vspace{-1.5mm}
 \begin{lstlisting}
+ostream& print(ostream &out, const Fraction &f) {
+    out << f.m_numerator << "/" << f.m_denominator;
+    return out;
+}
+
 Fraction obj ;
 print(cout, obj);
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 
-\begin{blueblock}<2->{打印一个对象~obj}
-重载了~\verb;<<;~运算符
+\begin{blueblock}<2->{通过运算符~\texttt{<<}~打印一个对象~obj}
+\vspace{-1.5mm}
 \begin{lstlisting}
 Fraction obj ;
 cout << obj ;
@@ -1114,7 +1119,7 @@ cout << obj ;
 \subsection{基本概念}
 \begin{frame}[fragile]
     {6.3.1 基本概念}
-\begin{block}{重载运算符}
+\begin{block}{运算符重载}
 \begin{itemize}
   \item 由关键字~\textcolor{blue}{operator}\index{O!operator!operator overloading}~和需要重载的运算符共同组成；
   \item 重载的运算符的返回值类型以及参数列表由运算符的性质来决定：
@@ -1183,7 +1188,7 @@ operator/(a, b);  //与 a / b 等价
  \vspace{-2.5mm}\begin{lstlisting}
 class Fraction {
 public:
-    Fraction &operator*=(const Fraction &rhs) {
+    Fraction& operator*=(const Fraction &rhs) {
         m_numerator *= rhs.m_numerator;
         m_denominator *= rhs.m_denominator;
         return *this;
@@ -1210,7 +1215,7 @@ a *= b;
 \begin{blueblock}{调用方式2：}
 \begin{lstlisting}
 Fraction a, b;
-a.operator*=(b); //与 a *= b 等价
+a.operator *= (b); //与 a *= b 等价
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 \end{itemize}
@@ -1229,44 +1234,27 @@ a.operator*=(b); //与 a *= b 等价
 \begin{block}{1.~含义与内置类型一致}
  \vspace{-2.5mm}\begin{lstlisting}
  bool operator==(const Fraction &left, const Fraction &right) {
-    return left.numerator()*right.denominator() ==
-         left.denominator()*right.numerator();
+    return left.numerator()*right.denominator()==left.denominator()*right.numerator();
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
 \begin{block}<2->{2.~行为与内置类型一致}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction &Fraction::operator=(const Fraction &rhs) {//返回左值对象的引用
+Fraction& Fraction::operator=(const Fraction &rhs) {//返回左值对象的引用
     if (&rhs == this) return *this;   //不会给自己赋值，例如， a = a;
-    m_numerator = rhs.m_numerator;
-    m_denominator = rhs.m_denominator;
+    m_numerator = rhs.m_numerator;    m_denominator = rhs.m_denominator;
     return *this;
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
 
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]
-    {6.3.2 重载原则}
-\begin{yellowblock}<1->{默认赋值运算符}
-没有显式重载赋值运算符时，编译器会自动合成一个默认的赋值运算符。
+\begin{yellowblock}<3->{编译器会自动合成一个默认的赋值运算符}
 \begin{itemize}
-  \item 参数与返回值类型与自定义的函数一致；
-  \item 使用赋值运算符将右侧对象的每个数据成员逐个赋值给左侧对象相应的数据成员；
+  \item 参数与返回值类型与上述函数一致；
+  \item 将右侧对象的每个数据成员逐个赋值给左侧对象相应的数据成员；
   \item 对于数组成员，逐元素赋值。
 \end{itemize}
 \end{yellowblock}
-
-\begin{redblock}<2->{提示：运算符属性继承}
-\begin{itemize}
-  \item 重载的运算符函数不会改变运算符的优先级、结合性以及目数等属性；
-  \item 运算符的求值次序无法应用于重载的运算符。
-\end{itemize}
-\end{redblock}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1371,15 +1359,15 @@ ostream& operator <<  (ostream &os, const Fraction &a) {
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
 
-\begin{greenblock}<3->{问题：为什么要返回~ostream~类对象的引用？}
-\begin{itemize}
-  \item <4->[] 因为可以实现连续输出：
+\begin{yellowblock}<3->{必须返回~ostream~类对象的引用}
+
+\onslide<4-> 与运算符\texttt{<<}行为一致（连续输出）；不允许复制IO类对象
 \begin{lstlisting}
 Fraction a, b;
 cout << a << b << endl;
 \end{lstlisting}\vspace{-1.5mm}
-\end{itemize}
-\end{greenblock}
+
+\end{yellowblock}
 
 \end{frame}
 
@@ -1402,6 +1390,9 @@ istream& operator >>  (istream &is, Fraction &a) {
     is >> a.m_numerator >> a.m_denominator;
     return is;
 }
+
+ Fraction a;
+ cin >> a;
 \end{lstlisting}\vspace{-1.5mm}
 \end{block}
 
@@ -1409,12 +1400,12 @@ istream& operator >>  (istream &is, Fraction &a) {
 
 \begin{frame}[fragile]
     {6.3.3 输入和输出运算符}
-
-\begin{greenblock}<1->{下面程序是否有问题？应如何修改？}
+    \begin{itemize}
+      \item 输入/输出运算符必须为类的辅助函数，不能作为类的成员函数，例如
+    \end{itemize}
+\begin{greenblock}<1->{下面程序是否有问题？ }
 \begin{lstlisting}
 class Fraction {
-    int m_numerator = 0;
-    int m_denominator = 1;
 public:
     istream& operator>>  (istream &is) {
         is >> m_numerator >> m_denominator;
@@ -1436,8 +1427,6 @@ int main() {
 \begin{greenblock}<1->{答案}
 \begin{lstlisting}
 class Fraction {
-    int m_numerator = 0;
-    int m_denominator = 1;
 public:
     istream& operator>>  (istream &is) {
         is >> m_numerator >> m_denominator;
@@ -1480,25 +1469,13 @@ Fraction& Fraction::operator++() {
 
 \begin{blueblock}<3->{后置递增}
  \vspace{-2.5mm}\begin{lstlisting}
-Fraction Fraction::operator++(int) {
+Fraction Fraction::operator++(int) { //形参仅为区别于前置版本
     Fraction a(*this);  //保存当前值
     m_numerator++; //分子加1
-    return a; //返回保存值，返回临时值，只能返回非引用类型
+    return a; //以值返回方式返回局部对象
 }
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
-\end{frame}
-
-
-\begin{frame}[fragile]
-    {6.3.4 递增和递减运算符}
-\begin{greenblock}{问题：为什么后置版本采用一个额外的~int~形参？}
-\begin{itemize}
-  \item<2->[]
-  区别前置和后置版本。
-\end{itemize}
-\end{greenblock}
-
 \end{frame}
 
 %#####################################
@@ -1733,8 +1710,8 @@ cout << PartTimeWorker::rate() << endl; //通过类名访问静态成员
 
 \begin{blueblock}<2->{使用静态成员：通过类对象来访问静态成员} \vspace{-2.5mm}
 \begin{lstlisting}
-PartTimeWorker kevin;
-cout << kevin.rate() << endl;  //通过类对象访问静态成员函数
+PartTimeWorker w;
+cout << w.rate() << endl;  //通过类对象访问静态成员函数
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
 
