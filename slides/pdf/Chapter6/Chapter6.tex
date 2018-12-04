@@ -1642,18 +1642,6 @@ public:
 
 \end{frame}
 
-\begin{frame}[fragile]
-    {6.4.1 声明静态成员}
-\begin{yellowblock}{静态数据和类对象}
-一个类的静态数据成员不属于类对象，类对象不包含任何静态数据成员。
-\end{yellowblock}
-\begin{greenblock}<2->{在静态成员函数内部能不能直接使用~this~指针?}
-\begin{itemize}
-  \item<3->[]不能，静态成员函数不与任何对象绑定，因此不包含~this~指针，也就是说不能直接访问普通成员，而且也不能声明为常量成员函数。
-\end{itemize}
-\end{greenblock}
-\end{frame}
-
 
 \subsection{使用静态成员}\label{chap6-4-2}
 
@@ -1726,7 +1714,20 @@ double PartTimeWorker::salary() {
 \end{blueblock}
 \end{frame}
 
-
+\begin{frame}[fragile]
+    {6.4.2 使用静态成员}
+\begin{yellowblock}{静态数据和类对象}
+一个类的静态数据成员不属于类对象，类对象不包含任何静态数据成员。
+\end{yellowblock}
+\begin{greenblock}<2->{在静态成员函数内部能不能直接使用~this~指针?}
+不能，静态成员函数不与任何对象绑定，因此不包含~this~指针，也就是说不能直接访问普通成员。
+\begin{lstlisting}
+void PartTimeWorker::initRate(double rate) {
+    this->ms_payRate = rate; //错误：静态成员函数没有this指针
+}
+\end{lstlisting}\vspace{-1.5mm}
+\end{greenblock}
+\end{frame}
 
 
 
