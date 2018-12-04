@@ -1601,6 +1601,7 @@ int i = f;
     {6.4 静态成员}
 
 \begin{block}{静态成员}
+类的某些属性值并非属于每个对象，类对象共享，比如，兼职人员的小时工资。
 \begin{itemize}
   \item 类对象共享；
   \item 与类相关联；
@@ -1613,16 +1614,9 @@ int i = f;
 \subsection{声明静态成员}
 \begin{frame}[fragile]
     {6.4.1 声明静态成员}
-\begin{block}{声明静态成员}
-\begin{itemize}
-  \item 在成员声明之前加上关键字~ \textcolor{blue}{static}~使其与类相关联；
-  \item 静态数据成员在程序启动时创建，在程序结束时消亡；
-  \item 类型可以为常量、引用、指针、类类型。
-\end{itemize}
-\end{block}
 
-\begin{blueblock}<2->{示例}
-为~Fraction~类添加一个转换为~double~类型的类型转换运算符：
+\begin{blueblock}<1->{示例：声明静态成员}
+利用关键字~ \textcolor{blue}{static}~为~Fraction~类添加一个静态成员
 \begin{lstlisting}
 class PartTimeWorker {
     string m_name; //员工姓名
@@ -1637,6 +1631,14 @@ public:
 };
 \end{lstlisting}\vspace{-1.5mm}
 \end{blueblock}
+
+\begin{block}<2->{说明}
+\begin{itemize}
+  \item 在成员声明之前加上关键字~ \textcolor{blue}{static}~使其与类相关联；
+  \item 静态数据成员在程序启动时创建，在程序结束时消亡；
+  \item 类型可以为常量、引用、指针、类类型。
+\end{itemize}
+\end{block}
 
 \end{frame}
 
