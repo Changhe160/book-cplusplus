@@ -1121,7 +1121,8 @@ cout << obj ;
     {6.3.1 基本概念}
 \begin{block}{运算符重载}
 \begin{itemize}
-  \item 由关键字~\textcolor{blue}{operator}\index{O!operator!operator overloading}~和需要重载的运算符共同组成；
+\item 一类特殊的函数；
+  \item 函数名由关键字~\textcolor{blue}{operator}\index{O!operator!operator overloading}~和需要重载的运算符共同组成；
   \item 重载的运算符的返回值类型以及参数列表由运算符的性质来决定：
   \begin{itemize}
     \item 一元运算符有一个参数；
@@ -1342,7 +1343,7 @@ class Fraction {
 
 \begin{frame}[fragile]
     {6.3.3 输入和输出运算符}
-\begin{block}{重载输出运算符}
+\begin{block}{重载输出运算符\texttt{<<}}
 \begin{itemize}
   \item 第一个形参是一个非常量~ostream~类对象，需要向其写入数据；
   \item 第二个形参是类的常量引用，避免对实参进行写操作；
@@ -1371,15 +1372,12 @@ cout << a << b << endl;
 
 \end{frame}
 
-
-
-
 \begin{frame}[fragile]
     {6.3.3 输入和输出运算符}
-\begin{block}{重载输出运算符}
+\begin{block}{重载输入运算符\texttt{>>}}
 \begin{itemize}
-  \item 第一个形参为~istream~类对象的引用，能返回~istream~类对象的引用；
-  \item 第二个形参是类对象的常量引用，要对类对象进行写操作；
+  \item 第一个形参为~istream~类对象的引用，并返回~istream~类对象的引用；
+  \item 第二个形参是类对象的非常量引用，要对类对象进行写操作；
   \item 返回~istream~类对象的引用。
 \end{itemize}
 \end{block}
