@@ -47,7 +47,7 @@
     \newenvironment<>{yellowblock}[1]{%
       \setbeamercolor{block title}{fg=white,bg=indianyellow}%
       \begin{block}#2{#1}}{\end{block}}
-      
+
     \lstset{language=C++,
     columns=flexible,
     basicstyle=\footnotesize\ttfamily,                                    % 设定代码字体、大小
@@ -99,7 +99,7 @@
 \titlepage % Print the title page as the first slide
 
 \begin{multicols}{2}
-	黑色部分：基础知识，需要掌握		
+	黑色部分：基础知识，掌握		
 	\color{blue}{蓝色部分：高级话题，了解}
 \end{multicols}
 \end{frame}
@@ -146,7 +146,7 @@
 \item 表达式求值与构造
 \begin{itemize}
   \item {\color{blue}左值、右值}、优先级、结合性和{\color{blue}求值次序}
-  \item 优先级：逗号运算符\texttt{<}赋值运算符~\texttt{<}~~逻辑与\texttt{\&\&}~、逻辑或\texttt{||}~\texttt{<}~关系运算符~\texttt{<}~算术运算符~\texttt{<}~逻辑非\texttt{!}
+  \item 优先级：逗号运算符\texttt{<}赋值运算符~\texttt{<}逻辑或\texttt{<}逻辑与~\texttt{<}~关系运算符~\texttt{<}~算术运算符~\texttt{<}~逻辑非
       \item 条件运算符、sizeof运算符、\textcolor{blue}{位运算符}
   \item 表达式构造，短路求值，隐式类型转换规则
 \end{itemize}
@@ -185,7 +185,7 @@
 \begin{itemize}
   \item （左值）引用：左值对象的别名
 \begin{itemize}
-  \item 定义时必须初始化 
+  \item 定义时必须初始化
   \item 指向const对象的引用
   \item {\color{blue}auto, decltype和引用}
   \item {\color{blue}右值引用：把右值变成左值}
