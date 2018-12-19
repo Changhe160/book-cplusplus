@@ -778,7 +778,7 @@ int main() {
 \end{itemize}
 \end{block}
 \begin{blueblock}<2->{引用传递的例子}\vspace{-1.5mm}\begin{lstlisting}
-void swap(int &x, int &y) {//x和y分别是实参i和j的别名
+void Swap(int &x, int &y) {//x和y分别是实参i和j的别名
     int z(x);
     x = y;
     y = z;
@@ -786,7 +786,7 @@ void swap(int &x, int &y) {//x和y分别是实参i和j的别名
 int main() {
     int i(4), j(5);
     Swap(i, j);
-    cout << "i=" << i << ",j=" << j << endl;//输出i=4,j=5
+    cout << "i=" << i << ",j=" << j << endl;//输出i=5,j=4
     return 0;
 }
 \end{lstlisting}\vspace{-1.5mm}
