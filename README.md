@@ -3,7 +3,7 @@
 
 教材代码：在code目录下，每个chapter工程包含每一小节的代码，例如：chapter3.4工程包含教材中第3.4节代码。开发环境： Windows 10系统， [Visual Studio Community 2017][vs2017]， Windows SDK Version：10.0.16299.0
 
-讲义：在slides目录下提供了pdf格式讲义及Latex源码。 Latex编译软件：[miktex][miktex_]或者[texlive][texlive_]
+讲义：在slides目录下提供了ppt格式和pdf格式讲义及Latex源码。 
 
 实验指导书：在practice目录下面给出了每一章上机的实验指导和练习题目
 
