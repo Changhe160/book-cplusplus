@@ -1575,7 +1575,7 @@ void(*c(int, void(*fp)(int)))(int);
 \begin{blueblock}<4->{利用~using~声明简化语句}
 \begin{lstlisting}
 using PF = void(*)(int);
-PF *a[5];
+PF a[5];
 PF(*b)[5];
 PF c(int, PF);
 \end{lstlisting}\vspace{-1.5mm}
