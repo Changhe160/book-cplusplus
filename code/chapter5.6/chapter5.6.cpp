@@ -43,9 +43,15 @@ int main() {
 		//void(*(*b)[5])(int);
 		//void(*c(int, void(*fp)(int)))(int);
 		using PF = void(*)(int);
-		PF *a[5];
+		PF a[5];
 		PF(*b)[5];
 		PF c(int, PF);
+
+		using PF2 = bool (*)(int, int);
+		PF2 *a1[5] = { &pf2 };
+		PF2 a2[5] = { pf2 };
+		bool (*a3[5])(int,int) = { pf2 };
+		
 	}
 
 	//5.6.2 lambda±Ì¥Ô Ω
