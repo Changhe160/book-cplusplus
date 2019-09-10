@@ -69,5 +69,5 @@ Fraction operator/(const Fraction &left, const Fraction &right);
 Fraction operator/(int left, const Fraction &right);
 
 ostream &print(ostream &out, const Fraction &f);
-
+bool operator>(const Fraction&lhs, const Fraction&rhs);
 #endif
