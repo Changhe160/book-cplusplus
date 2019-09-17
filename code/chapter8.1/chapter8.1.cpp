@@ -97,18 +97,17 @@ int main(){
 	{//8.1.4
 		int n = 5;
 		int *pa = new int[n];
-	}
-	{
+	
 		int *pa1 = new int[5]; //5个未定义的int
 		int *pa2 = new int[5](); //5个值为0的int
-	}
-	{
 		int *pa3 = new int[5]{ 1,2,3,4,5 };
-	}
-	{
-		int *pa1 = new int[5];
-		delete[] pa1; //pa1必须为指向动态分配的数组或为空
-					  //delete pa1; //错误：产生未定义的行为
+	
+
+		delete[] pa; //pa必须为指向动态分配的数组或为空
+					  //delete pa; //错误：产生未定义的行为
+		delete[] pa1;
+		delete[] pa2;
+		delete[] pa3;
 	}
 
 }
