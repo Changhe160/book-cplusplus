@@ -17,6 +17,7 @@ public:
 	MyStr& operator=(const MyStr &rhs);
 
 	//8.2.3½Ú
+	MyStr(MyStr &&rhs);
 	MyStr& operator=(MyStr &&rhs);
 
 	//¸¨Öúº¯ÊıÉùÃ÷
