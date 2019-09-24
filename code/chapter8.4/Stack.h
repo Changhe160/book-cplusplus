@@ -67,6 +67,7 @@ void Stack<T>::clear() {
 
 template<typename T>
 void Stack<T>::pop() {
+	if (empty()) return;
 	Node<T> *p = m_top;
 	m_top = m_top->m_next;
 	delete p;
