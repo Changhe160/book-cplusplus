@@ -48,6 +48,8 @@ int main(){
 		{
 			unique_ptr<string> p1; //p1为nullptr
 			unique_ptr<int> p2(new int(207)); //直接初始化方式创建p2
+			unique_ptr<int> p3=make_unique<int>(207); //C++14 
+			unique_ptr<string> p4 = make_unique<string>("C++14"); //C++14
 		} //p1和p2离开作用域，被销毁，同时释放其指向的动态内存
 	}
 	{//8.1.3
@@ -64,8 +66,10 @@ int main(){
 	{//8.1.3
 		unique_ptr<int> p1(new int(207));
 		unique_ptr<int> p2(p1.release());
+		cout << *p2 << endl;
 		unique_ptr<int> p3(new int(105));
 		p3.reset(p2.release());
+		cout << *p3 << endl;
 	}
 	{//8.1.3
 	 //shared_ptr<int> p1 = new int(105); //错误：必须使用直接初始化的形式

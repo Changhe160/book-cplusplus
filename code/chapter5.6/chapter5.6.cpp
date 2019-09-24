@@ -32,25 +32,31 @@ int main() {
 
 	//5.6.1 函数指针
 	{
-		bool(*pf)(int, int);
+		bool(*pf)(int, int)=nullptr;
 		//bool* pf(int, int);
 		ppFun pf1 = compareInt;		//隐式初始化，pf1指向compareInt函数
 		ppFun pf2 = &compareInt;	//显式初始化，pf2指向compareInt函数
 		ppFun pf3 = nullptr;		//pf3不指向任何函数
 		bool b1 = pf1(1, 2);
 		bool b2 = (*pf2)(1, 2);
-		//void(*a[5])(int);
-		//void(*(*b)[5])(int);
-		//void(*c(int, void(*fp)(int)))(int);
-		using PF = void(*)(int);
-		PF a[5];
-		PF(*b)[5];
-		PF c(int, PF);
+		{
+			void(*a[5])(int);
+			void(*(*b)[5])(int)=nullptr;
+			void(*c(int, void(*fp)(int)))(int);
+			using PF = void(*)(int);
 
-		using PF2 = bool (*)(int, int);
-		PF2 *a1[5] = { &pf2 };
-		PF2 a2[5] = { pf2 };
-		bool (*a3[5])(int,int) = { pf2 };
+			PF a1[5] = { a[0] };
+			PF (*b1)[5] =b ;
+			PF c1(int, PF);
+		}
+
+		{
+			using PF2 = bool(*)(int, int);
+			PF2 *a1[5] = { &pf };
+			PF2 a2[5] = { pf };
+			bool(*a3[5])(int, int) = { pf };
+		}
+
 		
 	}
 
