@@ -74,8 +74,8 @@
     \date {}
 
 
-     %\institute
-      %   {第八章程序验收时间2019年10月12日下午}
+    % \institute
+     %    {}
 
 
 \begin{document}
@@ -296,8 +296,8 @@ void test() {           //全局函数
     \item \textcolor[rgb]{0,0,1}{\texttt{protected}}~继承 :基类的protected和public属性在派生类中变为protected。
     \item \textcolor[rgb]{0,0,1}{\texttt{private}}~继承:基类的protected和public属性在派生类中变为private。
     \end{itemize}
-    访问权限不仅取决于访问限定符，还取决于继承方式
     \end{block}
+    \pause
        \begin{block}{访问权限不仅取决于访问限定符，还取决于继承方式}
     以上三种继承，基类中的private属性在其派生类中均\alert{保持不变}。
     \end{block}
@@ -319,9 +319,9 @@ class PriDerv : private Base {  //私有继承不影响派生类成员对 基类
 };
 void test() {
     PubDerv d1;
-    PriDerv d2;
     d1.m_pub = 10;       //正确：m_pub在PubDerv中是公有的
-    d2.m_pub = 1;        //错误：m_pub在PubDerv中是私有的
+    PriDerv d2;
+    d2.m_pub = 1;        //错误：m_pub在PriDerv中是私有的
 }
     \end{lstlisting}\ttfamily
     \end{column}
@@ -430,7 +430,7 @@ class Derived : public Base {
     \begin{column}{0.06\linewidth}
     \end{column}
     \begin{column}{0.94\linewidth}
-    \begin{lstlisting}[]
+    \begin{lstlisting}[moreemph={PartTimeWorker,Person}]
 PartTimeWorker w("Kevin", 21);
 Person p, *ptr;
 ptr = &w;                        //基类指针ptr指向派生类对象w
@@ -562,6 +562,7 @@ Person::Person(const string &name = "",int age = 0):m_name(name), m_age(age) {
         \verb;Copy constr of Course;\\
         \verb;Constr of Student;\\
     \end{block}
+    \pause
     \begin{yellowblock}{提示：存在继承关系的类的成员初始化}
         在派生类对象构造过程中，每个类\alert{仅负责}自己的成员的初始化。
     \end{yellowblock}
@@ -655,6 +656,7 @@ B& B::operator=(const B &d) {
     \end{column}
     \end{columns}
     \end{block}
+    \pause
     \begin{yellowblock}{提示：派生类中使用基类的构造或赋值成员}
    如果基类中合成的构造函数、复制构造函数或赋值运算符是删除的或者是不可以访问的，那么派生类中对应的合成成员也是删除的。
     \end{yellowblock}
@@ -1166,13 +1168,14 @@ public:
 
 \begin{frame}[fragile]
     {9.3 虚函数与多态性\small{—再探计算器}}
-    \begin{block}{定义计算器类}
-    ~~~~~~由于unique\_ptr不支持复制操作，因此向前面章节定义的Node模板和Stack模板分别添加支持移动语义的构造函数和push函数：
-        \begin{lstlisting}[basicstyle=\normalsize\ttfamily]
-        template<typename T>    // 含右值形参的移动构造函数
+    \begin{block}{利用智能指针管理内存}
+    由于unique\_ptr不支持复制操作，因此向前面章节定义的Node模板和Stack模板分别添加支持移动语义的构造函数和push函数：
+        \begin{lstlisting}[basicstyle=\normalsize\ttfamily,moreemph={Node, T,Stack}]
+        template<typename T>                // 含右值形参的移动构造函数
         Node<T>::Node(T &&val) :m_value(std::move(val)) { }
+
         template<typename T>
-        void Stack<T>::push(T &&val) {  //含右值形参的push函数
+        void Stack<T>::push(T &&val) {       //含右值形参的push函数
             Node<T> *node = new Node<T>(std::move(val));
             node->m_next = m_top;
             m_top = node;
