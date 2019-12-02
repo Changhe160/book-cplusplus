@@ -35,16 +35,16 @@ int main(){
 		delete p;
 		p = nullptr; // p不再指向任何对象
 	}
-	{//8.1.2
+	{//8.1.3
 		int i, *q = new int(2);
 		q = &i; //发生内存泄漏
 	}
-	{//8.1.2
+	{//8.1.3
 		foo(614); //正确：无内存泄漏
 		foo(105); //错误：发生内存泄漏
 	}
 
-	{//8.1.3
+	{//8.1.4.1
 		{
 			unique_ptr<string> p1; //p1为nullptr
 			unique_ptr<int> p2(new int(207)); //直接初始化方式创建p2
@@ -52,18 +52,18 @@ int main(){
 			unique_ptr<string> p4 = make_unique<string>("C++14"); //C++14
 		} //p1和p2离开作用域，被销毁，同时释放其指向的动态内存
 	}
-	{//8.1.3
+	{//8.1.4.1
 		unique_ptr<string> p1(new string("Mandy")); //p1指向string类型对象
 		if (p1 && p1->empty()) //指针p1 非空且其指向的对象为非空string
 			*p1 = "Lisha"; //*p1为解引用
 	}
-	{//8.1.3
+	{//8.1.4.1
 		unique_ptr<int> p1(new int(207));
 		//unique_ptr<int> p2(p1); //错误：unique_ptr不能被拷贝
 		unique_ptr<int> p3;
 		//p3 = p2; //错误：unique_ptr不支持赋值
 	}
-	{//8.1.3
+	{//8.1.4.1
 		unique_ptr<int> p1(new int(207));
 		unique_ptr<int> p2(p1.release());
 		cout << *p2 << endl;
@@ -71,18 +71,18 @@ int main(){
 		p3.reset(p2.release());
 		cout << *p3 << endl;
 	}
-	{//8.1.3
+	{//8.1.4.2
 	 //shared_ptr<int> p1 = new int(105); //错误：必须使用直接初始化的形式
 		shared_ptr<int> p2(new int(614)); //正确
 	}
-	{//8.1.3
+	{//8.1.4.2
 	 //定义一个shared_ptr，指向一个值为10的int 类型对象
 		shared_ptr<int> pi = make_shared<int>(10);
 	}
-	{//8.1.3
+	{//8.1.4.2
 		auto pi = make_shared<int>(10);
 	}
-	{//8.1.3
+	{//8.1.4.2
 		auto p1 = make_shared<int>(10); //p1指向的对象只有p1 一个引用者
 		cout << p1.use_count() << endl; //输出1
 		auto p2(p1); //p1和p2 共同指向同一个对象
@@ -92,13 +92,13 @@ int main(){
 		p3 = p1;
 		cout << p4.use_count() << p1.use_count() << endl; //输出1 3
 	}
-	{//8.1.3
+	{//8.1.4.3
 		auto ps = make_shared<int>(10);
 		weak_ptr<int> pw(ps); //ps的引用计数不会改变
 		if (auto p = pw.lock())
 			cout << *p;
 	}
-	{//8.1.4
+	{//8.1.5
 		int n = 5;
 		int *pa = new int[n];
 	
