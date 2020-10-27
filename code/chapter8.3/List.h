@@ -88,6 +88,8 @@ void SList<T>::erase(const T &val) { //删除第一次出现的元素
 		q->m_next = p->m_next;
 	if (p == m_tail) 
 		m_tail = q;
+	if (p == m_head && p)			//如果 p 为表头元素，修改 head 指针
+		m_head = p->m_next;
 	delete p;
 }
 
