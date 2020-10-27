@@ -93,7 +93,7 @@ void  Array<T, N>::insertionSort(F f) {
 template<typename T, size_t N>
 template<typename F >
 void  Array<T, N>::bubbleSort(F f){
-	for (int i = N - 1; i >= 0; --i){
+	for (int i = N - 1; i > 0; --i){
 		// bubble up
 		for (int j = 0; j <= i - 1; ++j)
 		{
