@@ -122,16 +122,14 @@ int main() {
 	if (auto p = Find(arr, sizeof(arr) / sizeof(int), 4))
 		cout << *p << endl;	
 
-	Find(Begin(vi), End(vi), 4);
-	Find(Begin(arr), End(arr), 5);
 
+	if (auto p = Find(arr, arr + sizeof(arr) / sizeof(int), 4)) 
+		cout << *p << endl;
 	if (auto p = Find(&vi[0], &vi[vi.size() - 1]+1, 4)) 
 		cout << *p << endl;
 
-	if (auto p = Find(arr, arr + sizeof(arr) / sizeof(int), 5)) 
-		cout << *p << endl;
-	
-
+	Find(Begin(vi), End(vi), 4);
+	Find(Begin(arr), End(arr), 4);
 
 	auto it1 = vi.cbegin();
 

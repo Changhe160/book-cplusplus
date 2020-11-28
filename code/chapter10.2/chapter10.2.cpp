@@ -38,10 +38,11 @@ int main() {
 
 	{
 		double x = 1.2152;
-		cout.precision(3);
+		int default_precision=cout.precision(3);
 		cout << "precision:" << cout.precision() << ", x=" << x << endl;
 		cout << setprecision(4);
 		cout << "precision:" << cout.precision() << ", x=" << x << endl;
+		cout.precision(default_precision); //»Ö¸´Ä¬ÈÏ¾«¶È
 	}
 
 	{

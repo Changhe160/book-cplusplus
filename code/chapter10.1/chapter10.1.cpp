@@ -4,7 +4,7 @@
 #include <string>
 #include <iomanip>
 #include <vector>
-
+#include<limits>
 using namespace std;
 //ostream print(ostream) {}
 
@@ -17,13 +17,16 @@ int main() {
 	}
 
 	{
-		//double x;
-		//cin >> x;
+		double x;
+		cin >> x;
 
-		//while (cin >> x);
+		while (cin >> x);
 
-		//if (!cin)
-		//	cin.clear();
+		if (!cin) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max, '\n');
+		}
+			
 	}
 
 	{

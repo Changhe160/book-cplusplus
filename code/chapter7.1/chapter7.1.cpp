@@ -27,7 +27,7 @@ int main() {
 		int a = 1, b = 2;
 		getMax(&a, &b);
 		{
-			const char* a = "Hi", *b = "C++";
+			const char* a = "Hi", *b = "Hello";
 			cout << getMax(a, b) << endl; //调用特例化版本，输出Hi
 		}
 		int c = 1, d = 2;
