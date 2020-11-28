@@ -27,7 +27,12 @@ int main()
 	Calculator cclt;
 	while (getline(cin, exp))
 	{
-		cout << cclt.doIt(exp) << endl;
+		try {
+			cout << cclt.doIt(exp) << endl;
+		}
+		catch (const string &str) {
+			cerr << "Exception:" << str << endl;
+		}
 	}
 	system("pause");
 	return 0;

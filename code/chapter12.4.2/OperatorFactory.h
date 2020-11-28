@@ -27,8 +27,10 @@ public:
 
 	static unique_ptr<Operator> create(char opr) {
 		auto it = ms_operator.find(opr);
-		if (it != ms_operator.end()) 
+		if (it != ms_operator.end())
 			return it->second();
+		else
+			throw string("Unregisted operator:")+opr;
 	}
 //private:
 	static map<char, function<unique_ptr<Operator>()>> ms_operator; // 存储已注册运算符名及对应构建函数指针的map

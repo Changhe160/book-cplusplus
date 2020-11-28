@@ -21,25 +21,28 @@ void Calculator::calculate() {
 }
 
 double Calculator::doIt(const string & exp) {
+	
 	for (auto it = exp.begin(); it != exp.end();) {
 		// 如果是操作数, 压栈之
 		if (isNum(it))
 			m_num.push(readNum(it));
 		else {// 如果是运算符, 压栈或计算
 			  // 将readOpr得到的string转化为Operator
-			auto oo=Factory::create(*it++);
-			// 如果栈顶优先级高, 则计算
-			while (oo->precedence() <= m_opr.top()->precedence()) {
-				if (m_opr.top()->symbol() == '#')
-					break;
-				calculate();
-			}
-			// "="从不入栈
-			if (oo->symbol() != '=')
-				m_opr.push(std::move(oo));
+			
+				auto oo = Factory::create(*it++);
+				// 如果栈顶优先级高, 则计算
+				while (oo->precedence() <= m_opr.top()->precedence()) {
+					if (m_opr.top()->symbol() == '#')
+						break;
+					calculate();
+				}
+				// "="从不入栈
+				if (oo->symbol() != '=')
+					m_opr.push(std::move(oo));			
 		}
 	}
 	double result = m_num.top();
 	m_num.pop();
 	return result;
+	
 }
