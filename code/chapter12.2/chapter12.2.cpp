@@ -64,7 +64,7 @@ int main() {
 	try {
 		throw MyException();
 	}
-	catch (exception& ex) {
+	catch (const exception &ex) {
 		cerr << ex.what() << endl;
 	}
 
@@ -73,10 +73,10 @@ int main() {
 	try {
 		int c = divide(a, b);
 	}
-	catch (const string & str) {
+	catch (const string &str) {
 		cerr << str << endl;
 	}
-	catch (const char* str) {
+	catch (const char *str) {
 		cerr << str << endl;
 	}
 	WithException::foo();
