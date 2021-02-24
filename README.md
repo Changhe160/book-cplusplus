@@ -5,9 +5,11 @@
 
 讲义：在slides目录下提供了ppt格式和pdf格式讲义及Latex源码（使用XeLatex编译）。 
 
-实验指导书：在practice目录下面给出了每一章上机的实验指导和练习题目
+《C++程序设计实验指导书（基于C++11标准）》，中国地质大学出版社，2020年12月.
 
-教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]、[亚马逊][amazon]，或者联系戴晨辰编辑 dcc@phei.com.cn
+教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]或者联系戴晨辰编辑 dcc@phei.com.cn
+
+实验指导书订购网址：[中国地质大学出版社][cugp]
 
 [vs2017]: https://visualstudio.microsoft.com/vs/community/
 [miktex_]: https://miktex.org/download
@@ -15,5 +17,5 @@
 [phei]: https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=52723
 [tianmao]: https://detail.tmall.com/item.htm?spm=a1z10.5-b.w4011-17538325040.26.129d66dbA1Cn8D&id=576915359900&rn=de470f45922c94391043e09f1304e7e9&abbucket=3
 [jd]: https://item.jd.com/12424029.html?dist=jd
-[amazon]: https://www.amazon.cn/dp/B07GW2N5MX/ref=sr_1_1?ie=UTF8&qid=1537253553&sr=8-1&keywords=C%2B%2B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1+%E6%9D%8E%E9%95%BF%E6%B2%B3
 [dangdang]: http://product.dangdang.com/25338942.html
+[cugp]: https://mp.weixin.qq.com/s/EUAdZgiT1l4uOBOaNujrvQ
