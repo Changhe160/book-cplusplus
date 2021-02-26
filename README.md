@@ -9,7 +9,7 @@
 
 教材订购网址：[电子工业出版社官网][phei]、[天猫旗舰店][tianmao]、[京东][jd]、[当当][dangdang]或者联系戴晨辰编辑 dcc@phei.com.cn
 
-实验指导书订购网址：[中国地质大学出版社][cugp]
+实验指导书订购网址：[中国地质大学出版社(目前仅支持通过微信打开链接方式购买)][cugp]
 
 [vs2017]: https://visualstudio.microsoft.com/vs/community/
 [miktex_]: https://miktex.org/download
